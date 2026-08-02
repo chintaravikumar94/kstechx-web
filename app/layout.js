@@ -1,16 +1,17 @@
 import "./globals.css";
 
 export const metadata = {
-  title: "KS TechX — Building Digital Products",
+  title: "KS TechX — Building Digital Products for India",
   description:
-    "KS TechX is the home of Mera Digi Card, LocalKart, Mera Partners and more. Explore our digital products.",
+    "Kumara Swamy Technologies (KS TechX) builds Bizfree — sell on WhatsApp & web with payments and delivery — plus Mera Digi Card, LocalKart and more.",
   metadataBase: new URL("https://kstechx.com"),
   openGraph: {
-    title: "KS TechX — Building Digital Products",
+    title: "KS TechX — Building Digital Products for India",
     description:
-      "The home of Mera Digi Card, LocalKart, Mera Partners and more.",
+      "Home of Bizfree (WhatsApp & web commerce), Mera Digi Card, LocalKart and more.",
     url: "https://kstechx.com",
     siteName: "KS TechX",
+    locale: "en_IN",
     type: "website",
   },
 };

@@ -1,3 +1,19 @@
+const featured = {
+  name: "Bizfree",
+  tagline: "Sell on WhatsApp & the web — with delivery built in",
+  description:
+    "Take orders, bookings and appointments through WhatsApp and your own web storefront. Collect payments online and ship anywhere in India with 15+ courier partners — all from one simple dashboard.",
+  url: "https://biz.kstechx.com",
+  highlights: [
+    { icon: "💬", label: "WhatsApp AI ordering", note: "English · Hindi · Telugu" },
+    { icon: "🌐", label: "Web storefront", note: "Your own store link" },
+    { icon: "💳", label: "Online payments", note: "UPI · cards · netbanking" },
+    { icon: "🚚", label: "Doorstep delivery", note: "15+ courier partners" },
+    { icon: "📅", label: "Bookings & appointments", note: "Slots & calendar" },
+    { icon: "🧾", label: "GST-ready invoices", note: "Auto tax invoice" },
+  ],
+};
+
 const projects = [
   {
     name: "Mera Digi Card",
@@ -26,15 +42,6 @@ const projects = [
     live: true,
     accent: "#f2a33c",
   },
-  {
-    name: "Coming Soon",
-    tag: "New",
-    description:
-      "The next KS TechX product is on the way. Watch this space.",
-    url: "#",
-    live: false,
-    accent: "#8a94a6",
-  },
 ];
 
 export default function Home() {
@@ -48,6 +55,7 @@ export default function Home() {
             <span className="brand-text">TechX</span>
           </a>
           <nav className="nav-links">
+            <a href="#bizfree">Bizfree</a>
             <a href="#products">Products</a>
             <a href="#about">About</a>
             <a href="#contact" className="btn btn-ghost">
@@ -60,23 +68,67 @@ export default function Home() {
       {/* HERO */}
       <section className="hero">
         <div className="container">
-          <p className="eyebrow">Building Digital Products</p>
+          <p className="eyebrow">Kumara Swamy Technologies</p>
           <h1>
-            One platform.
+            Digital products
             <br />
-            <span className="grad">Many possibilities.</span>
+            <span className="grad">for Indian businesses.</span>
           </h1>
           <p className="lead">
-            KS TechX is the home of Mera Digi Card, LocalKart, Mera Partners and
-            more. Explore everything we&apos;re building below.
+            We build software that helps local businesses sell, grow and get
+            paid — led by <strong>Bizfree</strong>, our WhatsApp &amp; web
+            commerce platform.
           </p>
           <div className="hero-cta">
-            <a href="#products" className="btn btn-primary">
-              Explore Products
+            <a href="#bizfree" className="btn btn-primary">
+              Explore Bizfree
             </a>
-            <a href="#contact" className="btn btn-ghost">
-              Get in Touch
+            <a href="#products" className="btn btn-ghost">
+              All Products
             </a>
+          </div>
+        </div>
+      </section>
+
+      {/* FEATURED — BIZFREE */}
+      <section id="bizfree" className="featured">
+        <div className="container">
+          <div className="featured-card">
+            <div className="featured-head">
+              <span className="featured-badge">🟢 Flagship product</span>
+              <h2 className="featured-name">{featured.name}</h2>
+              <p className="featured-tagline">{featured.tagline}</p>
+              <p className="featured-desc">{featured.description}</p>
+              <div className="featured-cta">
+                <a
+                  href={featured.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-wa"
+                >
+                  Visit Bizfree →
+                </a>
+                <a
+                  href="https://biz.kstechx.com/pricing"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-ghost"
+                >
+                  See pricing
+                </a>
+              </div>
+            </div>
+            <div className="featured-grid">
+              {featured.highlights.map((h) => (
+                <div key={h.label} className="feat-pill">
+                  <span className="feat-icon">{h.icon}</span>
+                  <div>
+                    <strong>{h.label}</strong>
+                    <span>{h.note}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -84,7 +136,7 @@ export default function Home() {
       {/* PRODUCTS */}
       <section id="products" className="section">
         <div className="container">
-          <h2 className="section-title">Our Products</h2>
+          <h2 className="section-title">More from KS TechX</h2>
           <p className="section-sub">
             Each product runs on its own dedicated space under kstechx.com.
           </p>
@@ -119,23 +171,27 @@ export default function Home() {
         <div className="container about">
           <h2 className="section-title">About KS TechX</h2>
           <p>
-            KS TechX designs and ships digital products that make everyday life
-            simpler — from digital identity to local commerce and partner
-            networks. Every product is built in-house and deployed with a modern,
-            reliable stack.
+            Kumara Swamy Technologies designs and ships digital products that
+            make everyday business simpler — from WhatsApp commerce and digital
+            identity to local marketplaces. Every product is built in-house and
+            deployed on a modern, reliable stack. Made in India 🇮🇳.
           </p>
           <div className="stats">
             <div className="stat">
-              <strong>3+</strong>
-              <span>Live products</span>
+              <strong>4+</strong>
+              <span>Products</span>
             </div>
             <div className="stat">
-              <strong>100%</strong>
-              <span>In-house built</span>
+              <strong>15+</strong>
+              <span>Courier partners</span>
+            </div>
+            <div className="stat">
+              <strong>3</strong>
+              <span>Languages (AI)</span>
             </div>
             <div className="stat">
               <strong>24/7</strong>
-              <span>Online</span>
+              <span>Always selling</span>
             </div>
           </div>
         </div>
@@ -149,20 +205,27 @@ export default function Home() {
               <span className="brand-mark">KS</span>
               <span className="brand-text">TechX</span>
             </a>
-            <p className="footer-note">Building Digital Products.</p>
+            <p className="footer-note">
+              Kumara Swamy Technologies · GSTIN 37AYPPC2454H2ZB · Andhra Pradesh
+              🇮🇳
+            </p>
           </div>
           <div className="footer-links">
-            <a href="mailto:chintaravikumar1994@gmail.com">Email us</a>
+            <a href="https://biz.kstechx.com" target="_blank" rel="noopener noreferrer">
+              Bizfree
+            </a>
             <a href="https://mdc.kstechx.com" target="_blank" rel="noopener noreferrer">
               Mera Digi Card
             </a>
             <a href="https://localkart.kstechx.com" target="_blank" rel="noopener noreferrer">
               LocalKart
             </a>
+            <a href="mailto:bizfree@kstechx.com">Email us</a>
           </div>
         </div>
         <div className="container copyright">
-          © {new Date().getFullYear()} KS TechX. All rights reserved.
+          © {new Date().getFullYear()} Kumara Swamy Technologies. All rights
+          reserved.
         </div>
       </footer>
     </main>
