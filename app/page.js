@@ -3,6 +3,33 @@
 import { useEffect, useRef, useState } from "react";
 
 /* ---------------- DATA ---------------- */
+const offers = [
+  {
+    icon: "🧰",
+    title: "Software products",
+    badge: "Subscribe & go live",
+    text: "Ready-to-use SaaS your business runs on — Bizfree, Mera Digi Card, LocalKart. Pick a plan and start today.",
+  },
+  {
+    icon: "🚀",
+    title: "Done-for-you setup",
+    badge: "We build it for you",
+    text: "We put your whole business online — storefront, payments, delivery and digital identity. You just serve customers.",
+  },
+  {
+    icon: "🤝",
+    title: "Partner & earn",
+    badge: "Grow your income",
+    text: "Join our partner network and earn commission for every business you bring on board. Build your own downline.",
+  },
+  {
+    icon: "🪪",
+    title: "Digital products",
+    badge: "One-time",
+    text: "Smart digital business cards, mini-sites and more — professional digital assets ready in minutes.",
+  },
+];
+
 const products = [
   {
     name: "Bizfree",
@@ -18,7 +45,7 @@ const products = [
     description:
       "A smart digital business card — share your profile, links and contact in a single tap.",
     url: "https://mdc.kstechx.com",
-    accent: "#7b6cff",
+    accent: "#e63946",
   },
   {
     name: "LocalKart",
@@ -26,15 +53,15 @@ const products = [
     description:
       "Local-first online marketplace connecting nearby stores with the customers around them.",
     url: "https://localkart.kstechx.com",
-    accent: "#22c7b8",
+    accent: "#ff7a3c",
   },
   {
     name: "Mera Partners",
-    tag: "Network",
+    tag: "Partner Network",
     description:
-      "Partner and downline management platform built for growing distribution networks.",
+      "The platform that powers our partner & downline network — onboard businesses and track earnings.",
     url: "https://partners.kstechx.com",
-    accent: "#f2a33c",
+    accent: "#f4b53f",
   },
 ];
 
@@ -47,31 +74,27 @@ const bizHighlights = [
   { icon: "🧾", label: "GST-ready invoices", note: "Automatic tax invoice" },
 ];
 
-const partners = [
+const howBusiness = [
+  "Choose a plan — or let us set you up",
+  "Go live on WhatsApp & your web store",
+  "Get paid online — UPI, cards or COD",
+  "Deliver across India and grow",
+];
+
+const howPartner = [
+  "Join the partner network — free to start",
+  "Onboard local businesses around you",
+  "Earn commission on every plan they take",
+  "Scale your downline and your income",
+];
+
+const integrations = [
   "💳 Cashfree Payments",
   "🚚 15+ Courier Partners",
   "💬 WhatsApp · Meta",
   "☁️ Cloud Hosting",
-  "⚙️ Node.js Engineering",
   "🔐 Secure UPI Gateway",
-];
-
-const values = [
-  {
-    icon: "🏗️",
-    title: "Built in-house",
-    text: "Every product is engineered end-to-end by our own team — full-stack software, not off-the-shelf templates.",
-  },
-  {
-    icon: "⚡",
-    title: "Ships fast",
-    text: "Modern, reliable stack with continuous deployment. Businesses go live in minutes, not months.",
-  },
-  {
-    icon: "🇮🇳",
-    title: "Made for India",
-    text: "UPI, GST invoices, regional-language AI and local courier networks — designed for how India actually does business.",
-  },
+  "🧾 GST Invoicing",
 ];
 
 const testimonials = [
@@ -111,15 +134,9 @@ function Logo() {
   return (
     <span className="brand-mark" aria-hidden="true">
       <svg viewBox="0 0 32 32" width="20" height="20">
-        <defs>
-          <linearGradient id="lg" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stopColor="#fff" />
-            <stop offset="1" stopColor="#e6e1ff" />
-          </linearGradient>
-        </defs>
         <path
           d="M7 4h4v9l8-9h5l-9 10 9 14h-5l-6.5-10L11 21v7H7z"
-          fill="url(#lg)"
+          fill="#fff"
         />
       </svg>
     </span>
@@ -208,7 +225,6 @@ export default function Home() {
   const canvasRef = useRef(null);
   const spotRef = useRef(null);
 
-  // nav state + scroll progress
   useEffect(() => {
     const onScroll = () => {
       const y = window.scrollY;
@@ -221,7 +237,6 @@ export default function Home() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // reveal on scroll
   useEffect(() => {
     const els = document.querySelectorAll(".reveal");
     const io = new IntersectionObserver(
@@ -239,11 +254,8 @@ export default function Home() {
     return () => io.disconnect();
   }, []);
 
-  // cursor spotlight
   useEffect(() => {
-    const reduce = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduce || window.matchMedia("(pointer: coarse)").matches) return;
     const onMove = (e) => {
       if (spotRef.current)
@@ -253,13 +265,10 @@ export default function Home() {
     return () => window.removeEventListener("mousemove", onMove);
   }, []);
 
-  // particle network in hero
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const reduce = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduce) return;
     const ctx = canvas.getContext("2d");
     const DPR = Math.min(window.devicePixelRatio || 1, 2);
@@ -301,8 +310,8 @@ export default function Home() {
             dy = a.y - b.y;
           const d = Math.hypot(dx, dy);
           if (d < 128) {
-            ctx.globalAlpha = (1 - d / 128) * 0.45;
-            ctx.strokeStyle = "#5766a0";
+            ctx.globalAlpha = (1 - d / 128) * 0.5;
+            ctx.strokeStyle = "#a8524f";
             ctx.lineWidth = 1;
             ctx.beginPath();
             ctx.moveTo(a.x, a.y);
@@ -313,7 +322,7 @@ export default function Home() {
       }
       ctx.globalAlpha = 0.9;
       for (const p of pts) {
-        ctx.fillStyle = "#8b97c9";
+        ctx.fillStyle = "#d78a86";
         ctx.beginPath();
         ctx.arc(p.x, p.y, 1.5, 0, Math.PI * 2);
         ctx.fill();
@@ -339,7 +348,6 @@ export default function Home() {
 
   return (
     <main>
-      {/* scroll progress + spotlight */}
       <div className="scroll-bar" style={{ width: progress + "%" }} />
       <div className="spotlight" ref={spotRef} aria-hidden="true" />
 
@@ -353,17 +361,17 @@ export default function Home() {
             </span>
           </a>
           <nav className={`nav-links ${open ? "open" : ""}`}>
+            <a href="#offer" onClick={close}>
+              What we do
+            </a>
             <a href="#products" onClick={close}>
               Products
             </a>
-            <a href="#bizfree" onClick={close}>
-              Bizfree
+            <a href="#how" onClick={close}>
+              How it works
             </a>
-            <a href="#partners" onClick={close}>
-              Partners
-            </a>
-            <a href="#about" onClick={close}>
-              About
+            <a href="#partner" onClick={close}>
+              Earn
             </a>
             <a href="https://biz.kstechx.com" className="btn btn-primary btn-sm">
               Get Started
@@ -390,25 +398,24 @@ export default function Home() {
         <div className="grid-overlay" aria-hidden="true" />
         <div className="container hero-center">
           <span className="pill reveal">
-            <span className="ping" /> Kumara Swamy Technologies · Product Studio
+            <span className="ping" /> Kumara Swamy Technologies · Made in India 🇮🇳
           </span>
           <h1 className="reveal" data-d="1">
-            We build the software
+            We get Indian businesses
             <br />
-            India&apos;s businesses{" "}
-            <span className="grad-anim">run on.</span>
+            online — <span className="grad-anim">and growing.</span>
           </h1>
           <p className="lead center reveal" data-d="2">
-            KS TechX is a product company creating SaaS tools — from WhatsApp
-            commerce to digital identity — that help local businesses sell, get
-            paid and grow.
+            KS TechX is a complete digital growth company. We build the
+            software, set your business up end-to-end, and back it with a partner
+            network — so you can sell, get paid and deliver from day one.
           </p>
           <div className="hero-cta center reveal" data-d="3">
-            <a href="#products" className="btn btn-primary btn-lg magnetic">
-              Explore our products
+            <a href="https://biz.kstechx.com" className="btn btn-primary btn-lg magnetic">
+              Start your business
             </a>
-            <a href="#about" className="btn btn-ghost btn-lg">
-              About the company
+            <a href="#partner" className="btn btn-ghost btn-lg">
+              Become a partner
             </a>
           </div>
           <div className="hero-chips reveal" data-d="4">
@@ -436,11 +443,37 @@ export default function Home() {
         </div>
       </section>
 
+      {/* WHAT WE DO — 4 pillars */}
+      <section id="offer" className="section">
+        <div className="container">
+          <span className="kicker reveal">What we do</span>
+          <h2 className="section-title reveal">One company · four ways we grow you</h2>
+          <p className="section-sub reveal">
+            Whether you want the tools, the whole thing done for you, or a way to
+            earn — KS TechX has a path for you.
+          </p>
+          <div className="offer-grid">
+            {offers.map((o, i) => (
+              <div
+                key={o.title}
+                className="offer reveal"
+                data-d={String((i % 4) + 1)}
+              >
+                <span className="offer-icon">{o.icon}</span>
+                <span className="offer-badge">{o.badge}</span>
+                <h3>{o.title}</h3>
+                <p>{o.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* PRODUCTS */}
-      <section id="products" className="section">
+      <section id="products" className="section section-alt">
         <div className="container">
           <span className="kicker reveal">Our software</span>
-          <h2 className="section-title reveal">A growing suite of SaaS products</h2>
+          <h2 className="section-title reveal">The products businesses run on</h2>
           <p className="section-sub reveal">
             Each product is built in-house and runs on its own space under
             kstechx.com.
@@ -495,18 +528,81 @@ export default function Home() {
         </div>
       </section>
 
-      {/* PARTNERS */}
-      <section id="partners" className="section section-alt">
+      {/* HOW IT WORKS */}
+      <section id="how" className="section">
         <div className="container">
-          <span className="kicker reveal">Partnerships</span>
-          <h2 className="section-title reveal">Powered by trusted partners</h2>
+          <span className="kicker reveal">How it works</span>
+          <h2 className="section-title reveal">Two simple paths</h2>
           <p className="section-sub reveal">
-            We integrate best-in-class payments, delivery and messaging so your
+            Come as a business that wants to grow — or as a partner who wants to
+            earn.
+          </p>
+          <div className="how-grid">
+            <div className="how-col reveal">
+              <div className="how-head">
+                <span className="how-badge biz">🏪 For business owners</span>
+                <h3>Get online &amp; start selling</h3>
+              </div>
+              <ol className="steps">
+                {howBusiness.map((s, i) => (
+                  <li key={i}>
+                    <span className="step-n">{i + 1}</span>
+                    {s}
+                  </li>
+                ))}
+              </ol>
+              <a href="https://biz.kstechx.com" className="btn btn-primary">
+                Start your business →
+              </a>
+            </div>
+            <div className="how-col reveal" data-d="2">
+              <div className="how-head">
+                <span className="how-badge earn">🤝 For partners</span>
+                <h3>Onboard businesses &amp; earn</h3>
+              </div>
+              <ol className="steps">
+                {howPartner.map((s, i) => (
+                  <li key={i}>
+                    <span className="step-n">{i + 1}</span>
+                    {s}
+                  </li>
+                ))}
+              </ol>
+              <a href="https://partners.kstechx.com" className="btn btn-ghost">
+                Become a partner →
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* PARTNER / EARN BAND */}
+      <section id="partner" className="earn-band">
+        <div className="container earn-inner reveal">
+          <span className="earn-kicker">Partner Program</span>
+          <h2>Earn by growing businesses around you</h2>
+          <p>
+            Join the KS TechX partner network, bring local shops online, and earn
+            recurring commission on every plan — build your own downline income.
+          </p>
+          <a href="https://partners.kstechx.com" className="btn btn-primary btn-lg magnetic">
+            Join as a partner →
+          </a>
+        </div>
+      </section>
+
+      {/* INTEGRATIONS */}
+      <section className="section section-alt">
+        <div className="container">
+          <span className="kicker reveal">Powered by</span>
+          <h2 className="section-title reveal">Best-in-class technology, built in</h2>
+          <p className="section-sub reveal">
+            Payments, delivery and messaging you can trust — integrated so your
             business works out of the box.
           </p>
           <div className="partner-marquee reveal">
             <div className="partner-track">
-              {[...partners, ...partners].map((p, i) => (
+              {[...integrations, ...integrations].map((p, i) => (
                 <span key={i} className="partner-chip">
                   {p}
                 </span>
@@ -516,38 +612,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* WHY US */}
+      {/* TESTIMONIALS */}
       <section className="section">
         <div className="container">
-          <span className="kicker reveal">Why KS TechX</span>
-          <h2 className="section-title reveal">Product thinking, built for India</h2>
-          <div className="values reveal">
-            {values.map((v) => (
-              <div key={v.title} className="value">
-                <span className="value-icon">{v.icon}</span>
-                <h3>{v.title}</h3>
-                <p>{v.text}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* STATS */}
-      <section className="stats-band">
-        <div className="container stats reveal">
-          <Stat value={4} suffix="+" label="Products shipped" />
-          <Stat value={15} suffix="+" label="Courier partners" />
-          <Stat value={3} suffix="" label="AI languages" />
-          <Stat value={24} suffix="/7" label="Always selling" />
-        </div>
-      </section>
-
-      {/* TESTIMONIALS */}
-      <section className="section section-alt">
-        <div className="container">
           <span className="kicker reveal">Loved by owners</span>
-          <h2 className="section-title reveal">Businesses run better on our tools</h2>
+          <h2 className="section-title reveal">Businesses run better with KS TechX</h2>
           <div className="tgrid">
             {testimonials.map((t, i) => (
               <figure key={i} className="tcard reveal" data-d={String(i + 1)}>
@@ -566,25 +635,35 @@ export default function Home() {
         </div>
       </section>
 
+      {/* STATS */}
+      <section className="stats-band">
+        <div className="container stats reveal">
+          <Stat value={4} suffix="+" label="Products shipped" />
+          <Stat value={15} suffix="+" label="Courier partners" />
+          <Stat value={3} suffix="" label="AI languages" />
+          <Stat value={24} suffix="/7" label="Always selling" />
+        </div>
+      </section>
+
       {/* ABOUT */}
-      <section id="about" className="section">
+      <section id="about" className="section section-alt">
         <div className="container about reveal">
-          <span className="kicker">About KS TechX</span>
+          <span className="kicker">About us</span>
           <h2 className="section-title">Kumara Swamy Technologies</h2>
           <p>
-            KS TechX designs and ships digital products that make everyday
-            business simpler — from WhatsApp commerce and digital identity to
-            local marketplaces and partner networks. Everything is engineered
-            in-house and deployed on a modern, reliable stack. Made in India 🇮🇳.
+            KS TechX is a digital growth company from Andhra Pradesh, India. We
+            build software, set businesses up online, sell digital products, and
+            run a partner network — everything a local business needs to sell,
+            get paid and grow, in one place. Made in India 🇮🇳.
           </p>
         </div>
       </section>
 
-      {/* CTA BAND */}
+      {/* FINAL CTA */}
       <section className="cta-band">
         <div className="container cta-inner reveal">
-          <h2>Ready to sell on WhatsApp &amp; the web?</h2>
-          <p>Set up your store, payments and delivery in minutes with Bizfree.</p>
+          <h2>Ready to grow your business?</h2>
+          <p>Start selling on WhatsApp &amp; the web in minutes with Bizfree.</p>
           <a href="https://biz.kstechx.com" className="btn btn-wa btn-lg magnetic">
             Get started →
           </a>
@@ -616,8 +695,9 @@ export default function Home() {
             </div>
             <div>
               <h4>Company</h4>
-              <a href="#about">About</a>
-              <a href="#partners">Partners</a>
+              <a href="#offer">What we do</a>
+              <a href="#how">How it works</a>
+              <a href="#partner">Partner program</a>
               <a href="mailto:bizfree@kstechx.com">Contact</a>
             </div>
           </div>
