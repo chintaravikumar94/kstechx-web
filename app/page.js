@@ -5,7 +5,7 @@ import Stat from "./components/Stat";
 import ServiceExplorer from "./components/ServiceExplorer";
 import Illustration from "./components/Illustration";
 import { FintechCards, TierCards, ProcessSteps, PartnerBand, CtaBand } from "./components/Blocks";
-import { webServices, fintech, fintechIntro, partner, stats, values } from "./data";
+import { webServices, fintech, fintechIntro, partner, stats, values, SHOP, shopCategories } from "./data";
 
 export default function Home() {
   const web = webServices.find((s) => s.slug === "website-development");
@@ -106,6 +106,45 @@ export default function Home() {
             </div>
           </div>
           <FintechCards items={fintech} />
+        </div>
+      </section>
+
+      {/* SHOP */}
+      <section className="section">
+        <div className="container">
+          <span className="kicker reveal">KS TechX Shop</span>
+          <h2 className="section-title reveal">Buy business essentials online</h2>
+          <p className="section-sub reveal">
+            Payment devices, fintech services, printing, power backup and solar — order
+            directly from our online shop.
+          </p>
+          <div className="shop-grid">
+            {shopCategories.map((c, i) => (
+              <a key={c.name} href={SHOP.categories} className="shop-cat reveal" data-d={String((i % 3) + 1)}>
+                <span className="shop-cat-icon">{c.icon}</span>
+                <span>
+                  <strong>{c.name}</strong>
+                  <em>{c.text}</em>
+                </span>
+                <span className="shop-cat-go" aria-hidden="true">→</span>
+              </a>
+            ))}
+          </div>
+          <ul className="shop-perks reveal">
+            {SHOP.perks.map((p) => (
+              <li key={p}>✓ {p}</li>
+            ))}
+          </ul>
+          <div className="center-row reveal">
+            <div className="hero-cta center">
+              <a href={SHOP.url} className="btn btn-primary btn-lg">
+                🛒 Visit the shop
+              </a>
+              <a href={SHOP.track} className="btn btn-ghost btn-lg">
+                Track an order
+              </a>
+            </div>
+          </div>
         </div>
       </section>
 

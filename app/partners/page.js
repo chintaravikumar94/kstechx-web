@@ -1,10 +1,10 @@
 import Link from "next/link";
 import { PageHero } from "../components/Blocks";
-import { partnerBenefits, howPartner, webServices, fintech, CONTACT, PARTNER_JOIN } from "../data";
+import { partnerBenefits, howPartner, webServices, fintech, CONTACT, PARTNER_JOIN, SHOP } from "../data";
 
 const onboarding = [
   { icon: "📝", title: "Enquire", text: "Fill the partner form or WhatsApp us — our team explains the model and commissions." },
-  { icon: "🛒", title: "Purchase a product", text: "Buy any one KS TechX product or service worth ₹1,000 or more." },
+  { icon: "🛒", title: "Purchase a product", text: "Buy any one KS TechX product or service worth ₹1,000 or more — from our online shop or through our team." },
   { icon: "🪪", title: "KYC", text: "KYC is required for every partner." },
   { icon: "🎓", title: "Training & go-live", text: "Get trained, get your partner ID and start selling." },
 ];
@@ -59,6 +59,9 @@ export default function Partners() {
             <strong>{PARTNER_JOIN.rule}.</strong>
             <span>{PARTNER_JOIN.why}</span>
           </span>
+          <a href={SHOP.url} className="btn btn-primary btn-sm join-shop">
+            🛒 Buy from our shop
+          </a>
         </div>
       </PageHero>
 
@@ -86,7 +89,8 @@ export default function Partners() {
             </div>
             <ul className="elig-rules">
               <li>
-                <strong>Minimum purchase:</strong> {PARTNER_JOIN.minPurchase} on any one KS TechX product or service
+                <strong>Minimum purchase:</strong> {PARTNER_JOIN.minPurchase} on any one KS TechX product or service —{" "}
+                <a href={SHOP.url}>shop online</a>
               </li>
               <li>
                 <strong>Commission:</strong> earned only on genuine sales you make to customers

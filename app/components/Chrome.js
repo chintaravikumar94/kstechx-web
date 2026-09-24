@@ -4,7 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Logo from "./Logo";
-import { nav, webServices, fintech, CONTACT } from "../data";
+import { nav, webServices, fintech, CONTACT, SHOP } from "../data";
 import dynamic from "next/dynamic";
 
 // non-critical widgets load in their own chunks after the page is interactive
@@ -157,6 +157,16 @@ export default function Chrome({ children }) {
               </span>
               Fintech IDs
             </Link>
+            <a href={SHOP.url} className="tb-item tb-shop">
+              <span className="tb-ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M3 4h2.2l2.3 11h10.8l2-7.5H6.4" />
+                  <circle cx="9.5" cy="19.5" r="1.4" />
+                  <circle cx="17" cy="19.5" r="1.4" />
+                </svg>
+              </span>
+              Shop
+            </a>
           </div>
         </div>
       </div>
@@ -250,6 +260,9 @@ export default function Chrome({ children }) {
                 </Link>
               )
             )}
+            <a href={SHOP.url} className="btn btn-ghost btn-sm nav-shop">
+              🛒 Shop
+            </a>
             <Link href="/contact" className="btn btn-primary btn-sm nav-cta">
               Get a quote
             </Link>
@@ -321,6 +334,8 @@ export default function Chrome({ children }) {
             </div>
             <div>
               <h4>Company</h4>
+              <a href={SHOP.url}>Shop online</a>
+              <a href={SHOP.track}>Track an order</a>
               <Link href="/partners">KS TechX Partner</Link>
               <Link href="/how-it-works">How it works</Link>
               <Link href="/about">About</Link>
@@ -331,6 +346,11 @@ export default function Chrome({ children }) {
         <div className="container copyright">
           © {new Date().getFullYear()} Kumara Swamy Technologies · GSTIN
           37AYPPC2454H2ZB. All rights reserved.
+          <span className="legal-links">
+            <a href={SHOP.privacy}>Privacy policy</a>
+            <a href={SHOP.terms}>Terms of use</a>
+            <a href={SHOP.refunds}>Refunds &amp; cancellations</a>
+          </span>
         </div>
       </footer>
     </>

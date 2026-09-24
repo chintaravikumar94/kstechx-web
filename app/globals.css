@@ -5180,3 +5180,140 @@ body::after {
     animation: none;
   }
 }
+
+/* =========================================================
+   SHOP (links to shop.kstechx.com)
+   ========================================================= */
+.tb-shop .tb-ico {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.35);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0) 60%), linear-gradient(135deg, #ff6b78, #e63946);
+}
+.nav-shop {
+  margin-left: 10px;
+  white-space: nowrap;
+}
+.nav-shop + .nav-cta {
+  margin-left: 8px;
+}
+@media (max-width: 1240px) {
+  .nav-shop {
+    display: none;
+  }
+}
+.mm-quick {
+  grid-template-columns: repeat(4, 1fr);
+}
+.mm-q-shop {
+  color: #fff;
+  border: none;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0) 55%), linear-gradient(135deg, #3b6fd8, #0b1f4b);
+  box-shadow: 0 6px 14px -8px rgba(11, 31, 75, 0.8);
+}
+.shop-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 40px;
+}
+.shop-cat {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px;
+  border-radius: 18px;
+  border: 1px solid var(--border-2, rgba(11, 31, 75, 0.12));
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--navy, #0b1f4b);
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, opacity 0.6s ease;
+}
+.shop-cat:hover {
+  transform: translateY(-3px);
+  border-color: rgba(230, 57, 70, 0.4);
+  box-shadow: 0 14px 30px -18px rgba(11, 31, 75, 0.45);
+}
+.shop-cat-icon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  font-size: 24px;
+  background: linear-gradient(135deg, rgba(230, 57, 70, 0.12), rgba(59, 111, 216, 0.12));
+}
+.shop-cat strong {
+  display: block;
+  font: 700 15.5px var(--font-jakarta), sans-serif;
+}
+.shop-cat em {
+  display: block;
+  margin-top: 2px;
+  font-style: normal;
+  font-size: 13.5px;
+  opacity: 0.72;
+}
+.shop-cat-go {
+  margin-left: auto;
+  color: #e63946;
+  font-weight: 700;
+  transition: transform 0.2s ease;
+}
+.shop-cat:hover .shop-cat-go {
+  transform: translateX(4px);
+}
+.shop-perks {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 20px;
+  margin: 26px 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--navy, #0b1f4b);
+}
+.shop-perks li {
+  opacity: 0.85;
+}
+.join-shop {
+  flex: none;
+  align-self: center;
+}
+.legal-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px 18px;
+  margin-top: 10px;
+}
+.legal-links a {
+  color: inherit;
+  opacity: 0.8;
+}
+.legal-links a:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+@media (max-width: 900px) {
+  .shop-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 560px) {
+  .shop-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .shop-cat {
+    padding: 14px;
+  }
+  .join-shop {
+    align-self: stretch;
+    justify-content: center;
+  }
+}
+
+.join-card { max-width: 720px; }

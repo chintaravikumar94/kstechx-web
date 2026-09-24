@@ -9,7 +9,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { webServices, fintech, CONTACT } from "../data";
+import { webServices, fintech, CONTACT, SHOP } from "../data";
 
 const LINKS = [
   { href: "/", label: "Home", icon: "🏠" },
@@ -61,6 +61,9 @@ export default function MobileMenu({ open, onClose, pathname }) {
           <Link href="/contact" className="mm-q mm-q-red" onClick={onClose}>
             <span>📝</span>Quote
           </Link>
+          <a href={SHOP.url} className="mm-q mm-q-shop">
+            <span>🛒</span>Shop
+          </a>
           {CONTACT.whatsapp && (
             <a
               href={`https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent("Hello KS TechX, I'd like to know more about your services.")}`}

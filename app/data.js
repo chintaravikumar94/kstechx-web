@@ -10,6 +10,25 @@ export const CONTACT = {
   whatsapp: "919949499177", // set to "" to hide WhatsApp Assist & buttons
   hours: "", // e.g. "Mon – Sat · 9:30 AM – 7:00 PM" — shown when set
 };
+/* ---------- SHOP (online store at shop.kstechx.com) ---------- */
+export const SHOP = {
+  url: "https://shop.kstechx.com/shop/",
+  categories: "https://shop.kstechx.com/shop/categories/",
+  track: "https://shop.kstechx.com/shop/orders/",
+  privacy: "https://shop.kstechx.com/shop/privacy/",
+  terms: "https://shop.kstechx.com/shop/terms/",
+  refunds: "https://shop.kstechx.com/shop/refunds/",
+  perks: ["Prices include GST", "Card, UPI or cash on delivery", "Delivered across Andhra Pradesh", "GST invoice in your business name"],
+};
+export const shopCategories = [
+  { icon: "🏧", name: "Mini ATM machines", text: "Cash withdrawal devices for your shop" },
+  { icon: "💳", name: "Card swipe machines", text: "Accept debit & credit cards" },
+  { icon: "👆", name: "AEPS agency", text: "Aadhaar banking services" },
+  { icon: "🔗", name: "Payment gateway", text: "Take payments online" },
+  { icon: "🖨️", name: "Printing & design", text: "Logos, cards, banners & more" },
+  { icon: "🔋", name: "Power backup & solar", text: "Keep your shop running" },
+];
+
 export const CONTACT_EMAIL = CONTACT.email;
 export const WHATSAPP_NUMBER = CONTACT.whatsapp;
 
