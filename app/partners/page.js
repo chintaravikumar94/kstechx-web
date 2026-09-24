@@ -5,7 +5,7 @@ import { partnerBenefits, howPartner, webServices, fintech, CONTACT, PARTNER_JOI
 const onboarding = [
   { icon: "📝", title: "Enquire", text: "Fill the partner form or WhatsApp us — our team explains the model and commissions." },
   { icon: "🛒", title: "Purchase a product", text: "Buy any one KS TechX product or service worth ₹1,000 or more." },
-  { icon: "🪪", title: "KYC & agreement", text: "Quick verification and a clear written partner agreement." },
+  { icon: "🪪", title: "KYC", text: "KYC is required for every partner." },
   { icon: "🎓", title: "Training & go-live", text: "Get trained, get your partner ID and start selling." },
 ];
 
@@ -92,7 +92,7 @@ export default function Partners() {
                 <strong>Commission:</strong> earned only on genuine sales you make to customers
               </li>
               <li>
-                <strong>KYC:</strong> required for every partner, with a written partner agreement
+                <strong>KYC:</strong> required for every partner
               </li>
             </ul>
           </div>
