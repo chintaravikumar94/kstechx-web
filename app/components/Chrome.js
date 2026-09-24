@@ -287,8 +287,8 @@ export default function Chrome({ children }) {
               </span>
             </Link>
             <p className="footer-note">
-              Kumara Swamy Technologies — digital &amp; fintech solutions for
-              Bharat. Andhra Pradesh, India 🇮🇳
+              KS TechX (KSTechX) by Kumara Swamy Technologies — digital &amp;
+              fintech solutions for Bharat. Andhra Pradesh, India 🇮🇳
             </p>
             <div className="footer-contact">
               <a href={CONTACT.phoneHref}>📞 {CONTACT.phone}</a>

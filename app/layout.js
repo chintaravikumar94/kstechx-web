@@ -52,8 +52,9 @@ const orgJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: "Kumara Swamy Technologies",
-  alternateName: "KS TechX",
+  alternateName: ["KS TechX", "KSTechX", "KSTECHX", "kstechx.com"],
   url: "https://kstechx.com",
+  logo: "https://kstechx.com/icon.svg",
   email: "info@kstechx.com",
   telephone: "+91-99494-99177",
   contactPoint: [
@@ -79,6 +80,15 @@ const orgJsonLd = {
   },
 };
 
+// tells Google the site's name (shown above the result) and its spelling variants
+const siteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "KS TechX",
+  alternateName: ["KSTechX", "KSTECHX", "Kumara Swamy Technologies", "kstechx.com"],
+  url: "https://kstechx.com/",
+};
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${inter.variable} ${jakarta.variable}`}>
@@ -89,6 +99,10 @@ export default function RootLayout({ children }) {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(siteJsonLd) }}
         />
         <Chrome>{children}</Chrome>
       </body>
