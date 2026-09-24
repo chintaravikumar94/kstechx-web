@@ -4085,3 +4085,417 @@ body {
     display: none;
   }
 }
+
+/* =========================================================
+   LIQUID GLASS  (v2 — replaces the earlier glass look)
+   pastel iridescent backdrop · thick bright rims · glossy
+   highlights · pill controls · iridescent featured cards
+   ========================================================= */
+:root {
+  --lg-radius: 28px;
+  --lg-rim: rgba(255, 255, 255, 0.78);
+  --lg-bg: radial-gradient(120% 70% at 12% 0%, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0) 46%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.62), rgba(255, 255, 255, 0.24) 55%, rgba(255, 255, 255, 0.4));
+  --lg-shadow: 0 24px 60px -26px rgba(76, 64, 160, 0.35), 0 6px 16px -8px rgba(11, 31, 75, 0.1),
+    inset 0 1.5px 1px rgba(255, 255, 255, 0.98), inset 0 -10px 22px -14px rgba(255, 255, 255, 0.85),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.28);
+  --lg-blur: blur(26px) saturate(185%);
+  --lg-iris: radial-gradient(120% 80% at 10% 0%, rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0) 50%),
+    linear-gradient(135deg, rgba(255, 186, 214, 0.62) 0%, rgba(203, 184, 255, 0.58) 48%, rgba(160, 204, 255, 0.6) 100%);
+}
+
+/* ---- pastel iridescent backdrop ---- */
+body {
+  background: linear-gradient(160deg, #eef0fb 0%, #f4eefa 35%, #eaf3fb 70%, #f1f5fb 100%);
+  background-attachment: fixed;
+}
+body::before {
+  background: radial-gradient(circle at 35% 35%, rgba(167, 139, 250, 0.42), rgba(129, 140, 248, 0.16) 45%, transparent 70%);
+}
+body::after {
+  background: radial-gradient(circle at 60% 60%, rgba(249, 168, 212, 0.45), rgba(230, 57, 70, 0.1) 45%, transparent 70%);
+}
+.section-alt {
+  background: rgba(255, 255, 255, 0.18);
+}
+.section-alt::before {
+  background: radial-gradient(circle, rgba(125, 211, 252, 0.5), transparent 70%);
+}
+.section-alt::after {
+  background: radial-gradient(circle, rgba(94, 234, 212, 0.4), transparent 70%);
+}
+
+/* ---- liquid glass surfaces ---- */
+.card,
+.offer,
+.fx-card,
+.tier,
+.process-step,
+.hl-card,
+.fx-panel,
+.fx-req,
+.how-col,
+.why-item,
+.sell-card,
+.mini-card,
+.sub-card,
+.showcase-card,
+.id-gal,
+.desk,
+.contact-info,
+.contact-form,
+.incl-card,
+.best-card:not(.accent),
+.single-offer,
+.explorer,
+.faq-item,
+.flow-step,
+.elig,
+.compare-wrap,
+.split-card {
+  background: var(--lg-bg);
+  background-size: 100% 100%;
+  backdrop-filter: var(--lg-blur);
+  -webkit-backdrop-filter: var(--lg-blur);
+  border: 1.5px solid var(--lg-rim);
+  border-radius: var(--lg-radius);
+  box-shadow: var(--lg-shadow);
+}
+.card:hover,
+.offer:hover,
+.fx-card:hover,
+.tier:hover,
+.process-step:hover,
+.hl-card:hover,
+.why-item:hover,
+.sell-card:hover,
+.mini-card:hover,
+.sub-card:hover,
+.id-gal:hover,
+.desk:hover,
+.flow-step:hover,
+.split-card:hover,
+.showcase-card:hover {
+  background: var(--lg-bg);
+  border-color: #fff;
+  box-shadow: 0 34px 70px -28px rgba(76, 64, 160, 0.45), 0 0 0 4px rgba(255, 255, 255, 0.35),
+    inset 0 1.5px 1px #fff, inset 0 -12px 24px -14px rgba(255, 255, 255, 0.95);
+}
+/* remove the old top accent bars — liquid glass stays clean */
+.card::before,
+.fx-card::before,
+.contact-form::before {
+  display: none;
+}
+.fx-card::after {
+  background: radial-gradient(circle, rgba(203, 184, 255, 0.45), transparent 70%);
+}
+.sub-card,
+.showcase-card,
+.explorer,
+.single-offer,
+.elig {
+  border-radius: 32px;
+}
+.sub-art,
+.showcase-art,
+.explorer-art,
+.id-gal-art,
+.mini-art {
+  border-radius: 22px;
+  background: radial-gradient(120% 70% at 20% 0%, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.25) 60%);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow: inset 0 1px 1px #fff, inset 0 -6px 14px -8px rgba(255, 255, 255, 0.9);
+}
+.sub-art {
+  border-radius: 30px 30px 18px 18px;
+  margin: 8px 8px 0;
+}
+
+/* ---- iridescent featured cards (like "Modern Glass UI Design") ---- */
+.tier-pop,
+.sub-pop,
+.join-card,
+.flow-step.hot,
+.fx-req.hot,
+.cta-iris {
+  background: var(--lg-iris) !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.85) !important;
+  box-shadow: 0 30px 70px -26px rgba(167, 139, 250, 0.55), inset 0 1.5px 1px #fff,
+    inset 0 -12px 26px -14px rgba(255, 255, 255, 0.9) !important;
+}
+.tier-pop:hover,
+.sub-pop:hover {
+  box-shadow: 0 38px 80px -28px rgba(167, 139, 250, 0.7), 0 0 0 4px rgba(255, 255, 255, 0.4),
+    inset 0 1.5px 1px #fff !important;
+}
+
+/* ---- glossy liquid buttons ---- */
+.btn {
+  border-radius: 999px;
+  position: relative;
+  transition: transform 0.18s ease, box-shadow 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+.btn:active {
+  transform: translateY(0) scale(0.98);
+}
+.btn-primary {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.38) 0%, rgba(255, 255, 255, 0.05) 52%, rgba(255, 255, 255, 0) 53%),
+    linear-gradient(135deg, #ff7a86 0%, #e63946 60%, #d62839 100%);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  box-shadow: 0 12px 26px -10px rgba(230, 57, 70, 0.6), inset 0 1.5px 1px rgba(255, 255, 255, 0.75),
+    inset 0 -4px 8px rgba(150, 20, 34, 0.22);
+}
+.btn-primary:hover {
+  box-shadow: 0 18px 34px -12px rgba(230, 57, 70, 0.7), 0 0 0 4px rgba(255, 122, 134, 0.18),
+    inset 0 1.5px 1px rgba(255, 255, 255, 0.85), inset 0 -4px 8px rgba(150, 20, 34, 0.22);
+}
+.btn-ghost {
+  color: var(--navy);
+  background: radial-gradient(120% 90% at 20% 0%, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.35) 60%);
+  backdrop-filter: blur(14px) saturate(170%);
+  -webkit-backdrop-filter: blur(14px) saturate(170%);
+  border: 1.5px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 10px 24px -14px rgba(76, 64, 160, 0.45), inset 0 1px 1px #fff, inset 0 -4px 8px -4px rgba(203, 184, 255, 0.35);
+}
+.btn-ghost:hover {
+  color: var(--blue);
+  border-color: #fff;
+  box-shadow: 0 16px 30px -14px rgba(76, 64, 160, 0.5), 0 0 0 4px rgba(255, 255, 255, 0.4), inset 0 1px 1px #fff;
+}
+.btn-wa {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.36) 0%, rgba(255, 255, 255, 0.04) 52%, rgba(255, 255, 255, 0) 53%),
+    linear-gradient(135deg, #5eeaa8 0%, #25d366 45%, #12a58f 100%);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  box-shadow: 0 12px 26px -10px rgba(18, 140, 126, 0.55), inset 0 1.5px 1px rgba(255, 255, 255, 0.7),
+    inset 0 -4px 8px rgba(8, 90, 70, 0.2);
+}
+.btn-light {
+  background: rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1.5px solid rgba(255, 255, 255, 0.45);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.5);
+}
+
+/* ---- glass pill inputs ---- */
+.field input,
+.field select {
+  border-radius: 999px;
+  padding: 13px 18px;
+}
+.field textarea {
+  border-radius: 22px;
+  padding: 14px 18px;
+}
+.field input,
+.field select,
+.field textarea {
+  background: radial-gradient(120% 100% at 20% 0%, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.45) 70%);
+  border: 1.5px solid rgba(255, 255, 255, 0.9);
+  box-shadow: inset 0 2px 6px rgba(76, 64, 160, 0.08), 0 4px 12px -8px rgba(76, 64, 160, 0.3);
+}
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: #fff;
+  box-shadow: 0 0 0 4px rgba(167, 139, 250, 0.25), inset 0 2px 6px rgba(76, 64, 160, 0.06);
+}
+
+/* ---- segmented glass tabs (explorer) ---- */
+.explorer-tabs {
+  margin: 14px;
+  padding: 6px;
+  gap: 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.35);
+  border: 1.5px solid rgba(255, 255, 255, 0.8);
+  box-shadow: inset 0 2px 6px rgba(76, 64, 160, 0.1);
+}
+.explorer-tab {
+  border-radius: 999px;
+}
+.explorer-tab.on {
+  background: radial-gradient(120% 90% at 20% 0%, #fff, rgba(255, 255, 255, 0.7) 70%);
+  border: 1px solid #fff;
+  box-shadow: 0 8px 20px -10px rgba(76, 64, 160, 0.45), inset 0 1px 1px #fff;
+}
+.explorer-tab.on::after {
+  width: 18px;
+  height: 3px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #a78bfa, #e63946);
+}
+
+/* ---- glass pills, chips & inner tiles ---- */
+.chip,
+.pill,
+.fx-strip-item,
+.ph-badge,
+.product-tag,
+.best-tag,
+.card-tag,
+.fx-badge,
+.offer-badge {
+  border-radius: 999px;
+  background: radial-gradient(120% 100% at 20% 0%, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.4) 70%);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 6px 14px -10px rgba(76, 64, 160, 0.45), inset 0 1px 1px #fff;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+.fx-badge {
+  color: var(--brand);
+}
+.fx-hl,
+.explorer-item,
+.sub-link,
+.example,
+.elig-pick,
+.mega-col,
+.elig-rules li {
+  border-radius: 18px;
+  background: radial-gradient(120% 100% at 15% 0%, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.35) 70%);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: inset 0 1px 1px #fff, 0 6px 16px -12px rgba(76, 64, 160, 0.4);
+}
+.sub-link,
+.elig-pick {
+  border-radius: 999px;
+}
+/* glossy icon orbs */
+.hl-icon,
+.offer-icon,
+.card-icon,
+.process-icon,
+.tier-icon,
+.why-icon,
+.sell-icon,
+.desk-icon,
+.fx-icon,
+.drop-icon {
+  border-radius: 18px;
+  background: radial-gradient(90% 70% at 30% 15%, #fff, rgba(255, 255, 255, 0.55) 55%, rgba(203, 184, 255, 0.35) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 0 8px 18px -10px rgba(76, 64, 160, 0.5), inset 0 1px 1px #fff, inset 0 -4px 8px -3px rgba(203, 184, 255, 0.45);
+}
+.step-n {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0) 55%),
+    linear-gradient(135deg, #8b9cff, #1f5bd8);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 6px 14px -6px rgba(31, 91, 216, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.7);
+}
+.tier-badge {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0) 55%),
+    linear-gradient(135deg, #ff7a86, #e63946);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow: 0 8px 18px -8px rgba(230, 57, 70, 0.6);
+}
+.faq-plus {
+  background: radial-gradient(90% 70% at 30% 15%, #fff, rgba(203, 184, 255, 0.45));
+  border: 1px solid #fff;
+}
+
+/* ---- nav & dropdown as liquid glass ---- */
+.nav {
+  background: rgba(255, 255, 255, 0.42);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.5);
+}
+.nav-scrolled {
+  background: rgba(255, 255, 255, 0.66);
+  box-shadow: 0 10px 30px -20px rgba(76, 64, 160, 0.45);
+}
+.nav-item:hover,
+.nav-drop-btn:hover {
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 999px;
+}
+.dropdown-inner {
+  border-radius: 26px;
+  border: 1.5px solid rgba(255, 255, 255, 0.9);
+  background: radial-gradient(120% 60% at 10% 0%, #fff, rgba(255, 255, 255, 0.8) 50%);
+  box-shadow: 0 30px 70px -26px rgba(76, 64, 160, 0.45), inset 0 1px 1px #fff;
+}
+.drop-link {
+  border-radius: 16px;
+}
+
+/* ---- navy bands get a liquid glass rim ---- */
+.earn-inner,
+.cta-inner {
+  border-radius: 34px;
+  border: 1.5px solid rgba(255, 255, 255, 0.22);
+  box-shadow: 0 40px 80px -36px rgba(11, 31, 75, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.25);
+}
+.earn-art {
+  border-radius: 28px;
+  background: radial-gradient(120% 70% at 20% 0%, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.08) 60%);
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.5);
+}
+
+/* ---- stats + marquee strips ---- */
+.stats-band,
+.marquee {
+  background: rgba(255, 255, 255, 0.32);
+  border-color: rgba(255, 255, 255, 0.8);
+  box-shadow: inset 0 1px 0 #fff;
+}
+
+/* ---- WhatsApp card ---- */
+.wa-card {
+  border-radius: 26px;
+  border: 1.5px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 30px 70px -24px rgba(76, 64, 160, 0.5), inset 0 1px 1px #fff;
+}
+.wa-opt {
+  border-radius: 999px;
+  background: radial-gradient(120% 100% at 15% 0%, #fff, rgba(255, 255, 255, 0.7) 70%);
+}
+.wa-start {
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0) 55%), linear-gradient(135deg, #5eeaa8, #25d366 50%, #12a58f);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.7), 0 10px 20px -10px rgba(18, 140, 126, 0.6);
+}
+.wa-fab {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0) 55%), linear-gradient(135deg, #5eeaa8, #25d366 50%, #12a58f);
+  border: 1.5px solid rgba(255, 255, 255, 0.7);
+}
+
+@media (max-width: 760px) {
+  :root {
+    --lg-blur: blur(14px) saturate(160%);
+    --lg-radius: 24px;
+  }
+}
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .card,
+  .offer,
+  .fx-card,
+  .tier,
+  .process-step,
+  .hl-card,
+  .fx-panel,
+  .fx-req,
+  .how-col,
+  .why-item,
+  .sell-card,
+  .mini-card,
+  .sub-card,
+  .showcase-card,
+  .id-gal,
+  .desk,
+  .contact-info,
+  .contact-form,
+  .incl-card,
+  .single-offer,
+  .explorer,
+  .faq-item,
+  .flow-step,
+  .elig,
+  .compare-wrap {
+    background: rgba(255, 255, 255, 0.94);
+  }
+}
