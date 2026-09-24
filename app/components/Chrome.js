@@ -1,12 +1,13 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Logo from "./Logo";
 import { nav, webServices, fintech, CONTACT } from "../data";
 import WhatsAppAssist from "./WhatsAppAssist";
 import BackgroundFX from "./BackgroundFX";
+import MobileMenu from "./MobileMenu";
 
 export default function Chrome({ children }) {
   const [open, setOpen] = useState(false);
@@ -75,6 +76,8 @@ export default function Chrome({ children }) {
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, []);
+
+  const closeMenu = useCallback(() => setOpen(false), []);
 
   const isActive = (href) =>
     href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(href + "/");
@@ -194,15 +197,21 @@ export default function Chrome({ children }) {
           </nav>
 
           <button
-            className="nav-toggle"
-            aria-label="Menu"
+            className={`nav-toggle ${open ? "is-open" : ""}`}
+            aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
           >
-            <span className={open ? "x" : ""} />
+            <span className="nt-lines" aria-hidden="true">
+              <i />
+              <i />
+              <i />
+            </span>
           </button>
         </div>
       </header>
+
+      <MobileMenu open={open} onClose={closeMenu} pathname={pathname || "/"} />
 
       {children}
 
