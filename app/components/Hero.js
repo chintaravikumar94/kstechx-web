@@ -86,8 +86,8 @@ export default function Hero() {
   }, []);
 
   const chips = [
-    { href: "/fintech", label: fintechIntro.name, icon: fintechIntro.icon },
     ...webServices.map((s) => ({ href: `/web-services/${s.slug}`, label: s.name, icon: s.icon })),
+    { href: "/fintech", label: fintechIntro.name, icon: fintechIntro.icon },
     { href: "/partners", label: partner.name, icon: partner.icon },
   ];
 
@@ -101,19 +101,19 @@ export default function Hero() {
             <span className="ping" /> Kumara Swamy Technologies · Made in India 🇮🇳
           </span>
           <h1 className="reveal" data-d="1">
-            Fintech &amp; digital solutions <span className="grad-anim">built for Bharat.</span>
+            Digital &amp; fintech solutions <span className="grad-anim">built for Bharat.</span>
           </h1>
           <p className="lead reveal" data-d="2">
-            KS TechX helps retailers earn with fintech IDs and helps businesses
-            grow with websites, custom software and Android apps — and our
+            KS TechX helps businesses grow with websites, custom software and
+            Android apps, helps retailers earn with fintech IDs — and our
             partners earn commission on every sale.
           </p>
           <div className="hero-cta reveal" data-d="3">
-            <Link href="/fintech" className="btn btn-primary btn-lg">
-              Apply for a Fintech ID
-            </Link>
-            <Link href="/web-services" className="btn btn-ghost btn-lg">
+            <Link href="/web-services" className="btn btn-primary btn-lg">
               Explore Web Services
+            </Link>
+            <Link href="/fintech" className="btn btn-ghost btn-lg">
+              Apply for a Fintech ID
             </Link>
           </div>
           <div className="trust-row reveal" data-d="4">

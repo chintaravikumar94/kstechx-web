@@ -4,14 +4,14 @@ import { PageHero } from "../components/Blocks";
 import { stats, values, webServices, fintechIntro } from "../data";
 
 const services = [
-  { href: "/fintech", icon: fintechIntro.icon, name: fintechIntro.name, short: "AEPS, UPI, credit card and RuPay credit card merchant IDs for retailers.", accent: fintechIntro.accent },
   ...webServices.map((s) => ({ href: `/web-services/${s.slug}`, icon: s.icon, name: s.name, short: s.short, accent: s.accent })),
+  { href: "/fintech", icon: fintechIntro.icon, name: fintechIntro.name, short: "AEPS, UPI, credit card and RuPay credit card merchant IDs for retailers.", accent: fintechIntro.accent },
 ];
 
 export const metadata = {
   title: "About",
   description:
-    "Kumara Swamy Technologies (KS TechX) — fintech and digital solutions company from Andhra Pradesh, India.",
+    "Kumara Swamy Technologies (KS TechX) — digital and fintech solutions company from Andhra Pradesh, India.",
 };
 
 export default function About() {
@@ -22,7 +22,7 @@ export default function About() {
         art="about"
         kicker="About us"
         title="Kumara Swamy Technologies"
-        lead="KS TechX is a fintech and digital solutions company from Andhra Pradesh, India. We help retailers earn with fintech services, help businesses grow with websites, custom software and Android apps — and help partners earn on every sale."
+        lead="KS TechX is a digital and fintech solutions company from Andhra Pradesh, India. We help businesses grow with websites, custom software and Android apps, help retailers earn with fintech services — and help partners earn on every sale."
       />
 
       <section className="section pt0">
@@ -75,7 +75,7 @@ export default function About() {
         <div className="container about reveal">
           <h2 className="section-title">Let&apos;s build something together</h2>
           <p>
-            Whether you need a fintech ID, a website, custom software or an app —
+            Whether you need a website, custom software, an app or a fintech ID —
             or you want to partner and earn — we&apos;d love to hear from you.
           </p>
           <div className="hero-cta center" style={{ marginTop: 28 }}>

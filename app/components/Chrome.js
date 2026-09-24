@@ -93,8 +93,8 @@ export default function Chrome({ children }) {
             {CONTACT.hours && <span>🕘 {CONTACT.hours}</span>}
           </div>
           <div className="topbar-right">
-            <Link href="/fintech">Apply for Fintech ID</Link>
-            <Link href="/contact">Contact us</Link>
+            <Link href="/web-services">Web Services</Link>
+            <Link href="/fintech">Fintech IDs</Link>
           </div>
         </div>
       </div>
@@ -218,7 +218,7 @@ export default function Chrome({ children }) {
               </span>
             </Link>
             <p className="footer-note">
-              Kumara Swamy Technologies — fintech &amp; digital solutions for
+              Kumara Swamy Technologies — digital &amp; fintech solutions for
               Bharat. Andhra Pradesh, India 🇮🇳
             </p>
             <div className="footer-contact">

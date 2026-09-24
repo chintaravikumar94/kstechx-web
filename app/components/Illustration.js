@@ -364,10 +364,10 @@ function QrG() {
 const scenes = {
   hero: (p) => {
     const nodes = [
-      { x: 240, y: 46, e: "💳", t: "Fintech" },
-      { x: 392, y: 148, e: "🌐", t: "Websites" },
-      { x: 334, y: 318, e: "🧩", t: "Software" },
-      { x: 146, y: 318, e: "📱", t: "Apps" },
+      { x: 240, y: 46, e: "🌐", t: "Websites" },
+      { x: 392, y: 148, e: "🧩", t: "Software" },
+      { x: 334, y: 318, e: "📱", t: "Apps" },
+      { x: 146, y: 318, e: "💳", t: "Fintech" },
       { x: 88, y: 148, e: "🤝", t: "Partner" },
     ];
     return (
@@ -817,7 +817,7 @@ const scenes = {
         <g className="a-poploop">
           <rect width="190" height="46" rx="16" fill={`url(#${p}-blue)`} filter={`url(#${p}-sh)`} />
           <text x="95" y="28" textAnchor="middle" fontSize="12.5" fontWeight="700" fill={C.white}>
-            Hi! I need a fintech ID 👋
+            Hi! I need a website 👋
           </text>
         </g>
       </g>

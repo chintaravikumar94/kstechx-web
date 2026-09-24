@@ -5,13 +5,13 @@ import { webServices, fintech, CONTACT } from "../data";
 
 const topics = [
   { value: "", label: "Choose a service…", disabled: true },
-  ...fintech.map((f) => ({ value: f.slug, label: `💳 ${f.name}` })),
   ...webServices.flatMap((s) => [
     { value: s.slug, label: `${s.icon} ${s.name}` },
     ...(s.offerings.length > 1
       ? s.offerings.map((o) => ({ value: `${s.slug}::${o.title}`, label: `   — ${o.title}` }))
       : []),
   ]),
+  ...fintech.map((f) => ({ value: f.slug, label: `💳 ${f.name}` })),
   { value: "partner", label: "🤝 KS TechX Partner (join from ₹1,000)" },
   { value: "support", label: "🛠️ Support — I'm an existing customer" },
   { value: "other", label: "Something else" },

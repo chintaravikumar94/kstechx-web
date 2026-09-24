@@ -11,6 +11,14 @@ export default function Home() {
   const web = webServices.find((s) => s.slug === "website-development");
 
   const cards = [
+    ...webServices.map((s) => ({
+      href: `/web-services/${s.slug}`,
+      icon: s.icon,
+      name: s.name,
+      tag: s.tag,
+      text: s.short,
+      accent: s.accent,
+    })),
     {
       href: "/fintech",
       icon: fintechIntro.icon,
@@ -20,14 +28,6 @@ export default function Home() {
       accent: fintechIntro.accent,
       cta: "Explore fintech →",
     },
-    ...webServices.map((s) => ({
-      href: `/web-services/${s.slug}`,
-      icon: s.icon,
-      name: s.name,
-      tag: s.tag,
-      text: s.short,
-      accent: s.accent,
-    })),
     {
       href: "/partners",
       icon: partner.icon,
@@ -49,14 +49,38 @@ export default function Home() {
           <span className="kicker reveal">What we do</span>
           <h2 className="section-title reveal">Five ways KS TechX grows you</h2>
           <p className="section-sub reveal">
-            Fintech IDs for your shop, websites, software and apps for your
-            business — and a partner model where every sale earns.
+            Websites, software and apps for your business, fintech IDs for your
+            shop — and a partner model where every sale earns.
           </p>
           <div className="grid grid-5">
             {cards.map((c) => (
               <TiltCard key={c.href} item={c} />
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* WEB SERVICES EXPLORER */}
+      <section className="section section-alt">
+        <div className="container">
+          <span className="kicker reveal">Web Services</span>
+          <h2 className="section-title reveal">Websites, software &amp; apps</h2>
+          <p className="section-sub reveal">Tap a tab to explore each web service.</p>
+          <ServiceExplorer />
+        </div>
+      </section>
+
+      {/* WEBSITE PACKAGES */}
+      <section className="section">
+        <div className="container">
+          <span className="kicker reveal">Website Development</span>
+          <h2 className="section-title reveal">Choose your website package</h2>
+          <p className="section-sub reveal">{web.summary}</p>
+          <TierCards
+            items={web.offerings}
+            href="/contact?service=website-development"
+            base="/web-services/website-development"
+          />
         </div>
       </section>
 
@@ -82,30 +106,6 @@ export default function Home() {
             </div>
           </div>
           <FintechCards items={fintech} />
-        </div>
-      </section>
-
-      {/* WEB SERVICES EXPLORER */}
-      <section className="section">
-        <div className="container">
-          <span className="kicker reveal">Web Services</span>
-          <h2 className="section-title reveal">Websites, software &amp; apps</h2>
-          <p className="section-sub reveal">Tap a tab to explore each web service.</p>
-          <ServiceExplorer />
-        </div>
-      </section>
-
-      {/* WEBSITE PACKAGES */}
-      <section className="section section-alt">
-        <div className="container">
-          <span className="kicker reveal">Website Development</span>
-          <h2 className="section-title reveal">Choose your website package</h2>
-          <p className="section-sub reveal">{web.summary}</p>
-          <TierCards
-            items={web.offerings}
-            href="/contact?service=website-development"
-            base="/web-services/website-development"
-          />
         </div>
       </section>
 
@@ -157,9 +157,9 @@ export default function Home() {
 
       <CtaBand
         title="Let's build your next step"
-        text="Apply for a fintech ID or get a quote for your website, software or app."
-        primary={{ href: "/fintech", label: "Apply for a fintech ID" }}
-        secondary={{ href: "/contact", label: "Get a free quote" }}
+        text="Get a quote for your website, software or app — or apply for a fintech ID."
+        primary={{ href: "/contact", label: "Get a free quote" }}
+        secondary={{ href: "/fintech", label: "Apply for a fintech ID" }}
       />
     </main>
   );

@@ -472,7 +472,7 @@ export const partner = {
 };
 
 export const partnerBenefits = [
-  { icon: "💰", title: "Commission on every sale", text: "Every sale you bring in earns you commission — fintech IDs, websites, software or apps." },
+  { icon: "💰", title: "Commission on every sale", text: "Every sale you bring in earns you commission — websites, software, apps or fintech IDs." },
   { icon: "🧰", title: "Many services to sell", text: "One partnership, many products. Offer your customers exactly what they need." },
   { icon: "📍", title: "Expand your reach", text: "Offer KS TechX services to shops and businesses across your town and district." },
   { icon: "📈", title: "Transparent tracking", text: "Know what you've sold and what you've earned — clear and on time." },
@@ -481,7 +481,7 @@ export const partnerBenefits = [
 ];
 
 export const howClient = [
-  "Tell us what you need — a fintech ID, website, software or app",
+  "Tell us what you need — a website, software, app or fintech ID",
   "Get a clear plan and quote from our team",
   "We set up, design and build it for you",
   "Go live — with ongoing support from KS TechX",
@@ -503,7 +503,7 @@ export const process = [
 
 export const values = [
   { icon: "🏗️", title: "Built in-house", text: "Every website, app and software is designed and developed by our own team." },
-  { icon: "🤝", title: "One partner for everything", text: "Fintech, web, software and apps — one company, one point of contact." },
+  { icon: "🤝", title: "One partner for everything", text: "Websites, software, apps and fintech — one company, one point of contact." },
   { icon: "🇮🇳", title: "Made for Bharat", text: "Solutions designed for Indian retailers, businesses and customers." },
 ];
 
@@ -520,8 +520,8 @@ export const audiences = [
 ];
 
 export const stats = [
-  { value: 4, suffix: "", label: "Fintech IDs" },
   { value: 3, suffix: "", label: "Web services" },
   { value: 3, suffix: "", label: "Website packages" },
+  { value: 4, suffix: "", label: "Fintech IDs" },
   { value: 100, suffix: "%", label: "Built in-house" },
 ];

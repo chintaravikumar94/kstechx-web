@@ -3,27 +3,27 @@ import Chrome from "./components/Chrome";
 
 export const metadata = {
   title: {
-    default: "KS TechX — Fintech & Digital Solutions | Kumara Swamy Technologies",
+    default: "KS TechX — Digital & Fintech Solutions | Kumara Swamy Technologies",
     template: "%s | KS TechX",
   },
   description:
-    "KS TechX (Kumara Swamy Technologies) — AEPS retailer ID, UPI & credit card merchant IDs, website development, custom software, Android app development and a partner program where every sale earns commission.",
+    "KS TechX (Kumara Swamy Technologies) — website development, custom software, Android app development, AEPS retailer ID, UPI & credit card merchant IDs, and a partner program where every sale earns commission.",
   metadataBase: new URL("https://kstechx.com"),
   keywords: [
     "KS TechX",
     "Kumara Swamy Technologies",
-    "AEPS retailer ID",
-    "UPI merchant ID",
-    "RuPay credit card merchant ID",
     "website development Andhra Pradesh",
     "custom software development",
     "Android app development",
+    "AEPS retailer ID",
+    "UPI merchant ID",
+    "RuPay credit card merchant ID",
     "partner program commission",
   ],
   openGraph: {
-    title: "KS TechX — Fintech & Digital Solutions built for Bharat",
+    title: "KS TechX — Digital & Fintech Solutions built for Bharat",
     description:
-      "Fintech IDs, websites, custom software, Android apps — and a partner program where every sale earns commission.",
+      "Websites, custom software, Android apps and fintech IDs — plus a partner program where every sale earns commission.",
     url: "https://kstechx.com",
     siteName: "KS TechX",
     locale: "en_IN",
@@ -31,9 +31,9 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "KS TechX — Fintech & Digital Solutions",
+    title: "KS TechX — Digital & Fintech Solutions",
     description:
-      "Fintech IDs, websites, custom software, Android apps and a commission-based partner program.",
+      "Websites, custom software, Android apps, fintech IDs and a commission-based partner program.",
   },
 };
 
@@ -50,7 +50,7 @@ const orgJsonLd = {
     { "@type": "ContactPoint", contactType: "customer support", email: "info@kstechx.com", telephone: "+91-99494-99177", areaServed: "IN" },
   ],
   description:
-    "Fintech and digital solutions company — retailer & merchant IDs, website development, custom software and Android app development.",
+    "Digital and fintech solutions company — website development, custom software, Android app development and retailer & merchant IDs.",
   address: {
     "@type": "PostalAddress",
     addressRegion: "Andhra Pradesh",
@@ -60,10 +60,10 @@ const orgJsonLd = {
     "@type": "OfferCatalog",
     name: "KS TechX Services",
     itemListElement: [
-      "Fintech Solutions",
       "Website Development",
       "Custom Software Solutions",
       "Custom Mobile App Development",
+      "Fintech Solutions",
     ].map((n) => ({ "@type": "Offer", itemOffered: { "@type": "Service", name: n } })),
   },
 };

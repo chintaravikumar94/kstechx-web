@@ -39,9 +39,9 @@ function WaIcon({ size = 30 }) {
 /* quick options that adapt to the page the visitor is on */
 export function optionsFor(path) {
   const base = [
-    { icon: "💳", label: "Apply for a Fintech ID", msg: "I want to apply for a Fintech ID (AEPS / UPI / Credit card merchant ID)." },
     { icon: "🌐", label: "Website development quote", msg: "I need a quote for website development." },
     { icon: "🧩", label: "Custom software or Android app", msg: "I want to discuss a custom software / Android app project." },
+    { icon: "💳", label: "Apply for a Fintech ID", msg: "I want to apply for a Fintech ID (AEPS / UPI / Credit card merchant ID)." },
     { icon: "🤝", label: "Become a KS TechX Partner", msg: "I want to become a KS TechX Partner and earn commission." },
     { icon: "🛠️", label: "Support for my existing service", msg: "I'm an existing customer and need support." },
   ];

@@ -5,14 +5,14 @@ import { CONTACT } from "../data";
 export const metadata = {
   title: "Contact",
   description:
-    "Contact KS TechX — call or WhatsApp +91 99494 99177, or email info@kstechx.com for fintech IDs, websites, software, Android apps and the partner program.",
+    "Contact KS TechX — call or WhatsApp +91 99494 99177, or email info@kstechx.com for websites, software, Android apps, fintech IDs and the partner program.",
 };
 
 const desks = [
   {
     icon: "📞",
     title: "Call us",
-    text: "Speak directly with our team about fintech IDs, websites, software or apps.",
+    text: "Speak directly with our team about websites, software, apps or fintech IDs.",
     label: CONTACT.phone,
     href: CONTACT.phoneHref,
   },
@@ -41,7 +41,7 @@ export default function Contact() {
         art="contact"
         kicker="Contact"
         title="Let's talk"
-        lead="Need a fintech ID, a website, custom software or an app — or want to become a partner? Call, WhatsApp or send an enquiry and our team will get back to you."
+        lead="Need a website, custom software, an app or a fintech ID — or want to become a partner? Call, WhatsApp or send an enquiry and our team will get back to you."
       >
         <div className="hero-cta reveal" data-d="2">
           <a href={CONTACT.phoneHref} className="btn btn-primary btn-lg">

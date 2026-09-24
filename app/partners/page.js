@@ -10,13 +10,6 @@ const onboarding = [
 ];
 
 const sellable = [
-  {
-    href: "/fintech",
-    icon: "💳",
-    name: "Fintech Solutions",
-    list: fintech.map((f) => f.name).join(" · "),
-    accent: "#e63946",
-  },
   ...webServices.map((s) => ({
     href: `/web-services/${s.slug}`,
     icon: s.icon,
@@ -24,12 +17,19 @@ const sellable = [
     list: s.offerings.map((o) => o.title).join(" · "),
     accent: s.accent,
   })),
+  {
+    href: "/fintech",
+    icon: "💳",
+    name: "Fintech Solutions",
+    list: fintech.map((f) => f.name).join(" · "),
+    accent: "#e63946",
+  },
 ];
 
 export const metadata = {
   title: "KS TechX Partner",
   description:
-    "Become a KS TechX Partner — sell fintech IDs, websites, custom software and Android apps, and earn commission on every sale.",
+    "Become a KS TechX Partner — sell websites, custom software, Android apps and fintech IDs, and earn commission on every sale.",
 };
 
 export default function Partners() {
@@ -71,7 +71,7 @@ export default function Partners() {
               <h2>How to become a KS TechX Partner</h2>
               <p>
                 To join, purchase any one KS TechX product or service worth a minimum
-                of <strong>{PARTNER_JOIN.minPurchase}</strong> — a fintech ID, a website
+                of <strong>{PARTNER_JOIN.minPurchase}</strong> — a website, software, an app
                 package, software or an app. You use it in your own business, you
                 understand exactly what you&apos;re selling, and you&apos;re ready to earn.
               </p>

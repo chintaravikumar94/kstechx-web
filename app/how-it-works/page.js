@@ -5,7 +5,7 @@ import { howClient, howPartner } from "../data";
 export const metadata = {
   title: "How it works",
   description:
-    "How KS TechX works — for customers who need fintech IDs, websites, software or apps, and for partners who earn commission on every sale.",
+    "How KS TechX works — for customers who need websites, software, apps or fintech IDs, and for partners who earn commission on every sale.",
 };
 
 export default function HowItWorks() {
