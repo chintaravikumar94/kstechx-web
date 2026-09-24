@@ -1,15 +1,14 @@
 "use client";
 
 /* =========================================================
-   MobileMenu — liquid-glass slide-in drawer for phones/tablets
-   • Quick actions: Get a quote · WhatsApp · Call
-   • Accordions for Web Services (with packages) & Fintech IDs
-   • Staggered item animation, backdrop blur, scroll lock
+   MobileMenu — compact liquid-glass popover (phones/tablets)
+   • Pops out of the top-right corner, sized to its content
+   • Slim quick actions · grouped list with hairline dividers
+   • Compact accordions for Web Services & Fintech IDs
    ========================================================= */
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import Logo from "./Logo";
 import { webServices, fintech, CONTACT } from "../data";
 
 const LINKS = [
@@ -25,7 +24,6 @@ const LINKS = [
 export default function MobileMenu({ open, onClose, pathname }) {
   const [section, setSection] = useState(null);
 
-  // open the accordion for the section you're currently in
   useEffect(() => {
     if (!open) return;
     if (pathname.startsWith("/web-services")) setSection("web");
@@ -33,7 +31,6 @@ export default function MobileMenu({ open, onClose, pathname }) {
     else setSection(null);
   }, [open, pathname]);
 
-  // lock page scroll + Escape to close
   useEffect(() => {
     if (!open) return;
     const prev = document.body.style.overflow;
@@ -52,74 +49,69 @@ export default function MobileMenu({ open, onClose, pathname }) {
   return (
     <div className={`mm ${open ? "mm-open" : ""}`} aria-hidden={!open}>
       <div className="mm-backdrop" onClick={onClose} />
-      <aside className="mm-panel" role="dialog" aria-label="Site menu" aria-modal="true">
-        <div className="mm-head">
-          <Link className="brand" href="/" onClick={onClose}>
-            <Logo />
-            <span className="brand-text">
-              TechX<span className="brand-dot">.</span>
-            </span>
-          </Link>
-          <button className="mm-close" aria-label="Close menu" onClick={onClose}>
+      <div className="mm-pop" role="dialog" aria-label="Site menu" aria-modal="true">
+        <div className="mm-top">
+          <span className="mm-title">Menu</span>
+          <button className="mm-x" aria-label="Close menu" onClick={onClose}>
             <span />
           </button>
         </div>
 
-        <div className="mm-actions mm-item" style={{ "--i": 0 }}>
-          <Link href="/contact" className="mm-act mm-act-primary" onClick={onClose}>
-            <span>📝</span>Get a quote
+        <div className="mm-quick">
+          <Link href="/contact" className="mm-q mm-q-red" onClick={onClose}>
+            <span>📝</span>Quote
           </Link>
           {CONTACT.whatsapp && (
             <a
               href={`https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent("Hello KS TechX, I'd like to know more about your services.")}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="mm-act mm-act-wa"
+              className="mm-q mm-q-wa"
             >
               <span>💬</span>WhatsApp
             </a>
           )}
-          <a href={CONTACT.phoneHref} className="mm-act mm-act-call">
+          <a href={CONTACT.phoneHref} className="mm-q">
             <span>📞</span>Call
           </a>
         </div>
 
-        <nav className="mm-nav">
-          {LINKS.map((l, i) =>
+        <nav className="mm-list">
+          {LINKS.map((l) =>
             l.key ? (
-              <div key={l.href} className={`mm-group mm-item ${section === l.key ? "is-open" : ""}`} style={{ "--i": i + 1 }}>
+              <div key={l.href} className={`mm-grp ${section === l.key ? "is-open" : ""}`}>
                 <button
-                  className={`mm-link ${isActive(l.href) ? "active" : ""}`}
+                  className={`mm-row ${isActive(l.href) ? "on" : ""}`}
                   aria-expanded={section === l.key}
                   onClick={() => toggle(l.key)}
                 >
-                  <span className="mm-ico">{l.icon}</span>
-                  <span className="mm-label">{l.label}</span>
-                  <span className="mm-chev">⌄</span>
+                  <span className="mm-i">{l.icon}</span>
+                  <span className="mm-t">{l.label}</span>
+                  <span className="mm-chev" aria-hidden="true" />
                 </button>
                 <div className="mm-sub">
-                  <div className="mm-sub-inner">
+                  <div className="mm-sub-in">
                     {l.key === "web"
                       ? webServices.map((s) => (
-                          <div key={s.slug} className="mm-svc">
+                          <div key={s.slug}>
                             <Link
                               href={`/web-services/${s.slug}`}
-                              className={`mm-svc-head ${pathname === `/web-services/${s.slug}` ? "on" : ""}`}
+                              className={`mm-srow ${pathname === `/web-services/${s.slug}` ? "on" : ""}`}
                               onClick={onClose}
                             >
                               <span>{s.icon}</span>
-                              {s.name}
+                              {s.name.replace("Custom ", "")}
                             </Link>
                             {s.offerings.length > 1 && (
-                              <div className="mm-pills">
+                              <div className="mm-chips">
                                 {s.offerings.map((o) => (
                                   <Link
                                     key={o.slug}
                                     href={`/web-services/${s.slug}/${o.slug}`}
-                                    className={`mm-pill ${pathname === `/web-services/${s.slug}/${o.slug}` ? "on" : ""}`}
+                                    className={`mm-chip ${pathname === `/web-services/${s.slug}/${o.slug}` ? "on" : ""}`}
                                     onClick={onClose}
                                   >
-                                    {o.title.replace(/ \(.*\)/, "")}
+                                    {o.title.replace(/ Website.*$/, "").replace(/ \(.*\)/, "")}
                                   </Link>
                                 ))}
                               </div>
@@ -130,41 +122,35 @@ export default function MobileMenu({ open, onClose, pathname }) {
                           <Link
                             key={f.slug}
                             href={`/fintech/${f.slug}`}
-                            className={`mm-svc-head ${pathname === `/fintech/${f.slug}` ? "on" : ""}`}
+                            className={`mm-srow ${pathname === `/fintech/${f.slug}` ? "on" : ""}`}
                             onClick={onClose}
                           >
                             <span>{f.icon}</span>
-                            {f.name}
+                            {f.name.replace(" Merchant ID", "").replace(" Retailer ID", " Retailer")}
                           </Link>
                         ))}
                     <Link href={l.href} className="mm-all" onClick={onClose}>
-                      View all {l.label} →
+                      View all →
                     </Link>
                   </div>
                 </div>
               </div>
             ) : (
-              <Link
-                key={l.href}
-                href={l.href}
-                className={`mm-link mm-item ${isActive(l.href) ? "active" : ""}`}
-                style={{ "--i": i + 1 }}
-                onClick={onClose}
-              >
-                <span className="mm-ico">{l.icon}</span>
-                <span className="mm-label">{l.label}</span>
-                <span className="mm-go">›</span>
+              <Link key={l.href} href={l.href} className={`mm-row ${isActive(l.href) ? "on" : ""}`} onClick={onClose}>
+                <span className="mm-i">{l.icon}</span>
+                <span className="mm-t">{l.label}</span>
+                <span className="mm-arrow" aria-hidden="true" />
               </Link>
             )
           )}
         </nav>
 
-        <div className="mm-foot mm-item" style={{ "--i": LINKS.length + 1 }}>
-          <a href={CONTACT.phoneHref}>📞 {CONTACT.phone}</a>
-          <a href={`mailto:${CONTACT.email}`}>✉️ {CONTACT.email}</a>
-          <span>Kumara Swamy Technologies · Made in India 🇮🇳</span>
+        <div className="mm-foot">
+          <a href={CONTACT.phoneHref}>{CONTACT.phone}</a>
+          <span>·</span>
+          <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>
         </div>
-      </aside>
+      </div>
     </div>
   );
 }
