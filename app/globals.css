@@ -3579,3 +3579,384 @@ main {
     align-items: flex-start;
   }
 }
+
+/* =========================================================
+   GLASSMORPHISM LAYER
+   1) soft drifting brand-colour lights behind the whole site
+   2) every card = frosted glass + inner highlight + hover shine
+   ========================================================= */
+
+/* 1 — ambient colour lights (fixed, behind everything) */
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  z-index: 0;
+  pointer-events: none;
+  border-radius: 50%;
+  filter: blur(60px);
+  will-change: transform;
+}
+body::before {
+  width: 60vmax;
+  height: 60vmax;
+  top: -18vmax;
+  left: -14vmax;
+  background: radial-gradient(circle at 35% 35%, rgba(31, 91, 216, 0.32), rgba(59, 130, 246, 0.12) 45%, transparent 70%);
+  animation: glassDriftA 26s ease-in-out infinite alternate;
+}
+body::after {
+  width: 55vmax;
+  height: 55vmax;
+  bottom: -20vmax;
+  right: -14vmax;
+  background: radial-gradient(circle at 60% 60%, rgba(230, 57, 70, 0.26), rgba(255, 77, 94, 0.1) 45%, transparent 70%);
+  animation: glassDriftB 30s ease-in-out infinite alternate;
+}
+@keyframes glassDriftA {
+  to {
+    transform: translate(18vw, 22vh) scale(1.12);
+  }
+}
+@keyframes glassDriftB {
+  to {
+    transform: translate(-20vw, -18vh) scale(1.1);
+  }
+}
+.topbar,
+.nav,
+main,
+.footer {
+  position: relative;
+  z-index: 1;
+}
+.nav {
+  position: sticky;
+  z-index: 50;
+}
+
+/* let the lights show through page backgrounds */
+body {
+  background: linear-gradient(180deg, #f3f6fc 0%, #eef3fb 50%, #f5f3fa 100%);
+  background-attachment: fixed;
+}
+.hero,
+.page-hero {
+  background-color: transparent;
+}
+.page-hero {
+  background: radial-gradient(800px 400px at 90% 0%, rgba(31, 91, 216, 0.1), transparent 60%),
+    radial-gradient(600px 300px at 0% 100%, rgba(230, 57, 70, 0.07), transparent 60%);
+}
+.hero {
+  background: radial-gradient(900px 500px at 85% 10%, rgba(31, 91, 216, 0.12), transparent 60%),
+    radial-gradient(700px 400px at 5% 90%, rgba(230, 57, 70, 0.08), transparent 60%);
+}
+.section-alt {
+  background: rgba(232, 239, 255, 0.35);
+  border-color: rgba(255, 255, 255, 0.6);
+}
+.stats-band,
+.marquee {
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  border-color: rgba(255, 255, 255, 0.7);
+}
+
+/* extra coloured orbs inside alternate sections for richer glass */
+.section-alt {
+  overflow: hidden;
+}
+.section-alt::before,
+.section-alt::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  filter: blur(70px);
+  pointer-events: none;
+  opacity: 0.55;
+}
+.section-alt::before {
+  top: -120px;
+  right: -80px;
+  background: radial-gradient(circle, rgba(124, 58, 237, 0.35), transparent 70%);
+  animation: orbFloat 18s ease-in-out infinite alternate;
+}
+.section-alt::after {
+  bottom: -140px;
+  left: -100px;
+  background: radial-gradient(circle, rgba(14, 165, 164, 0.3), transparent 70%);
+  animation: orbFloat 22s ease-in-out infinite alternate-reverse;
+}
+@keyframes orbFloat {
+  to {
+    transform: translate(-60px, 50px) scale(1.15);
+  }
+}
+.section-alt > .container {
+  position: relative;
+  z-index: 1;
+}
+
+/* 2 — the glass itself */
+:root {
+  --glass-bg: linear-gradient(
+    115deg,
+    rgba(255, 255, 255, 0.72) 0%,
+    rgba(255, 255, 255, 0.42) 38%,
+    rgba(255, 255, 255, 0.82) 50%,
+    rgba(255, 255, 255, 0.42) 62%,
+    rgba(255, 255, 255, 0.6) 100%
+  );
+  --glass-border: rgba(255, 255, 255, 0.75);
+  --glass-shadow: 0 10px 34px -12px rgba(11, 31, 75, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.25);
+  --glass-blur: blur(18px) saturate(170%);
+}
+.card,
+.offer,
+.fx-card,
+.tier,
+.process-step,
+.hl-card,
+.fx-panel,
+.fx-req,
+.how-col,
+.why-item,
+.sell-card,
+.mini-card,
+.sub-card,
+.showcase-card,
+.id-gal,
+.desk,
+.contact-info,
+.contact-form,
+.incl-card,
+.best-card:not(.accent),
+.single-offer,
+.explorer,
+.faq-item,
+.flow-step,
+.elig,
+.join-card,
+.compare-wrap,
+.split-card,
+.dropdown-inner {
+  background: var(--glass-bg);
+  background-size: 260% 100%;
+  background-position: 100% 0;
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  transition: opacity 0.7s ease, transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.25s ease,
+    border-color 0.25s ease, background-position 0.9s ease;
+}
+/* menus need stronger frosting to stay readable over content */
+.dropdown-inner {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(22px) saturate(180%);
+  -webkit-backdrop-filter: blur(22px) saturate(180%);
+}
+/* shine sweeps across on hover */
+.card:hover,
+.offer:hover,
+.fx-card:hover,
+.tier:hover,
+.process-step:hover,
+.hl-card:hover,
+.why-item:hover,
+.sell-card:hover,
+.mini-card:hover,
+.sub-card:hover,
+.id-gal:hover,
+.desk:hover,
+.flow-step:hover,
+.split-card:hover,
+.showcase-card:hover {
+  background-position: 0 0;
+  border-color: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 24px 50px -20px rgba(31, 91, 216, 0.35), inset 0 1px 0 #fff;
+}
+/* keep brand-accented cards distinct */
+.tier-pop,
+.sub-pop,
+.join-card,
+.flow-step.hot {
+  border: 2px solid rgba(230, 57, 70, 0.75);
+}
+.fx-card:hover,
+.tier-pop:hover {
+  box-shadow: 0 26px 54px -22px rgba(230, 57, 70, 0.45), inset 0 1px 0 #fff;
+}
+.fx-req.hot {
+  background: linear-gradient(160deg, rgba(232, 239, 255, 0.85), rgba(255, 255, 255, 0.45));
+}
+
+/* frosted inner tiles */
+.fx-hl,
+.explorer-item,
+.sub-link,
+.example,
+.elig-pick,
+.mega-col,
+.explorer-tabs,
+.hl-icon,
+.offer-icon,
+.card-icon,
+.process-icon,
+.tier-icon,
+.why-icon,
+.sell-icon,
+.desk-icon,
+.fx-icon,
+.drop-icon,
+.id-gal-art,
+.mini-art,
+.showcase-art,
+.explorer-art,
+.sub-art {
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-color: rgba(255, 255, 255, 0.7);
+}
+.fx-hl,
+.explorer-item,
+.sub-link,
+.example,
+.elig-pick {
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+.explorer-item:hover,
+.sub-link:hover,
+.elig-pick:hover {
+  background: rgba(255, 255, 255, 0.85);
+}
+.explorer-tab.on {
+  background: rgba(255, 255, 255, 0.85);
+}
+
+/* pills & chips */
+.chip,
+.pill,
+.fx-strip-item,
+.ph-badge,
+.product-tag {
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(12px) saturate(160%);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+}
+.product-tag,
+.ph-badge {
+  color: var(--blue);
+}
+
+/* form fields become frosted too */
+.field input,
+.field select,
+.field textarea {
+  background: rgba(255, 255, 255, 0.6);
+  border-color: rgba(211, 221, 238, 0.9);
+}
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  background: rgba(255, 255, 255, 0.92);
+}
+
+/* glass inside the navy bands */
+.earn-art {
+  background: rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+.cta-inner,
+.earn-inner {
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+/* nav: stronger glass */
+.nav {
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(18px) saturate(180%);
+  -webkit-backdrop-filter: blur(18px) saturate(180%);
+}
+.nav-scrolled {
+  background: rgba(255, 255, 255, 0.78);
+}
+
+/* WhatsApp card gets the glass treatment */
+.wa-card {
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(20px) saturate(170%);
+  -webkit-backdrop-filter: blur(20px) saturate(170%);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+}
+.wa-foot {
+  background: rgba(255, 255, 255, 0.55);
+}
+
+/* mobile: lighter blur for smooth scrolling */
+@media (max-width: 760px) {
+  :root {
+    --glass-blur: blur(10px) saturate(150%);
+  }
+  body::before,
+  body::after {
+    filter: blur(40px);
+  }
+  .section-alt::before,
+  .section-alt::after {
+    width: 260px;
+    height: 260px;
+  }
+}
+/* browsers without backdrop-filter: fall back to solid white cards */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .card,
+  .offer,
+  .fx-card,
+  .tier,
+  .process-step,
+  .hl-card,
+  .fx-panel,
+  .fx-req,
+  .how-col,
+  .why-item,
+  .sell-card,
+  .mini-card,
+  .sub-card,
+  .showcase-card,
+  .id-gal,
+  .desk,
+  .contact-info,
+  .contact-form,
+  .incl-card,
+  .single-offer,
+  .explorer,
+  .faq-item,
+  .flow-step,
+  .elig,
+  .join-card,
+  .compare-wrap,
+  .dropdown-inner,
+  .wa-card {
+    background: rgba(255, 255, 255, 0.94);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  body::before,
+  body::after,
+  .section-alt::before,
+  .section-alt::after {
+    animation: none;
+  }
+}
