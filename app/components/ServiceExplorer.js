@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { services } from "../data";
+import { webServices as services } from "../data";
 
 /* Interactive tabbed explorer — pick a service, see what's inside. */
 export default function ServiceExplorer() {
@@ -34,7 +34,7 @@ export default function ServiceExplorer() {
             <h3>{s.tagline}</h3>
             <p>{s.summary}</p>
           </div>
-          <Link href={`/services/${s.slug}`} className="btn btn-primary">
+          <Link href={`/web-services/${s.slug}`} className="btn btn-primary">
             View {s.name} →
           </Link>
         </div>

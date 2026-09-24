@@ -12,6 +12,7 @@ export default function HowItWorks() {
   return (
     <main>
       <PageHero
+        crumbs={[{ label: "How it works" }]}
         kicker="How it works"
         title="Two simple paths"
         lead="Come to us as a customer who needs a service — or as a partner who wants to earn on every sale."

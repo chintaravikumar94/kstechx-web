@@ -4,12 +4,14 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Logo from "./Logo";
-import { nav, services, CONTACT_EMAIL, WHATSAPP_NUMBER } from "../data";
+import { nav, webServices, fintech, CONTACT_EMAIL, WHATSAPP_NUMBER } from "../data";
 
 export default function Chrome({ children }) {
   const [open, setOpen] = useState(false);
+  const [drop, setDrop] = useState(null); // which dropdown is open
   const [scrolled, setScrolled] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [hoverable, setHoverable] = useState(false); // desktop mouse → open dropdowns on hover
   const spotRef = useRef(null);
   const pathname = usePathname();
 
@@ -36,9 +38,10 @@ export default function Chrome({ children }) {
     return () => window.removeEventListener("mousemove", onMove);
   }, []);
 
-  // reveal on scroll — re-run on each route change
+  // close menus + reveal on scroll — re-run on each route change
   useEffect(() => {
     setOpen(false);
+    setDrop(null);
     window.scrollTo(0, 0);
     const els = document.querySelectorAll(".reveal:not(.in)");
     const io = new IntersectionObserver(
@@ -56,39 +59,95 @@ export default function Chrome({ children }) {
     return () => io.disconnect();
   }, [pathname]);
 
-  const close = () => setOpen(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(hover: hover) and (min-width: 1081px)");
+    const set = () => setHoverable(mq.matches);
+    set();
+    mq.addEventListener("change", set);
+    return () => mq.removeEventListener("change", set);
+  }, []);
+
+  // close dropdown on Escape
+  useEffect(() => {
+    const onKey = (e) => e.key === "Escape" && setDrop(null);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
+
+  const isActive = (href) =>
+    href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(href + "/");
 
   return (
     <>
       <div className="scroll-bar" style={{ width: progress + "%" }} />
       <div className="spotlight" ref={spotRef} aria-hidden="true" />
 
-      <header className={`nav ${scrolled ? "nav-scrolled" : ""}`}>
+      <header className={`nav ${scrolled || open ? "nav-scrolled" : ""}`}>
         <div className="container nav-inner">
-          <Link className="brand" href="/" onClick={close}>
+          <Link className="brand" href="/">
             <Logo />
             <span className="brand-text">
               TechX<span className="brand-dot">.</span>
             </span>
           </Link>
+
           <nav className={`nav-links ${open ? "open" : ""}`}>
-            {nav.slice(1).map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={close}
-                className={pathname === item.href ? "active" : ""}
-              >
-                {item.label}
-              </Link>
-            ))}
-            <Link href="/contact" className="btn btn-primary btn-sm" onClick={close}>
+            {nav.map((item) =>
+              item.children ? (
+                <div
+                  key={item.href}
+                  className={`nav-item has-drop ${drop === item.href ? "drop-open" : ""}`}
+                  onMouseEnter={() => hoverable && setDrop(item.href)}
+                  onMouseLeave={() => hoverable && setDrop(null)}
+                >
+                  <button
+                    className={`nav-drop-btn ${isActive(item.href) ? "active" : ""}`}
+                    aria-expanded={drop === item.href}
+                    onClick={() => setDrop(drop === item.href ? null : item.href)}
+                  >
+                    {item.label}
+                    <span className="caret">▾</span>
+                  </button>
+                  <div className="dropdown">
+                    <div className="dropdown-inner">
+                      {item.children.map((c) => (
+                        <Link
+                          key={c.href}
+                          href={c.href}
+                          className={`drop-link ${pathname === c.href ? "on" : ""}`}
+                        >
+                          <span className="drop-icon">{c.icon}</span>
+                          <span>
+                            <strong>{c.label}</strong>
+                            <em>{c.note}</em>
+                          </span>
+                        </Link>
+                      ))}
+                      <Link href={item.href} className="drop-all">
+                        View all {item.label} →
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={`nav-item ${isActive(item.href) ? "active" : ""}`}
+                >
+                  {item.label}
+                </Link>
+              )
+            )}
+            <Link href="/contact" className="btn btn-primary btn-sm nav-cta">
               Get a quote
             </Link>
           </nav>
+
           <button
             className="nav-toggle"
             aria-label="Menu"
+            aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
           >
             <span className={open ? "x" : ""} />
@@ -129,10 +188,18 @@ export default function Chrome({ children }) {
           </div>
           <div className="footer-cols">
             <div>
-              <h4>Services</h4>
-              {services.map((s) => (
-                <Link key={s.slug} href={`/services/${s.slug}`}>
+              <h4>Web Services</h4>
+              {webServices.map((s) => (
+                <Link key={s.slug} href={`/web-services/${s.slug}`}>
                   {s.name}
+                </Link>
+              ))}
+            </div>
+            <div>
+              <h4>Fintech</h4>
+              {fintech.map((f) => (
+                <Link key={f.slug} href={`/fintech/${f.slug}`}>
+                  {f.name}
                 </Link>
               ))}
             </div>

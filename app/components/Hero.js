@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import Link from "next/link";
-import { services, partner, audiences } from "../data";
+import { webServices, fintechIntro, partner, audiences } from "../data";
 
 export default function Hero() {
   const canvasRef = useRef(null);
@@ -85,7 +85,8 @@ export default function Hero() {
   }, []);
 
   const chips = [
-    ...services.map((s) => ({ href: `/services/${s.slug}`, label: s.name, icon: s.icon, accent: s.accent })),
+    { href: "/fintech", label: fintechIntro.name, icon: fintechIntro.icon, accent: fintechIntro.accent },
+    ...webServices.map((s) => ({ href: `/web-services/${s.slug}`, label: s.name, icon: s.icon, accent: s.accent })),
     { href: "/partners", label: partner.name, icon: partner.icon, accent: partner.accent },
   ];
 
@@ -113,11 +114,11 @@ export default function Hero() {
           our partners earn commission on every sale.
         </p>
         <div className="hero-cta center reveal" data-d="3">
-          <Link href="/services" className="btn btn-primary btn-lg">
-            Explore our services
+          <Link href="/fintech" className="btn btn-primary btn-lg">
+            Explore Fintech IDs
           </Link>
-          <Link href="/partners" className="btn btn-ghost btn-lg">
-            Become a partner
+          <Link href="/web-services" className="btn btn-ghost btn-lg">
+            Web Services
           </Link>
         </div>
         <div className="hero-chips reveal" data-d="4">

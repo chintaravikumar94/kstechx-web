@@ -3,16 +3,24 @@ import Hero from "./components/Hero";
 import TiltCard from "./components/TiltCard";
 import Stat from "./components/Stat";
 import ServiceExplorer from "./components/ServiceExplorer";
-import { IdCards, TierCards, ProcessSteps, PartnerBand } from "./components/Blocks";
-import { services, partner, stats, values } from "./data";
+import { FintechCards, TierCards, ProcessSteps, PartnerBand } from "./components/Blocks";
+import { webServices, fintech, fintechIntro, partner, stats, values } from "./data";
 
 export default function Home() {
-  const fintech = services.find((s) => s.slug === "fintech-solutions");
-  const web = services.find((s) => s.slug === "website-development");
+  const web = webServices.find((s) => s.slug === "website-development");
 
   const cards = [
-    ...services.map((s) => ({
-      href: `/services/${s.slug}`,
+    {
+      href: "/fintech",
+      icon: fintechIntro.icon,
+      name: fintechIntro.name,
+      tag: "4 IDs",
+      text: "AEPS retailer ID plus UPI, credit card and RuPay credit card merchant IDs.",
+      accent: fintechIntro.accent,
+      cta: "Explore fintech →",
+    },
+    ...webServices.map((s) => ({
+      href: `/web-services/${s.slug}`,
       icon: s.icon,
       name: s.name,
       tag: s.tag,
@@ -40,8 +48,8 @@ export default function Home() {
           <span className="kicker reveal">What we do</span>
           <h2 className="section-title reveal">Five ways KS TechX grows you</h2>
           <p className="section-sub reveal">
-            From fintech IDs for your shop to custom software for your business —
-            and a partner model where every sale earns.
+            Fintech IDs for your shop, websites, software and apps for your
+            business — and a partner model where every sale earns.
           </p>
           <div className="grid grid-5">
             {cards.map((c) => (
@@ -51,38 +59,43 @@ export default function Home() {
         </div>
       </section>
 
-      {/* INTERACTIVE EXPLORER */}
+      {/* FINTECH */}
+      <section className="section fintech-zone section-edge">
+        <div className="container">
+          <span className="kicker reveal">Fintech Solutions</span>
+          <h2 className="section-title reveal">{fintechIntro.tagline}</h2>
+          <p className="section-sub reveal">{fintechIntro.summary}</p>
+          <FintechCards items={fintech} />
+          <div className="center-row reveal">
+            <Link href="/fintech" className="btn btn-ghost btn-lg">
+              Compare all fintech IDs →
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* WEB SERVICES EXPLORER */}
       <section className="section section-alt">
         <div className="container">
-          <span className="kicker reveal">Explore</span>
-          <h2 className="section-title reveal">Pick a service, see what&apos;s inside</h2>
-          <p className="section-sub reveal">Tap a tab to explore each service in detail.</p>
+          <span className="kicker reveal">Web Services</span>
+          <h2 className="section-title reveal">Websites, software &amp; apps</h2>
+          <p className="section-sub reveal">Tap a tab to explore each web service.</p>
           <ServiceExplorer />
         </div>
       </section>
 
-      {/* FINTECH SPOTLIGHT */}
-      <section className="section fintech-zone">
-        <div className="container">
-          <span className="kicker reveal">Fintech Solutions</span>
-          <h2 className="section-title reveal">{fintech.tagline}</h2>
-          <p className="section-sub reveal">{fintech.summary}</p>
-          <IdCards items={fintech.offerings} cta="Apply for this ID" />
-        </div>
-      </section>
-
       {/* WEBSITE PACKAGES */}
-      <section className="section section-alt">
+      <section className="section">
         <div className="container">
           <span className="kicker reveal">Website Development</span>
           <h2 className="section-title reveal">Choose your website package</h2>
           <p className="section-sub reveal">{web.summary}</p>
-          <TierCards items={web.offerings} />
+          <TierCards items={web.offerings} href="/contact?service=website-development" />
         </div>
       </section>
 
       {/* PROCESS */}
-      <section className="section">
+      <section className="section section-alt">
         <div className="container">
           <span className="kicker reveal">How we deliver</span>
           <h2 className="section-title reveal">From idea to live — in four steps</h2>
@@ -112,7 +125,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* STATS */}
       <section className="stats-band">
         <div className="container stats reveal">
           {stats.map((s) => (
@@ -121,14 +133,18 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FINAL CTA */}
       <section className="cta-band">
         <div className="container cta-inner cta-red reveal">
           <h2>Let&apos;s build your next step</h2>
-          <p>Tell us what you need — we&apos;ll send a clear plan and quote.</p>
-          <Link href="/contact" className="btn btn-primary btn-lg">
-            Get a free quote →
-          </Link>
+          <p>Apply for a fintech ID or get a quote for your website, software or app.</p>
+          <div className="hero-cta center">
+            <Link href="/fintech" className="btn btn-primary btn-lg">
+              Apply for a fintech ID
+            </Link>
+            <Link href="/contact" className="btn btn-ghost btn-lg">
+              Get a free quote
+            </Link>
+          </div>
         </div>
       </section>
     </main>

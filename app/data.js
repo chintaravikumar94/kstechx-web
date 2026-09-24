@@ -4,57 +4,10 @@
 export const CONTACT_EMAIL = "bizfree@kstechx.com"; // change to e.g. info@kstechx.com
 export const WHATSAPP_NUMBER = ""; // e.g. "919876543210" — shows a WhatsApp button when set
 
-export const nav = [
-  { href: "/", label: "Home" },
-  { href: "/services", label: "Services" },
-  { href: "/services/fintech-solutions", label: "Fintech" },
-  { href: "/how-it-works", label: "How it works" },
-  { href: "/partners", label: "Partner" },
-  { href: "/about", label: "About" },
-];
-
-/* ---------- SERVICES ---------- */
-export const services = [
-  {
-    slug: "fintech-solutions",
-    name: "Fintech Solutions",
-    short: "Retailer & merchant IDs that turn your shop into a banking and cash service point.",
-    icon: "💳",
-    accent: "#e63946",
-    tag: "Retailer & Merchant IDs",
-    tagline: "Turn your shop into a banking point",
-    summary:
-      "Get the retailer and merchant IDs you need to offer Aadhaar banking, UPI and card-based cash services at your counter — earn on every transaction and bring more customers into your store.",
-    kind: "ids",
-    offerings: [
-      {
-        icon: "👆",
-        title: "AEPS Retailer ID",
-        text: "Offer Aadhaar-enabled cash withdrawal, balance enquiry and mini statements with biometric authentication.",
-        points: ["Aadhaar cash withdrawal", "Balance enquiry", "Mini statement", "Biometric device support"],
-      },
-      {
-        icon: "📲",
-        title: "UPI Cash Withdrawal Merchant ID",
-        text: "Accept UPI payments at your counter and provide UPI-based cash withdrawal services to customers.",
-        points: ["UPI QR at counter", "Instant settlement", "Works with all UPI apps", "Transaction reports"],
-      },
-      {
-        icon: "💳",
-        title: "Credit Card Withdrawal Merchant ID",
-        text: "A merchant ID to accept credit card transactions for card-based withdrawal services.",
-        points: ["Visa & Mastercard", "Secure card acceptance", "Merchant dashboard", "Settlement to your bank"],
-      },
-      {
-        icon: "🟠",
-        title: "RuPay Credit Card Withdrawal Merchant ID",
-        text: "A merchant ID that supports RuPay credit card transactions, including RuPay on UPI.",
-        points: ["RuPay credit cards", "RuPay on UPI", "Low-cost acceptance", "Settlement to your bank"],
-      },
-    ],
-    who: "Retailers, kirana stores, mobile & recharge shops, CSC operators and small merchants.",
-    cta: "Apply for an ID",
-  },
+/* =========================================================
+   WEB SERVICES
+   ========================================================= */
+export const webServices = [
   {
     slug: "website-development",
     name: "Website Development",
@@ -138,7 +91,199 @@ export const services = [
   },
 ];
 
-/* ---------- PARTNER ---------- */
+/* =========================================================
+   FINTECH — detailed retailer & merchant IDs
+   ========================================================= */
+export const fintechIntro = {
+  name: "Fintech Solutions",
+  icon: "💳",
+  accent: "#e63946",
+  tagline: "Turn your shop into a banking & cash service point",
+  summary:
+    "Get the retailer and merchant IDs you need to offer Aadhaar banking, UPI and card-based services at your counter. Serve more customers, earn on every transaction, and build daily footfall into your store.",
+};
+
+export const fintech = [
+  {
+    slug: "aeps-retailer-id",
+    name: "AEPS Retailer ID",
+    short: "Offer Aadhaar-based cash withdrawal, balance enquiry and mini statements with a fingerprint.",
+    icon: "👆",
+    badge: "Most requested",
+    tagline: "Be the neighbourhood bank — with just a fingerprint",
+    overview:
+      "AEPS (Aadhaar Enabled Payment System) lets your customers withdraw cash, check their balance and get a mini statement from their Aadhaar-linked bank account — using only their Aadhaar number and fingerprint. With an AEPS Retailer ID, your shop becomes a trusted banking point for your area.",
+    earn: "Earn commission on every eligible AEPS transaction, as per your plan.",
+    highlights: [
+      { icon: "💵", label: "Cash withdrawal", note: "From any Aadhaar-linked bank" },
+      { icon: "🔎", label: "Balance enquiry", note: "Instant, on the spot" },
+      { icon: "🧾", label: "Mini statement", note: "Recent transactions" },
+      { icon: "🖐️", label: "Biometric secure", note: "Fingerprint authenticated" },
+    ],
+    steps: [
+      "Customer gives their Aadhaar number and selects their bank",
+      "Customer places a finger on the registered biometric device",
+      "Transaction is authenticated and processed instantly",
+      "You hand over cash — your wallet is credited, and you earn commission",
+    ],
+    benefits: [
+      "Daily footfall from customers who need cash nearby",
+      "No bank branch or ATM visit needed for your customers",
+      "Commission on eligible transactions",
+      "Simple, app-based operation",
+    ],
+    eligibility: ["Indian citizen, 18 years or above", "Running shop / retail outlet", "Active bank account in your name"],
+    documents: ["Aadhaar card", "PAN card", "Bank account details / cancelled cheque", "Shop photo (inside & outside)", "Passport-size photo"],
+    requirements: ["Registered biometric (RD) fingerprint device", "Android smartphone or PC", "Stable internet connection"],
+    faqs: [
+      { q: "Do customers need a debit card?", a: "No. AEPS works with the customer's Aadhaar number and fingerprint — their bank account must be linked to Aadhaar." },
+      { q: "Which fingerprint device do I need?", a: "A registered (RD service) biometric device. Our team will guide you on compatible models during onboarding." },
+      { q: "How long does activation take?", a: "Once your KYC documents are verified, activation is usually quick. Our team keeps you updated at every step." },
+    ],
+  },
+  {
+    slug: "upi-cash-withdrawal-merchant-id",
+    name: "UPI Cash Withdrawal Merchant ID",
+    short: "Accept UPI at your counter and offer UPI-based cash withdrawal to customers.",
+    icon: "📲",
+    badge: "Fast setup",
+    tagline: "Scan, pay, get cash — the UPI way",
+    overview:
+      "With a UPI Cash Withdrawal Merchant ID, your counter accepts UPI payments from any UPI app and lets customers withdraw cash by paying through UPI. It is quick, paperless and works with the apps your customers already use every day.",
+    earn: "Earn on eligible transactions and grow daily walk-ins, as per your plan.",
+    highlights: [
+      { icon: "🔳", label: "UPI QR at counter", note: "All UPI apps supported" },
+      { icon: "💵", label: "UPI cash withdrawal", note: "Pay via UPI, receive cash" },
+      { icon: "⚡", label: "Quick settlement", note: "As per provider terms" },
+      { icon: "📊", label: "Transaction reports", note: "Track every payment" },
+    ],
+    steps: [
+      "Customer scans your merchant QR with any UPI app",
+      "Customer enters the amount and approves with UPI PIN",
+      "Payment is confirmed instantly on your app",
+      "You hand over cash — settlement goes to your bank account",
+    ],
+    benefits: [
+      "Works with every major UPI app",
+      "No card or device needed for the customer",
+      "Clean digital record of every transaction",
+      "Brings new customers to your shop",
+    ],
+    eligibility: ["Indian citizen, 18 years or above", "Running shop / business", "Active bank account in your name"],
+    documents: ["Aadhaar card", "PAN card", "Bank account details / cancelled cheque", "Shop photo", "Business proof (GST / Udyam / shop licence) if available"],
+    requirements: ["Android smartphone", "Stable internet connection", "Printed QR displayed at counter"],
+    faqs: [
+      { q: "Which UPI apps can customers use?", a: "Any UPI app — PhonePe, Google Pay, Paytm, BHIM, bank apps and more." },
+      { q: "When do I receive settlement?", a: "Settlement goes to your registered bank account as per the provider's settlement terms." },
+      { q: "Is GST registration mandatory?", a: "Not always. Basic KYC is enough for many plans — our team will confirm what applies to you." },
+    ],
+  },
+  {
+    slug: "credit-card-withdrawal-merchant-id",
+    name: "Credit Card Withdrawal Merchant ID",
+    short: "A merchant ID to accept Visa & Mastercard credit card transactions for card-based withdrawal services.",
+    icon: "💳",
+    badge: "High value",
+    tagline: "Accept credit cards at your counter",
+    overview:
+      "A Credit Card Withdrawal Merchant ID lets your business accept Visa and Mastercard credit card transactions through a secure payment channel, with settlement to your bank account. All transactions must be genuine and follow RBI and card-network rules — our team onboards you with full KYC.",
+    earn: "Earn on eligible transactions, as per your plan.",
+    highlights: [
+      { icon: "💳", label: "Visa & Mastercard", note: "Credit card acceptance" },
+      { icon: "🔐", label: "Secure payments", note: "Encrypted & authorised" },
+      { icon: "🏦", label: "Bank settlement", note: "As per provider terms" },
+      { icon: "📱", label: "Merchant dashboard", note: "Track all transactions" },
+    ],
+    steps: [
+      "Customer chooses to pay by credit card",
+      "Payment is made via the secure payment link / terminal",
+      "Card is authorised by the issuing bank",
+      "Transaction settles to your bank account as per provider terms",
+    ],
+    benefits: [
+      "Serve customers who prefer paying by credit card",
+      "Higher ticket transactions at your counter",
+      "Full digital record for accounting",
+      "Onboarding and support from our team",
+    ],
+    eligibility: ["Registered / operating business", "Active bank account (current or savings)", "Completed merchant KYC"],
+    documents: ["Aadhaar card", "PAN card", "Business proof (GST / Udyam / shop licence)", "Bank account details / cancelled cheque", "Shop photos (inside & outside)"],
+    requirements: ["Android smartphone or PC", "Stable internet connection", "Genuine business activity"],
+    faqs: [
+      { q: "Which cards are supported?", a: "Visa and Mastercard credit cards. For RuPay credit cards, see our RuPay Credit Card Withdrawal Merchant ID." },
+      { q: "Are there any rules to follow?", a: "Yes. Transactions must be genuine and comply with RBI and card-network guidelines. Misuse can lead to the ID being blocked." },
+      { q: "What are the charges?", a: "Charges depend on the plan and provider. Contact us and we will share the current plan details." },
+    ],
+  },
+  {
+    slug: "rupay-credit-card-withdrawal-merchant-id",
+    name: "RuPay Credit Card Withdrawal Merchant ID",
+    short: "Accept RuPay credit cards — including RuPay credit card on UPI — at your counter.",
+    icon: "🟠",
+    badge: "RuPay on UPI",
+    tagline: "Accept RuPay credit cards — even on UPI",
+    overview:
+      "RuPay credit cards can now be linked to UPI. With a RuPay Credit Card Withdrawal Merchant ID, your counter accepts RuPay credit card payments — by UPI QR or card — with settlement to your bank. All transactions must be genuine and follow RBI and NPCI guidelines.",
+    earn: "Earn on eligible transactions, as per your plan.",
+    highlights: [
+      { icon: "🟠", label: "RuPay credit cards", note: "India's own network" },
+      { icon: "🔳", label: "RuPay on UPI", note: "Accept via UPI QR" },
+      { icon: "🏦", label: "Bank settlement", note: "As per provider terms" },
+      { icon: "📊", label: "Merchant reports", note: "Every transaction tracked" },
+    ],
+    steps: [
+      "Customer scans your QR using a UPI app linked to their RuPay credit card",
+      "Customer selects the RuPay credit card and approves with UPI PIN",
+      "Payment is confirmed instantly",
+      "Settlement goes to your bank account as per provider terms",
+    ],
+    benefits: [
+      "Tap into the fast-growing RuPay credit card user base",
+      "Simple QR-based acceptance — no card machine needed",
+      "Digital records for every payment",
+      "Onboarding and support from our team",
+    ],
+    eligibility: ["Registered / operating business", "Active bank account (current or savings)", "Completed merchant KYC"],
+    documents: ["Aadhaar card", "PAN card", "Business proof (GST / Udyam / shop licence)", "Bank account details / cancelled cheque", "Shop photos (inside & outside)"],
+    requirements: ["Android smartphone", "Stable internet connection", "Printed QR displayed at counter"],
+    faqs: [
+      { q: "What is RuPay credit card on UPI?", a: "Customers can link their RuPay credit card to UPI apps and pay by scanning a merchant QR — just like a normal UPI payment." },
+      { q: "Do I need a card machine?", a: "Not for RuPay on UPI — a merchant QR is enough." },
+      { q: "Are there any rules to follow?", a: "Yes. Transactions must be genuine and follow RBI and NPCI guidelines. Misuse can lead to the ID being blocked." },
+    ],
+  },
+];
+
+export const fintechOnboarding = [
+  { icon: "📝", title: "Apply", text: "Fill the application with your basic details." },
+  { icon: "📂", title: "Submit KYC", text: "Share Aadhaar, PAN, bank and shop details." },
+  { icon: "✅", title: "Verification", text: "Our team verifies and processes your application." },
+  { icon: "🚀", title: "Go live", text: "Get your ID, app access and training — start earning." },
+];
+
+/* =========================================================
+   NAV
+   ========================================================= */
+export const nav = [
+  { href: "/", label: "Home" },
+  {
+    href: "/web-services",
+    label: "Web Services",
+    children: webServices.map((s) => ({ href: `/web-services/${s.slug}`, label: s.name, icon: s.icon, note: s.tag })),
+  },
+  {
+    href: "/fintech",
+    label: "Fintech",
+    children: fintech.map((f) => ({ href: `/fintech/${f.slug}`, label: f.name, icon: f.icon, note: f.badge })),
+  },
+  { href: "/partners", label: "Partner" },
+  { href: "/how-it-works", label: "How it works" },
+  { href: "/about", label: "About" },
+];
+
+/* =========================================================
+   PARTNER & COMPANY
+   ========================================================= */
 export const partner = {
   name: "KS TechX Partner",
   short: "Sell any KS TechX service and earn commission on every sale.",
@@ -196,7 +341,7 @@ export const audiences = [
 
 export const stats = [
   { value: 4, suffix: "", label: "Fintech IDs" },
+  { value: 3, suffix: "", label: "Web services" },
   { value: 3, suffix: "", label: "Website packages" },
-  { value: 5, suffix: "", label: "Service lines" },
   { value: 100, suffix: "%", label: "Built in-house" },
 ];

@@ -1,7 +1,12 @@
 import Link from "next/link";
 import Stat from "../components/Stat";
 import { PageHero } from "../components/Blocks";
-import { stats, values, services } from "../data";
+import { stats, values, webServices, fintechIntro } from "../data";
+
+const services = [
+  { href: "/fintech", icon: fintechIntro.icon, name: fintechIntro.name, short: "AEPS, UPI, credit card and RuPay credit card merchant IDs for retailers.", accent: fintechIntro.accent },
+  ...webServices.map((s) => ({ href: `/web-services/${s.slug}`, icon: s.icon, name: s.name, short: s.short, accent: s.accent })),
+];
 
 export const metadata = {
   title: "About",
@@ -13,6 +18,7 @@ export default function About() {
   return (
     <main>
       <PageHero
+        crumbs={[{ label: "About" }]}
         kicker="About us"
         title="Kumara Swamy Technologies"
         lead="KS TechX is a fintech and digital solutions company from Andhra Pradesh, India. We help retailers earn with fintech services, help businesses grow with websites, custom software and Android apps — and help partners earn on every sale."
@@ -40,8 +46,8 @@ export default function About() {
           <div className="sell-grid" style={{ marginTop: 40 }}>
             {services.map((s) => (
               <Link
-                key={s.slug}
-                href={`/services/${s.slug}`}
+                key={s.href}
+                href={s.href}
                 className="sell-card reveal"
                 style={{ "--accent": s.accent }}
               >

@@ -12,6 +12,7 @@ export default function Contact() {
   return (
     <main>
       <PageHero
+        crumbs={[{ label: "Contact" }]}
         kicker="Contact"
         title="Let's talk"
         lead="Need a fintech ID, a website, custom software or an app — or want to become a partner? Send an enquiry and our team will get back to you."

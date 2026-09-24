@@ -1,6 +1,23 @@
 import Link from "next/link";
 import { PageHero } from "../components/Blocks";
-import { partnerBenefits, howPartner, services } from "../data";
+import { partnerBenefits, howPartner, webServices, fintech } from "../data";
+
+const sellable = [
+  {
+    href: "/fintech",
+    icon: "💳",
+    name: "Fintech Solutions",
+    list: fintech.map((f) => f.name).join(" · "),
+    accent: "#e63946",
+  },
+  ...webServices.map((s) => ({
+    href: `/web-services/${s.slug}`,
+    icon: s.icon,
+    name: s.name,
+    list: s.offerings.map((o) => o.title).join(" · "),
+    accent: s.accent,
+  })),
+];
 
 export const metadata = {
   title: "KS TechX Partner",
@@ -12,6 +29,7 @@ export default function Partners() {
   return (
     <main>
       <PageHero
+        crumbs={[{ label: "Partner" }]}
         kicker="KS TechX Partner"
         title="Every sale earns you commission"
         lead="Partner with KS TechX and sell services every business needs. You bring the customer — we deliver the service — you earn commission on every sale."
@@ -60,10 +78,10 @@ export default function Partners() {
             Earn commission on every sale across the full KS TechX range.
           </p>
           <div className="sell-grid">
-            {services.map((s, i) => (
+            {sellable.map((s, i) => (
               <Link
-                key={s.slug}
-                href={`/services/${s.slug}`}
+                key={s.href}
+                href={s.href}
                 className="sell-card reveal"
                 data-d={String(i + 1)}
                 style={{ "--accent": s.accent }}
@@ -71,9 +89,7 @@ export default function Partners() {
                 <span className="sell-icon">{s.icon}</span>
                 <div>
                   <strong>{s.name}</strong>
-                  <span>
-                    {s.offerings.map((o) => o.title).join(" · ")}
-                  </span>
+                  <span>{s.list}</span>
                 </div>
                 <em className="sell-earn">Earn ✓</em>
               </Link>
