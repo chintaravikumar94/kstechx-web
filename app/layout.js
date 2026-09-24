@@ -1,9 +1,14 @@
 import "./globals.css";
+import Chrome from "./components/Chrome";
 
 export const metadata = {
-  title: "KS TechX — Kumara Swamy Technologies | SaaS for Indian Businesses",
+  title: {
+    default:
+      "KS TechX — Kumara Swamy Technologies | Digital growth for Indian businesses",
+    template: "%s | KS TechX",
+  },
   description:
-    "Kumara Swamy Technologies (KS TechX) is a product studio building SaaS for India — Bizfree (WhatsApp & web commerce), Mera Digi Card, LocalKart and Mera Partners.",
+    "Kumara Swamy Technologies (KS TechX) is a digital growth company — software, done-for-you setup, digital products and a partner network for Indian businesses.",
   metadataBase: new URL("https://kstechx.com"),
   keywords: [
     "KS TechX",
@@ -13,11 +18,12 @@ export const metadata = {
     "SaaS India",
     "Mera Digi Card",
     "LocalKart",
+    "partner program",
   ],
   openGraph: {
-    title: "KS TechX — Building SaaS for Indian Businesses",
+    title: "KS TechX — Digital growth for Indian businesses",
     description:
-      "A product studio behind Bizfree, Mera Digi Card, LocalKart and Mera Partners.",
+      "Software, done-for-you setup, digital products and a partner network — Bizfree, Mera Digi Card, LocalKart and Mera Partners.",
     url: "https://kstechx.com",
     siteName: "KS TechX",
     locale: "en_IN",
@@ -25,9 +31,9 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "KS TechX — Building SaaS for Indian Businesses",
+    title: "KS TechX — Digital growth for Indian businesses",
     description:
-      "A product studio behind Bizfree, Mera Digi Card, LocalKart and Mera Partners.",
+      "Software, setup, digital products and a partner network for Indian businesses.",
   },
 };
 
@@ -39,17 +45,12 @@ const orgJsonLd = {
   url: "https://kstechx.com",
   email: "bizfree@kstechx.com",
   description:
-    "Product studio building SaaS for Indian businesses — Bizfree, Mera Digi Card, LocalKart and Mera Partners.",
+    "Digital growth company building SaaS, done-for-you setup, digital products and a partner network for Indian businesses.",
   address: {
     "@type": "PostalAddress",
     addressRegion: "Andhra Pradesh",
     addressCountry: "IN",
   },
-  makesOffer: [
-    { "@type": "Offer", itemOffered: { "@type": "SoftwareApplication", name: "Bizfree", url: "https://biz.kstechx.com" } },
-    { "@type": "Offer", itemOffered: { "@type": "SoftwareApplication", name: "Mera Digi Card", url: "https://mdc.kstechx.com" } },
-    { "@type": "Offer", itemOffered: { "@type": "SoftwareApplication", name: "LocalKart", url: "https://localkart.kstechx.com" } },
-  ],
 };
 
 export default function RootLayout({ children }) {
@@ -60,7 +61,7 @@ export default function RootLayout({ children }) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }}
         />
-        {children}
+        <Chrome>{children}</Chrome>
       </body>
     </html>
   );
