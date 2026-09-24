@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Logo from "./Logo";
-import { nav, webServices, fintech, CONTACT_EMAIL, WHATSAPP_NUMBER } from "../data";
+import { nav, webServices, fintech, CONTACT, WHATSAPP_NUMBER } from "../data";
 
 export default function Chrome({ children }) {
   const [open, setOpen] = useState(false);
@@ -81,6 +81,20 @@ export default function Chrome({ children }) {
     <>
       <div className="scroll-bar" style={{ width: progress + "%" }} />
       <div className="spotlight" ref={spotRef} aria-hidden="true" />
+
+      <div className="topbar">
+        <div className="container topbar-inner">
+          <div className="topbar-left">
+            <a href={CONTACT.phoneHref}>📞 {CONTACT.phone}</a>
+            <a href={`mailto:${CONTACT.emails.info}`}>✉️ {CONTACT.emails.info}</a>
+            {CONTACT.hours && <span>🕘 {CONTACT.hours}</span>}
+          </div>
+          <div className="topbar-right">
+            <Link href="/fintech">Apply for Fintech ID</Link>
+            <a href={`mailto:${CONTACT.emails.support}`}>Customer support</a>
+          </div>
+        </div>
+      </div>
 
       <header className={`nav ${scrolled || open ? "nav-scrolled" : ""}`}>
         <div className="container nav-inner">
@@ -192,7 +206,7 @@ export default function Chrome({ children }) {
       {WHATSAPP_NUMBER && (
         <a
           className="wa-float"
-          href={`https://wa.me/${WHATSAPP_NUMBER}`}
+          href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Hello KS TechX, I'd like to know more about your services.")}`}
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Chat on WhatsApp"
@@ -214,9 +228,17 @@ export default function Chrome({ children }) {
               Kumara Swamy Technologies — fintech &amp; digital solutions for
               Bharat. Andhra Pradesh, India 🇮🇳
             </p>
-            <a className="footer-mail" href={`mailto:${CONTACT_EMAIL}`}>
-              ✉️ {CONTACT_EMAIL}
-            </a>
+            <div className="footer-contact">
+              <a href={CONTACT.phoneHref}>📞 {CONTACT.phone}</a>
+              {CONTACT.whatsapp && (
+                <a href={`https://wa.me/${CONTACT.whatsapp}`} target="_blank" rel="noopener noreferrer">
+                  💬 WhatsApp us
+                </a>
+              )}
+              <a href={`mailto:${CONTACT.emails.info}`}>✉️ {CONTACT.emails.info}</a>
+              <a href={`mailto:${CONTACT.emails.sales}`}>💼 {CONTACT.emails.sales}</a>
+              <a href={`mailto:${CONTACT.emails.support}`}>🛠️ {CONTACT.emails.support}</a>
+            </div>
           </div>
           <div className="footer-cols">
             <div>

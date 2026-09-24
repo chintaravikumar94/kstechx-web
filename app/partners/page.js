@@ -1,6 +1,13 @@
 import Link from "next/link";
 import { PageHero } from "../components/Blocks";
-import { partnerBenefits, howPartner, webServices, fintech } from "../data";
+import { partnerBenefits, howPartner, webServices, fintech, CONTACT } from "../data";
+
+const onboarding = [
+  { icon: "📝", title: "Enquire", text: "Fill the partner form or WhatsApp us." },
+  { icon: "📞", title: "Intro call", text: "Our team explains the model, services and commissions." },
+  { icon: "🪪", title: "KYC & agreement", text: "Quick verification and a clear written partner agreement." },
+  { icon: "🎓", title: "Training & go-live", text: "Get trained, get your partner ID and start selling." },
+];
 
 const sellable = [
   {
@@ -65,6 +72,45 @@ export default function Partners() {
               <span>💰</span>
               <strong>You earn</strong>
               <em>commission</em>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ASSISTED ONBOARDING */}
+      <section className="section">
+        <div className="container">
+          <span className="kicker reveal">Partner onboarding</span>
+          <h2 className="section-title reveal">Personally onboarded by our team</h2>
+          <p className="section-sub reveal">
+            Every KS TechX Partner is verified and trained one-to-one — so you start
+            with the right knowledge, and your customers get a trusted experience.
+          </p>
+          <div className="process">
+            {onboarding.map((o, i) => (
+              <div key={o.title} className="process-step reveal" data-d={String(i + 1)}>
+                <span className="process-n">{String(i + 1).padStart(2, "0")}</span>
+                <span className="process-icon">{o.icon}</span>
+                <h3>{o.title}</h3>
+                <p>{o.text}</p>
+              </div>
+            ))}
+          </div>
+          <div className="center-row reveal">
+            <div className="hero-cta center">
+              <Link href="/contact?service=partner" className="btn btn-primary btn-lg">
+                Apply to become a partner
+              </Link>
+              {CONTACT.whatsapp && (
+                <a
+                  href={`https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent("Hi KS TechX, I'd like to become a partner.")}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-wa btn-lg"
+                >
+                  💬 WhatsApp to join
+                </a>
+              )}
             </div>
           </div>
         </div>

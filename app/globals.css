@@ -2908,3 +2908,138 @@ main {
   border-radius: 20px;
   background: var(--bg);
 }
+
+/* =========================================================
+   CONTACT SYSTEM — top bar, desks, WhatsApp, footer contact
+   ========================================================= */
+.topbar {
+  position: relative;
+  z-index: 51;
+  background: var(--navy);
+  color: #c9d5f2;
+  font-size: 13px;
+  font-weight: 500;
+}
+.topbar-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  height: 38px;
+}
+.topbar-left,
+.topbar-right {
+  display: flex;
+  gap: 22px;
+  align-items: center;
+}
+.topbar a:hover {
+  color: #fff;
+}
+.topbar-right a {
+  font-weight: 600;
+  color: #fff;
+}
+.topbar-right a:first-child {
+  color: #ffb3ba;
+}
+@media (max-width: 760px) {
+  .topbar-right,
+  .topbar-left a:nth-child(2) {
+    display: none;
+  }
+  .topbar-inner {
+    justify-content: center;
+  }
+}
+.btn-wa {
+  background: linear-gradient(135deg, #25d366, #128c7e);
+  color: #fff;
+  box-shadow: 0 10px 24px -10px rgba(18, 140, 126, 0.7);
+}
+.btn-wa:hover {
+  box-shadow: 0 16px 30px -10px rgba(18, 140, 126, 0.85);
+}
+.form-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.form-error {
+  margin: -4px 0 14px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--brand);
+}
+.desk-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.desk {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 28px;
+  border-radius: 20px;
+  background: #fff;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.desk:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow);
+  border-color: #cddcff;
+}
+.desk-icon {
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  border-radius: 15px;
+  font-size: 25px;
+  background: var(--blue-soft);
+  margin-bottom: 8px;
+}
+.desk h3 {
+  font-size: 18px;
+}
+.desk p {
+  font-size: 14.5px;
+  flex: 1;
+}
+.desk-mail {
+  margin-top: 8px;
+  color: var(--brand);
+  font-size: 15px;
+}
+.contact-hours {
+  margin-top: 6px;
+  font-size: 14px;
+  font-weight: 600;
+}
+.footer-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 16px;
+}
+.footer-contact a {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+}
+.footer-contact a:hover {
+  color: #ffb3ba;
+}
+@media (max-width: 900px) {
+  .desk-grid {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 600px) {
+  .form-actions {
+    grid-template-columns: 1fr;
+  }
+}

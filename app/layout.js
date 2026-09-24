@@ -43,6 +43,12 @@ const orgJsonLd = {
   name: "Kumara Swamy Technologies",
   alternateName: "KS TechX",
   url: "https://kstechx.com",
+  email: "info@kstechx.com",
+  telephone: "+91-99494-99177",
+  contactPoint: [
+    { "@type": "ContactPoint", contactType: "sales", email: "sales@kstechx.com", telephone: "+91-99494-99177", areaServed: "IN", availableLanguage: ["English", "Telugu", "Hindi"] },
+    { "@type": "ContactPoint", contactType: "customer support", email: "support@kstechx.com", telephone: "+91-99494-99177", areaServed: "IN" },
+  ],
   description:
     "Fintech and digital solutions company — retailer & merchant IDs, website development, custom software and Android app development.",
   address: {

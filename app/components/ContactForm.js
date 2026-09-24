@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { webServices, fintech, CONTACT_EMAIL } from "../data";
+import { webServices, fintech, CONTACT } from "../data";
 
 const topics = [
   { value: "", label: "Choose a service…", disabled: true },
@@ -13,48 +13,74 @@ const topics = [
       : []),
   ]),
   { value: "partner", label: "🤝 KS TechX Partner (earn commission)" },
+  { value: "support", label: "🛠️ Support — I'm an existing customer" },
   { value: "other", label: "Something else" },
 ];
+
+/* which inbox gets the enquiry */
+const inboxFor = (topic) =>
+  topic === "support" ? CONTACT.emails.support : topic === "other" || !topic ? CONTACT.emails.info : CONTACT.emails.sales;
 
 /* defaultTopic lets a page (e.g. a fintech detail page) pre-select the service */
 export default function ContactForm({ defaultTopic = "", title }) {
   const [form, setForm] = useState({ name: "", phone: "", email: "", city: "", topic: defaultTopic, message: "" });
-  const [sent, setSent] = useState(false);
+  const [sent, setSent] = useState("");
+  const [error, setError] = useState("");
 
-  // pre-select from ?service=slug (read on client — no Suspense needed)
   useEffect(() => {
     if (defaultTopic) return;
     const q = new URLSearchParams(window.location.search).get("service");
     if (q && topics.some((t) => t.value === q)) setForm((f) => ({ ...f, topic: q }));
   }, [defaultTopic]);
 
-  const update = (k) => (e) => setForm({ ...form, [k]: e.target.value });
+  const update = (k) => (e) => {
+    setError("");
+    setForm({ ...form, [k]: e.target.value });
+  };
   const topicLabel = (v) =>
     (topics.find((t) => t.value === v)?.label || v || "Enquiry").replace(/^[\s—]+/, "").trim();
 
-  const onSubmit = (e) => {
+  const summary = () =>
+    `Name: ${form.name}\nPhone / WhatsApp: ${form.phone}\nEmail: ${form.email}\nCity / Town: ${form.city}\nInterested in: ${topicLabel(
+      form.topic
+    )}\n\n${form.message}`;
+
+  const valid = () => {
+    if (!form.name.trim()) return "Enter your name.";
+    if (form.phone.replace(/\D/g, "").length < 10) return "Enter a valid 10-digit phone number.";
+    if (!form.topic) return "Choose the service you're interested in.";
+    return "";
+  };
+
+  const sendEmail = (e) => {
     e.preventDefault();
+    const v = valid();
+    if (v) return setError(v);
+    const to = inboxFor(form.topic);
     const subject = encodeURIComponent(`[${topicLabel(form.topic)}] ${form.name}`);
-    const body = encodeURIComponent(
-      `Name: ${form.name}\nPhone / WhatsApp: ${form.phone}\nEmail: ${form.email}\nCity / Town: ${form.city}\nInterested in: ${topicLabel(
-        form.topic
-      )}\n\n${form.message}`
-    );
-    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
-    setSent(true);
+    window.location.href = `mailto:${to}?subject=${subject}&body=${encodeURIComponent(summary())}`;
+    setSent(to);
+  };
+
+  const sendWhatsApp = () => {
+    const v = valid();
+    if (v) return setError(v);
+    const text = encodeURIComponent(`Hello KS TechX 👋\n\n${summary()}`);
+    window.open(`https://wa.me/${CONTACT.whatsapp}?text=${text}`, "_blank", "noopener");
+    setSent("whatsapp");
   };
 
   return (
-    <form className="contact-form reveal" onSubmit={onSubmit}>
+    <form className="contact-form reveal" onSubmit={sendEmail} noValidate>
       {title && <h3 className="form-title">{title}</h3>}
       <div className="field-row">
         <div className="field">
           <label>Your name</label>
-          <input value={form.name} onChange={update("name")} placeholder="e.g. Ravi Kumar" required />
+          <input value={form.name} onChange={update("name")} placeholder="Ravi Kumar" />
         </div>
         <div className="field">
           <label>Phone / WhatsApp</label>
-          <input type="tel" value={form.phone} onChange={update("phone")} placeholder="+91" required />
+          <input type="tel" value={form.phone} onChange={update("phone")} placeholder="98765 43210" />
         </div>
       </div>
       <div className="field-row">
@@ -64,12 +90,12 @@ export default function ContactForm({ defaultTopic = "", title }) {
         </div>
         <div className="field">
           <label>City / Town</label>
-          <input value={form.city} onChange={update("city")} placeholder="e.g. Vijayawada" />
+          <input value={form.city} onChange={update("city")} placeholder="Vijayawada" />
         </div>
       </div>
       <div className="field">
         <label>I&apos;m interested in</label>
-        <select value={form.topic} onChange={update("topic")} required>
+        <select value={form.topic} onChange={update("topic")}>
           {topics.map((t) => (
             <option key={t.value || "none"} value={t.value} disabled={t.disabled}>
               {t.label}
@@ -83,18 +109,27 @@ export default function ContactForm({ defaultTopic = "", title }) {
           rows={4}
           value={form.message}
           onChange={update("message")}
-          placeholder="Tell us a little about what you need…"
+          placeholder="Tell us a little about what you need"
         />
       </div>
-      <button type="submit" className="btn btn-primary btn-lg">
-        Send application →
-      </button>
-      {sent && (
-        <p className="form-note">
-          Your email app should open with everything filled in — just press
-          send. If it didn&apos;t, email us at <strong>{CONTACT_EMAIL}</strong>.
-        </p>
-      )}
+      {error && <p className="form-error">{error}</p>}
+      <div className="form-actions">
+        {CONTACT.whatsapp && (
+          <button type="button" className="btn btn-wa btn-lg" onClick={sendWhatsApp}>
+            💬 Send on WhatsApp
+          </button>
+        )}
+        <button type="submit" className="btn btn-primary btn-lg">
+          ✉️ Send by email
+        </button>
+      </div>
+      <p className="form-note">
+        {sent === "whatsapp"
+          ? "WhatsApp opened with your details — just press send."
+          : sent
+          ? `Your email app opened with everything filled in for ${sent} — just press send.`
+          : `Prefer to talk? Call ${CONTACT.phone}.`}
+      </p>
     </form>
   );
 }
