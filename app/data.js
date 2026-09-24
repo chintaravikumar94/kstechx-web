@@ -1,23 +1,16 @@
 /* ---------------- SHARED SITE DATA ----------------
    Edit this one file to change content across the whole site. */
 
-/* ---------- CONTACT (one place for every phone & email on the site) ----------
-   info@    → public, general enquiries (footer, top bar)
-   sales@   → new business: fintech ID applications, quotes, partner enquiries
-   support@ → existing customers only
-   contact@ → not shown on the site; forward it to info@ in hPanel            */
+/* ---------- CONTACT (one place for phone, email & WhatsApp) ----------
+   One professional business email for the whole site: info@kstechx.com   */
 export const CONTACT = {
+  email: "info@kstechx.com",
   phone: "+91 99494 99177",
   phoneHref: "tel:+919949499177",
-  whatsapp: "919949499177", // set to "" to hide the WhatsApp buttons
+  whatsapp: "919949499177", // set to "" to hide WhatsApp Assist & buttons
   hours: "", // e.g. "Mon – Sat · 9:30 AM – 7:00 PM" — shown when set
-  emails: {
-    info: "info@kstechx.com",
-    sales: "sales@kstechx.com",
-    support: "support@kstechx.com",
-  },
 };
-export const CONTACT_EMAIL = CONTACT.emails.info;
+export const CONTACT_EMAIL = CONTACT.email;
 export const WHATSAPP_NUMBER = CONTACT.whatsapp;
 
 /* =========================================================

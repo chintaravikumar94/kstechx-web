@@ -4,7 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Logo from "./Logo";
-import { nav, webServices, fintech, CONTACT, WHATSAPP_NUMBER } from "../data";
+import { nav, webServices, fintech, CONTACT } from "../data";
+import WhatsAppAssist from "./WhatsAppAssist";
 
 export default function Chrome({ children }) {
   const [open, setOpen] = useState(false);
@@ -86,12 +87,12 @@ export default function Chrome({ children }) {
         <div className="container topbar-inner">
           <div className="topbar-left">
             <a href={CONTACT.phoneHref}>📞 {CONTACT.phone}</a>
-            <a href={`mailto:${CONTACT.emails.info}`}>✉️ {CONTACT.emails.info}</a>
+            <a href={`mailto:${CONTACT.email}`}>✉️ {CONTACT.email}</a>
             {CONTACT.hours && <span>🕘 {CONTACT.hours}</span>}
           </div>
           <div className="topbar-right">
             <Link href="/fintech">Apply for Fintech ID</Link>
-            <a href={`mailto:${CONTACT.emails.support}`}>Customer support</a>
+            <Link href="/contact">Contact us</Link>
           </div>
         </div>
       </div>
@@ -203,17 +204,7 @@ export default function Chrome({ children }) {
 
       {children}
 
-      {WHATSAPP_NUMBER && (
-        <a
-          className="wa-float"
-          href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Hello KS TechX, I'd like to know more about your services.")}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Chat on WhatsApp"
-        >
-          💬
-        </a>
-      )}
+      <WhatsAppAssist />
 
       <footer className="footer">
         <div className="container footer-inner">
@@ -235,9 +226,7 @@ export default function Chrome({ children }) {
                   💬 WhatsApp us
                 </a>
               )}
-              <a href={`mailto:${CONTACT.emails.info}`}>✉️ {CONTACT.emails.info}</a>
-              <a href={`mailto:${CONTACT.emails.sales}`}>💼 {CONTACT.emails.sales}</a>
-              <a href={`mailto:${CONTACT.emails.support}`}>🛠️ {CONTACT.emails.support}</a>
+              <a href={`mailto:${CONTACT.email}`}>✉️ {CONTACT.email}</a>
             </div>
           </div>
           <div className="footer-cols">

@@ -5,27 +5,31 @@ import { CONTACT } from "../data";
 export const metadata = {
   title: "Contact",
   description:
-    "Contact KS TechX — call or WhatsApp +91 99494 99177, or email sales@kstechx.com for fintech IDs, websites, software, Android apps and the partner program.",
+    "Contact KS TechX — call or WhatsApp +91 99494 99177, or email info@kstechx.com for fintech IDs, websites, software, Android apps and the partner program.",
 };
 
 const desks = [
   {
-    icon: "💼",
-    title: "Sales & new enquiries",
-    text: "Fintech ID applications, website / software / app quotes and partner enquiries.",
-    email: CONTACT.emails.sales,
+    icon: "📞",
+    title: "Call us",
+    text: "Speak directly with our team about fintech IDs, websites, software or apps.",
+    label: CONTACT.phone,
+    href: CONTACT.phoneHref,
   },
   {
-    icon: "🛠️",
-    title: "Customer support",
-    text: "Already a KS TechX customer? Get help with your ID, website or app.",
-    email: CONTACT.emails.support,
+    icon: "💬",
+    title: "WhatsApp",
+    text: "The fastest way to reach us — send your query and documents on WhatsApp.",
+    label: "Chat on WhatsApp",
+    href: `https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent("Hello KS TechX, I'd like to know more about your services.")}`,
+    external: true,
   },
   {
     icon: "✉️",
-    title: "General information",
-    text: "Company information, collaborations and everything else.",
-    email: CONTACT.emails.info,
+    title: "Email",
+    text: "For detailed requirements, proposals and documents.",
+    label: CONTACT.email,
+    href: `mailto:${CONTACT.email}`,
   },
 ];
 
@@ -60,14 +64,22 @@ export default function Contact() {
       <section className="section pt0">
         <div className="container">
           <div className="desk-grid">
-            {desks.map((d, i) => (
-              <a key={d.email} href={`mailto:${d.email}`} className="desk reveal" data-d={String(i + 1)}>
-                <span className="desk-icon">{d.icon}</span>
-                <h3>{d.title}</h3>
-                <p>{d.text}</p>
-                <strong className="desk-mail">{d.email}</strong>
-              </a>
-            ))}
+            {desks
+              .filter((d) => d.title !== "WhatsApp" || CONTACT.whatsapp)
+              .map((d, i) => (
+                <a
+                  key={d.title}
+                  href={d.href}
+                  className="desk reveal"
+                  data-d={String(i + 1)}
+                  {...(d.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                >
+                  <span className="desk-icon">{d.icon}</span>
+                  <h3>{d.title}</h3>
+                  <p>{d.text}</p>
+                  <strong className="desk-mail">{d.label}</strong>
+                </a>
+              ))}
           </div>
         </div>
       </section>
@@ -90,11 +102,8 @@ export default function Contact() {
                 💬 WhatsApp: {CONTACT.phone}
               </a>
             )}
-            <a className="contact-line" href={`mailto:${CONTACT.emails.sales}`}>
-              💼 {CONTACT.emails.sales}
-            </a>
-            <a className="contact-line" href={`mailto:${CONTACT.emails.support}`}>
-              🛠️ {CONTACT.emails.support}
+            <a className="contact-line" href={`mailto:${CONTACT.email}`}>
+              ✉️ {CONTACT.email}
             </a>
             {CONTACT.hours && <p className="contact-hours">🕘 {CONTACT.hours}</p>}
             <p className="contact-addr">

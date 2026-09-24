@@ -17,9 +17,6 @@ const topics = [
   { value: "other", label: "Something else" },
 ];
 
-/* which inbox gets the enquiry */
-const inboxFor = (topic) =>
-  topic === "support" ? CONTACT.emails.support : topic === "other" || !topic ? CONTACT.emails.info : CONTACT.emails.sales;
 
 /* defaultTopic lets a page (e.g. a fintech detail page) pre-select the service */
 export default function ContactForm({ defaultTopic = "", title }) {
@@ -56,7 +53,7 @@ export default function ContactForm({ defaultTopic = "", title }) {
     e.preventDefault();
     const v = valid();
     if (v) return setError(v);
-    const to = inboxFor(form.topic);
+    const to = CONTACT.email;
     const subject = encodeURIComponent(`[${topicLabel(form.topic)}] ${form.name}`);
     window.location.href = `mailto:${to}?subject=${subject}&body=${encodeURIComponent(summary())}`;
     setSent(to);
@@ -127,7 +124,7 @@ export default function ContactForm({ defaultTopic = "", title }) {
         {sent === "whatsapp"
           ? "WhatsApp opened with your details — just press send."
           : sent
-          ? `Your email app opened with everything filled in for ${sent} — just press send.`
+          ? "Your email app opened with everything filled in — just press send."
           : `Prefer to talk? Call ${CONTACT.phone}.`}
       </p>
     </form>
