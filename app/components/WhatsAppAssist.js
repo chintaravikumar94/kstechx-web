@@ -56,7 +56,7 @@ export function optionsFor(path) {
     if (o) top = { icon: o.icon, label: `Quote for ${o.title.replace(/ \(.*\)/, "")}`, msg: `I'd like a quote for a ${o.title}.` };
     else if (s) top = { icon: s.icon, label: `Quote for ${s.name}`, msg: `I'd like a quote for ${s.name}.` };
   } else if (parts[0] === "partners") {
-    top = { icon: "🤝", label: "Join as a KS TechX Partner", msg: "I want to become a KS TechX Partner. Please explain the onboarding process." };
+    top = { icon: "🤝", label: "Join as a KS TechX Partner", msg: "I want to become a KS TechX Partner. I understand I need to purchase any one KS TechX product (minimum ₹1,000). Please explain the process." };
   }
   if (!top) return base;
   return [{ ...top, featured: true }, ...base.filter((b) => b.label !== top.label && b.icon !== top.icon)].slice(0, 5);

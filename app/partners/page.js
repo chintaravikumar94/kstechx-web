@@ -1,10 +1,10 @@
 import Link from "next/link";
 import { PageHero } from "../components/Blocks";
-import { partnerBenefits, howPartner, webServices, fintech, CONTACT } from "../data";
+import { partnerBenefits, howPartner, webServices, fintech, CONTACT, PARTNER_JOIN } from "../data";
 
 const onboarding = [
-  { icon: "📝", title: "Enquire", text: "Fill the partner form or WhatsApp us." },
-  { icon: "📞", title: "Intro call", text: "Our team explains the model, services and commissions." },
+  { icon: "📝", title: "Enquire", text: "Fill the partner form or WhatsApp us — our team explains the model and commissions." },
+  { icon: "🛒", title: "Purchase a product", text: "Buy any one KS TechX product or service worth ₹1,000 or more." },
   { icon: "🪪", title: "KYC & agreement", text: "Quick verification and a clear written partner agreement." },
   { icon: "🎓", title: "Training & go-live", text: "Get trained, get your partner ID and start selling." },
 ];
@@ -50,7 +50,54 @@ export default function Partners() {
             How it works
           </Link>
         </div>
+        <div className="join-card reveal" data-d="3">
+          <span className="join-price">
+            <em>Join from</em>
+            <strong>{PARTNER_JOIN.minPurchase}</strong>
+          </span>
+          <span className="join-text">
+            <strong>{PARTNER_JOIN.rule}.</strong>
+            <span>{PARTNER_JOIN.why}</span>
+          </span>
+        </div>
       </PageHero>
+
+      {/* ELIGIBILITY */}
+      <section className="section pt0">
+        <div className="container">
+          <div className="elig reveal">
+            <div className="elig-head">
+              <span className="kicker left">Partner eligibility</span>
+              <h2>How to become a KS TechX Partner</h2>
+              <p>
+                To join, purchase any one KS TechX product or service worth a minimum
+                of <strong>{PARTNER_JOIN.minPurchase}</strong> — a fintech ID, a website
+                package, software or an app. You use it in your own business, you
+                understand exactly what you&apos;re selling, and you&apos;re ready to earn.
+              </p>
+            </div>
+            <div className="elig-picks">
+              {sellable.map((s) => (
+                <Link key={s.href} href={s.href} className="elig-pick" style={{ "--accent": s.accent }}>
+                  <span>{s.icon}</span>
+                  {s.name}
+                </Link>
+              ))}
+            </div>
+            <ul className="elig-rules">
+              <li>
+                <strong>Minimum purchase:</strong> {PARTNER_JOIN.minPurchase} on any one KS TechX product or service
+              </li>
+              <li>
+                <strong>Commission:</strong> earned only on genuine sales you make to customers
+              </li>
+              <li>
+                <strong>KYC:</strong> required for every partner, with a written partner agreement
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
 
       {/* COMMISSION FLOW */}
       <section className="section pt0">

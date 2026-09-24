@@ -457,6 +457,13 @@ export const nav = [
 /* =========================================================
    PARTNER & COMPANY
    ========================================================= */
+/* Partner entry rule — edit here and it updates everywhere */
+export const PARTNER_JOIN = {
+  minPurchase: "₹1,000",
+  rule: "Purchase any one KS TechX product or service worth ₹1,000 or more",
+  why: "Use it for your own business — so you know exactly what you're selling to your customers.",
+};
+
 export const partner = {
   name: "KS TechX Partner",
   short: "Sell any KS TechX service and earn commission on every sale.",
@@ -467,10 +474,10 @@ export const partner = {
 export const partnerBenefits = [
   { icon: "💰", title: "Commission on every sale", text: "Every sale you bring in earns you commission — fintech IDs, websites, software or apps." },
   { icon: "🧰", title: "Many services to sell", text: "One partnership, many products. Offer your customers exactly what they need." },
-  { icon: "👥", title: "Grow your network", text: "Build your team and expand your reach across your town and district." },
+  { icon: "📍", title: "Expand your reach", text: "Offer KS TechX services to shops and businesses across your town and district." },
   { icon: "📈", title: "Transparent tracking", text: "Know what you've sold and what you've earned — clear and on time." },
   { icon: "🎓", title: "Training & support", text: "We help you pitch, close and deliver. You're never on your own." },
-  { icon: "🆓", title: "Easy to start", text: "Simple onboarding — start referring customers right away." },
+  { icon: "🎟️", title: "Simple entry — from ₹1,000", text: "Purchase any one KS TechX product worth ₹1,000 or more, use it in your own business, and start earning." },
 ];
 
 export const howClient = [
@@ -481,10 +488,10 @@ export const howClient = [
 ];
 
 export const howPartner = [
-  "Join as a KS TechX Partner",
-  "Refer or sell any KS TechX service",
-  "We deliver the service to your customer",
-  "You earn commission on every sale",
+  "Purchase any one KS TechX product — minimum ₹1,000",
+  "Complete KYC and get your partner ID & training",
+  "Refer or sell any KS TechX service to customers",
+  "Earn commission on every sale you make",
 ];
 
 export const process = [

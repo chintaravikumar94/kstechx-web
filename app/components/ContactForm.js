@@ -12,7 +12,7 @@ const topics = [
       ? s.offerings.map((o) => ({ value: `${s.slug}::${o.title}`, label: `   — ${o.title}` }))
       : []),
   ]),
-  { value: "partner", label: "🤝 KS TechX Partner (earn commission)" },
+  { value: "partner", label: "🤝 KS TechX Partner (join from ₹1,000)" },
   { value: "support", label: "🛠️ Support — I'm an existing customer" },
   { value: "other", label: "Something else" },
 ];
