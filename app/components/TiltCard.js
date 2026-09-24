@@ -3,7 +3,8 @@
 import { useRef } from "react";
 import Link from "next/link";
 
-export default function TiltCard({ p }) {
+/* Generic 3D-tilt card. item = { href, icon, name, tag, text, accent, cta } */
+export default function TiltCard({ item }) {
   const ref = useRef(null);
   const onMove = (e) => {
     const el = ref.current;
@@ -21,16 +22,17 @@ export default function TiltCard({ p }) {
   return (
     <Link
       ref={ref}
-      href={`/products/${p.slug}`}
+      href={item.href}
       className="card tilt reveal"
-      style={{ "--accent": p.accent }}
+      style={{ "--accent": item.accent }}
       onMouseMove={onMove}
       onMouseLeave={reset}
     >
-      <div className="card-tag">{p.tag}</div>
-      <h3>{p.name}</h3>
-      <p>{p.summary}</p>
-      <span className="card-link">Learn more →</span>
+      {item.icon && <span className="card-icon">{item.icon}</span>}
+      {item.tag && <div className="card-tag">{item.tag}</div>}
+      <h3>{item.name}</h3>
+      <p>{item.text}</p>
+      <span className="card-link">{item.cta || "Learn more →"}</span>
     </Link>
   );
 }

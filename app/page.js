@@ -2,9 +2,34 @@ import Link from "next/link";
 import Hero from "./components/Hero";
 import TiltCard from "./components/TiltCard";
 import Stat from "./components/Stat";
-import { offers, products, testimonials, stats } from "./data";
+import ServiceExplorer from "./components/ServiceExplorer";
+import { IdCards, TierCards, ProcessSteps, PartnerBand } from "./components/Blocks";
+import { services, partner, stats, values } from "./data";
 
 export default function Home() {
+  const fintech = services.find((s) => s.slug === "fintech-solutions");
+  const web = services.find((s) => s.slug === "website-development");
+
+  const cards = [
+    ...services.map((s) => ({
+      href: `/services/${s.slug}`,
+      icon: s.icon,
+      name: s.name,
+      tag: s.tag,
+      text: s.short,
+      accent: s.accent,
+    })),
+    {
+      href: "/partners",
+      icon: partner.icon,
+      name: partner.name,
+      tag: "Earn commission",
+      text: partner.short,
+      accent: partner.accent,
+      cta: "Become a partner →",
+    },
+  ];
+
   return (
     <main>
       <Hero />
@@ -13,105 +38,75 @@ export default function Home() {
       <section className="section">
         <div className="container">
           <span className="kicker reveal">What we do</span>
-          <h2 className="section-title reveal">One company · four ways we grow you</h2>
+          <h2 className="section-title reveal">Five ways KS TechX grows you</h2>
           <p className="section-sub reveal">
-            Whether you want the tools, the whole thing done for you, or a way to
-            earn — KS TechX has a path for you.
+            From fintech IDs for your shop to custom software for your business —
+            and a partner model where every sale earns.
           </p>
-          <div className="offer-grid">
-            {offers.map((o, i) => (
-              <div key={o.title} className="offer reveal" data-d={String((i % 4) + 1)}>
-                <span className="offer-icon">{o.icon}</span>
-                <span className="offer-badge">{o.badge}</span>
-                <h3>{o.title}</h3>
-                <p>{o.text}</p>
-              </div>
+          <div className="grid grid-5">
+            {cards.map((c) => (
+              <TiltCard key={c.href} item={c} />
             ))}
           </div>
         </div>
       </section>
 
-      {/* PRODUCTS PREVIEW */}
+      {/* INTERACTIVE EXPLORER */}
       <section className="section section-alt">
         <div className="container">
-          <span className="kicker reveal">Our software</span>
-          <h2 className="section-title reveal">The products businesses run on</h2>
-          <p className="section-sub reveal">
-            Tap any product to see what it does — each runs on its own space
-            under kstechx.com.
-          </p>
-          <div className="grid">
-            {products.map((p) => (
-              <TiltCard key={p.slug} p={p} />
-            ))}
-          </div>
-          <div className="center-row reveal">
-            <Link href="/products" className="btn btn-ghost btn-lg">
-              View all products →
-            </Link>
-          </div>
+          <span className="kicker reveal">Explore</span>
+          <h2 className="section-title reveal">Pick a service, see what&apos;s inside</h2>
+          <p className="section-sub reveal">Tap a tab to explore each service in detail.</p>
+          <ServiceExplorer />
         </div>
       </section>
 
-      {/* HOW IT WORKS PREVIEW */}
+      {/* FINTECH SPOTLIGHT */}
+      <section className="section fintech-zone">
+        <div className="container">
+          <span className="kicker reveal">Fintech Solutions</span>
+          <h2 className="section-title reveal">{fintech.tagline}</h2>
+          <p className="section-sub reveal">{fintech.summary}</p>
+          <IdCards items={fintech.offerings} cta="Apply for this ID" />
+        </div>
+      </section>
+
+      {/* WEBSITE PACKAGES */}
+      <section className="section section-alt">
+        <div className="container">
+          <span className="kicker reveal">Website Development</span>
+          <h2 className="section-title reveal">Choose your website package</h2>
+          <p className="section-sub reveal">{web.summary}</p>
+          <TierCards items={web.offerings} />
+        </div>
+      </section>
+
+      {/* PROCESS */}
       <section className="section">
         <div className="container">
-          <span className="kicker reveal">How it works</span>
-          <h2 className="section-title reveal">Two simple paths</h2>
+          <span className="kicker reveal">How we deliver</span>
+          <h2 className="section-title reveal">From idea to live — in four steps</h2>
           <p className="section-sub reveal">
-            Come as a business that wants to grow — or a partner who wants to
-            earn.
+            The same proven process for every website, software and app we build.
           </p>
-          <div className="split reveal">
-            <Link href="/how-it-works" className="split-card">
-              <span className="how-badge biz">🏪 For business owners</span>
-              <h3>Get online &amp; start selling</h3>
-              <p>Pick a plan or let us set you up, then sell on WhatsApp and the web.</p>
-              <span className="card-link brandlink">See the steps →</span>
-            </Link>
-            <Link href="/partners" className="split-card">
-              <span className="how-badge earn">🤝 For partners</span>
-              <h3>Onboard businesses &amp; earn</h3>
-              <p>Join the network, bring businesses on board, and earn recurring commission.</p>
-              <span className="card-link goldlink">See the program →</span>
-            </Link>
-          </div>
+          <ProcessSteps />
         </div>
       </section>
 
-      {/* EARN BAND */}
-      <section className="earn-band">
-        <div className="container earn-inner reveal">
-          <span className="earn-kicker">Partner Program</span>
-          <h2>Earn by growing businesses around you</h2>
-          <p>
-            Join the KS TechX partner network, bring local shops online, and earn
-            recurring commission on every plan — build your own downline income.
-          </p>
-          <Link href="/partners" className="btn btn-primary btn-lg">
-            Join as a partner →
-          </Link>
-        </div>
-      </section>
+      <PartnerBand />
 
-      {/* TESTIMONIALS */}
-      <section className="section">
+      {/* WHY US */}
+      <section className="section section-alt">
         <div className="container">
-          <span className="kicker reveal">Loved by owners</span>
-          <h2 className="section-title reveal">Businesses run better with KS TechX</h2>
-          <div className="tgrid">
-            {testimonials.map((t, i) => (
-              <figure key={i} className="tcard reveal" data-d={String(i + 1)}>
-                <div className="stars">★★★★★</div>
-                <blockquote>“{t.quote}”</blockquote>
-                <figcaption>
-                  <span className="tavatar">{t.name.charAt(0)}</span>
-                  <span>
-                    <strong>{t.name}</strong>
-                    <em>{t.role}</em>
-                  </span>
-                </figcaption>
-              </figure>
+          <span className="kicker reveal">Why KS TechX</span>
+          <h2 className="section-title reveal">One trusted partner for everything</h2>
+          <div className="offer-grid" style={{ marginTop: 44 }}>
+            {values.map((v, i) => (
+              <div key={v.title} className="offer reveal" data-d={String(i + 1)}>
+                <span className="offer-icon">{v.icon}</span>
+                <h3 style={{ marginTop: 14 }}>{v.title}</h3>
+                <p>{v.text}</p>
+              </div>
             ))}
           </div>
         </div>
@@ -123,6 +118,17 @@ export default function Home() {
           {stats.map((s) => (
             <Stat key={s.label} value={s.value} suffix={s.suffix} label={s.label} />
           ))}
+        </div>
+      </section>
+
+      {/* FINAL CTA */}
+      <section className="cta-band">
+        <div className="container cta-inner cta-red reveal">
+          <h2>Let&apos;s build your next step</h2>
+          <p>Tell us what you need — we&apos;ll send a clear plan and quote.</p>
+          <Link href="/contact" className="btn btn-primary btn-lg">
+            Get a free quote →
+          </Link>
         </div>
       </section>
     </main>

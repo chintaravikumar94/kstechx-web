@@ -1,20 +1,39 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { services, CONTACT_EMAIL } from "../data";
+
+const topics = [
+  ...services.flatMap((s) => [
+    { value: s.slug, label: s.name, group: true },
+    ...s.offerings.map((o) => ({ value: `${s.slug}::${o.title}`, label: `— ${o.title}` })),
+  ]),
+  { value: "partner", label: "KS TechX Partner (earn commission)", group: true },
+  { value: "other", label: "Something else", group: true },
+];
 
 export default function ContactForm() {
-  const [form, setForm] = useState({ name: "", email: "", topic: "Business", message: "" });
+  const [form, setForm] = useState({ name: "", phone: "", email: "", topic: "", message: "" });
   const [sent, setSent] = useState(false);
 
+  // pre-select service from ?service=slug (read on client, no Suspense needed)
+  useEffect(() => {
+    const q = new URLSearchParams(window.location.search).get("service");
+    if (q && topics.some((t) => t.value === q)) setForm((f) => ({ ...f, topic: q }));
+  }, []);
+
   const update = (k) => (e) => setForm({ ...form, [k]: e.target.value });
+  const topicLabel = (v) => (topics.find((t) => t.value === v)?.label || v).replace(/^— /, "");
 
   const onSubmit = (e) => {
     e.preventDefault();
-    const subject = encodeURIComponent(`[${form.topic}] Enquiry from ${form.name || "website"}`);
+    const subject = encodeURIComponent(`[${topicLabel(form.topic) || "Enquiry"}] ${form.name}`);
     const body = encodeURIComponent(
-      `Name: ${form.name}\nEmail: ${form.email}\nTopic: ${form.topic}\n\n${form.message}`
+      `Name: ${form.name}\nPhone: ${form.phone}\nEmail: ${form.email}\nInterested in: ${topicLabel(
+        form.topic
+      )}\n\n${form.message}`
     );
-    window.location.href = `mailto:bizfree@kstechx.com?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
     setSent(true);
   };
 
@@ -26,18 +45,25 @@ export default function ContactForm() {
           <input value={form.name} onChange={update("name")} placeholder="e.g. Ravi Kumar" required />
         </div>
         <div className="field">
-          <label>Email</label>
-          <input type="email" value={form.email} onChange={update("email")} placeholder="you@email.com" required />
+          <label>Phone / WhatsApp</label>
+          <input type="tel" value={form.phone} onChange={update("phone")} placeholder="+91" required />
         </div>
       </div>
       <div className="field">
+        <label>Email (optional)</label>
+        <input type="email" value={form.email} onChange={update("email")} placeholder="you@email.com" />
+      </div>
+      <div className="field">
         <label>I&apos;m interested in</label>
-        <select value={form.topic} onChange={update("topic")}>
-          <option>Business</option>
-          <option>Partner Program</option>
-          <option>Done-for-you setup</option>
-          <option>Digital products</option>
-          <option>Support</option>
+        <select value={form.topic} onChange={update("topic")} required>
+          <option value="" disabled>
+            Choose a service…
+          </option>
+          {topics.map((t) => (
+            <option key={t.value} value={t.value}>
+              {t.label}
+            </option>
+          ))}
         </select>
       </div>
       <div className="field">
@@ -47,16 +73,15 @@ export default function ContactForm() {
           value={form.message}
           onChange={update("message")}
           placeholder="Tell us a little about what you need…"
-          required
         />
       </div>
       <button type="submit" className="btn btn-primary btn-lg">
-        Send message →
+        Send enquiry →
       </button>
       {sent && (
         <p className="form-note">
-          Your email app should open with the message ready to send. If it
-          didn&apos;t, email us directly at <strong>bizfree@kstechx.com</strong>.
+          Your email app should open with the enquiry ready to send. If it
+          didn&apos;t, email us at <strong>{CONTACT_EMAIL}</strong>.
         </p>
       )}
     </form>

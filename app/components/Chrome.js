@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Logo from "./Logo";
-import { nav } from "../data";
+import { nav, services, CONTACT_EMAIL, WHATSAPP_NUMBER } from "../data";
 
 export default function Chrome({ children }) {
   const [open, setOpen] = useState(false);
@@ -13,7 +13,6 @@ export default function Chrome({ children }) {
   const spotRef = useRef(null);
   const pathname = usePathname();
 
-  // scroll state + progress
   useEffect(() => {
     const onScroll = () => {
       const y = window.scrollY;
@@ -26,7 +25,6 @@ export default function Chrome({ children }) {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // cursor spotlight
   useEffect(() => {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduce || window.matchMedia("(pointer: coarse)").matches) return;
@@ -84,9 +82,9 @@ export default function Chrome({ children }) {
                 {item.label}
               </Link>
             ))}
-            <a href="https://biz.kstechx.com" className="btn btn-primary btn-sm">
-              Get Started
-            </a>
+            <Link href="/contact" className="btn btn-primary btn-sm" onClick={close}>
+              Get a quote
+            </Link>
           </nav>
           <button
             className="nav-toggle"
@@ -100,6 +98,18 @@ export default function Chrome({ children }) {
 
       {children}
 
+      {WHATSAPP_NUMBER && (
+        <a
+          className="wa-float"
+          href={`https://wa.me/${WHATSAPP_NUMBER}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Chat on WhatsApp"
+        >
+          💬
+        </a>
+      )}
+
       <footer className="footer">
         <div className="container footer-inner">
           <div className="footer-brand">
@@ -110,30 +120,34 @@ export default function Chrome({ children }) {
               </span>
             </Link>
             <p className="footer-note">
-              Kumara Swamy Technologies · GSTIN 37AYPPC2454H2ZB · Andhra Pradesh
-              🇮🇳
+              Kumara Swamy Technologies — fintech &amp; digital solutions for
+              Bharat. Andhra Pradesh, India 🇮🇳
             </p>
+            <a className="footer-mail" href={`mailto:${CONTACT_EMAIL}`}>
+              ✉️ {CONTACT_EMAIL}
+            </a>
           </div>
           <div className="footer-cols">
             <div>
-              <h4>Products</h4>
-              <Link href="/products/bizfree">Bizfree</Link>
-              <Link href="/products/mera-digi-card">Mera Digi Card</Link>
-              <Link href="/products/localkart">LocalKart</Link>
-              <Link href="/products/mera-partners">Mera Partners</Link>
+              <h4>Services</h4>
+              {services.map((s) => (
+                <Link key={s.slug} href={`/services/${s.slug}`}>
+                  {s.name}
+                </Link>
+              ))}
             </div>
             <div>
               <h4>Company</h4>
+              <Link href="/partners">KS TechX Partner</Link>
               <Link href="/how-it-works">How it works</Link>
-              <Link href="/partners">Partner program</Link>
               <Link href="/about">About</Link>
               <Link href="/contact">Contact</Link>
             </div>
           </div>
         </div>
         <div className="container copyright">
-          © {new Date().getFullYear()} Kumara Swamy Technologies. All rights
-          reserved.
+          © {new Date().getFullYear()} Kumara Swamy Technologies · GSTIN
+          37AYPPC2454H2ZB. All rights reserved.
         </div>
       </footer>
     </>

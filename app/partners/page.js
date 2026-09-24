@@ -1,73 +1,94 @@
 import Link from "next/link";
-import { howPartner } from "../data";
+import { PageHero } from "../components/Blocks";
+import { partnerBenefits, howPartner, services } from "../data";
 
 export const metadata = {
-  title: "Partner Program",
+  title: "KS TechX Partner",
   description:
-    "Join the KS TechX partner network — onboard local businesses and earn recurring commission. Build your own downline income.",
+    "Become a KS TechX Partner — sell fintech IDs, websites, custom software and Android apps, and earn commission on every sale.",
 };
-
-const benefits = [
-  {
-    icon: "💰",
-    title: "Recurring commission",
-    text: "Earn on every plan your businesses take — month after month, not just once.",
-  },
-  {
-    icon: "👥",
-    title: "Build a downline",
-    text: "Grow a team of partners under you and earn as your network expands.",
-  },
-  {
-    icon: "🧰",
-    title: "Ready-made products",
-    text: "Sell software businesses actually need — Bizfree, Mera Digi Card and more.",
-  },
-  {
-    icon: "📈",
-    title: "Live dashboard",
-    text: "Track your businesses, team and earnings in real time on Mera Partners.",
-  },
-  {
-    icon: "🎓",
-    title: "Training & support",
-    text: "We help you pitch, onboard and grow — you're never on your own.",
-  },
-  {
-    icon: "🆓",
-    title: "Free to join",
-    text: "No upfront cost. Start onboarding businesses around you today.",
-  },
-];
 
 export default function Partners() {
   return (
     <main>
-      <section className="page-hero">
+      <PageHero
+        kicker="KS TechX Partner"
+        title="Every sale earns you commission"
+        lead="Partner with KS TechX and sell services every business needs. You bring the customer — we deliver the service — you earn commission on every sale."
+      >
+        <div className="hero-cta center reveal" data-d="2">
+          <Link href="/contact?service=partner" className="btn btn-primary btn-lg">
+            Join as a partner →
+          </Link>
+          <Link href="/how-it-works" className="btn btn-ghost btn-lg">
+            How it works
+          </Link>
+        </div>
+      </PageHero>
+
+      {/* COMMISSION FLOW */}
+      <section className="section pt0">
         <div className="container">
-          <span className="kicker">Partner Program</span>
-          <h1 className="reveal">Earn by growing businesses around you</h1>
-          <p className="page-lead reveal" data-d="1">
-            Become a KS TechX partner, bring local shops online, and earn
-            recurring commission on every plan. Build your own downline and turn
-            your network into income.
-          </p>
-          <div className="hero-cta reveal" data-d="2">
-            <a href="https://partners.kstechx.com" className="btn btn-primary btn-lg">
-              Join as a partner →
-            </a>
-            <Link href="/contact" className="btn btn-ghost btn-lg">
-              Ask a question
-            </Link>
+          <div className="flow reveal">
+            <div className="flow-step">
+              <span>🤝</span>
+              <strong>You refer</strong>
+              <em>a customer</em>
+            </div>
+            <div className="flow-arrow">→</div>
+            <div className="flow-step">
+              <span>⚙️</span>
+              <strong>We deliver</strong>
+              <em>the service</em>
+            </div>
+            <div className="flow-arrow">→</div>
+            <div className="flow-step hot">
+              <span>💰</span>
+              <strong>You earn</strong>
+              <em>commission</em>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="section pt0">
+      {/* WHAT YOU CAN SELL */}
+      <section className="section section-alt">
         <div className="container">
-          <h2 className="section-title reveal">Why partner with us</h2>
-          <div className="offer-grid" style={{ marginTop: 40 }}>
-            {benefits.map((b, i) => (
+          <span className="kicker reveal">What you can sell</span>
+          <h2 className="section-title reveal">One partnership. Every service.</h2>
+          <p className="section-sub reveal">
+            Earn commission on every sale across the full KS TechX range.
+          </p>
+          <div className="sell-grid">
+            {services.map((s, i) => (
+              <Link
+                key={s.slug}
+                href={`/services/${s.slug}`}
+                className="sell-card reveal"
+                data-d={String(i + 1)}
+                style={{ "--accent": s.accent }}
+              >
+                <span className="sell-icon">{s.icon}</span>
+                <div>
+                  <strong>{s.name}</strong>
+                  <span>
+                    {s.offerings.map((o) => o.title).join(" · ")}
+                  </span>
+                </div>
+                <em className="sell-earn">Earn ✓</em>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* BENEFITS */}
+      <section className="section">
+        <div className="container">
+          <span className="kicker reveal">Why partner with us</span>
+          <h2 className="section-title reveal">Built to help partners win</h2>
+          <div className="offer-grid" style={{ marginTop: 44 }}>
+            {partnerBenefits.map((b, i) => (
               <div key={b.title} className="offer reveal" data-d={String((i % 4) + 1)}>
                 <span className="offer-icon">{b.icon}</span>
                 <h3 style={{ marginTop: 14 }}>{b.title}</h3>
@@ -78,9 +99,10 @@ export default function Partners() {
         </div>
       </section>
 
+      {/* STEPS */}
       <section className="section section-alt">
         <div className="container">
-          <span className="kicker reveal">How partners earn</span>
+          <span className="kicker reveal">Get started</span>
           <h2 className="section-title reveal">Four steps to your first commission</h2>
           <div className="how-grid single reveal">
             <div className="how-col">
@@ -92,9 +114,9 @@ export default function Partners() {
                   </li>
                 ))}
               </ol>
-              <a href="https://partners.kstechx.com" className="btn btn-primary">
-                Start earning →
-              </a>
+              <Link href="/contact?service=partner" className="btn btn-primary">
+                Join as a partner →
+              </Link>
             </div>
           </div>
         </div>

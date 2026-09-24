@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import Link from "next/link";
-import { products, businessTypes } from "../data";
+import { services, partner, audiences } from "../data";
 
 export default function Hero() {
   const canvasRef = useRef(null);
@@ -48,9 +48,7 @@ export default function Hero() {
         for (let j = i + 1; j < pts.length; j++) {
           const a = pts[i],
             b = pts[j];
-          const dx = a.x - b.x,
-            dy = a.y - b.y;
-          const d = Math.hypot(dx, dy);
+          const d = Math.hypot(a.x - b.x, a.y - b.y);
           if (d < 128) {
             ctx.globalAlpha = (1 - d / 128) * 0.5;
             ctx.strokeStyle = "#a8524f";
@@ -86,6 +84,11 @@ export default function Hero() {
     };
   }, []);
 
+  const chips = [
+    ...services.map((s) => ({ href: `/services/${s.slug}`, label: s.name, icon: s.icon, accent: s.accent })),
+    { href: "/partners", label: partner.name, icon: partner.icon, accent: partner.accent },
+  ];
+
   return (
     <section className="hero">
       <canvas ref={canvasRef} className="hero-canvas" aria-hidden="true" />
@@ -100,40 +103,35 @@ export default function Hero() {
           <span className="ping" /> Kumara Swamy Technologies · Made in India 🇮🇳
         </span>
         <h1 className="reveal" data-d="1">
-          We get Indian businesses
+          Fintech &amp; digital solutions
           <br />
-          online — <span className="grad-anim">and growing.</span>
+          <span className="grad-anim">built for Bharat.</span>
         </h1>
         <p className="lead center reveal" data-d="2">
-          KS TechX is a complete digital growth company. We build the software,
-          set your business up end-to-end, and back it with a partner network —
-          so you can sell, get paid and deliver from day one.
+          KS TechX helps retailers earn with fintech services and helps
+          businesses grow with websites, custom software and Android apps — and
+          our partners earn commission on every sale.
         </p>
         <div className="hero-cta center reveal" data-d="3">
-          <a href="https://biz.kstechx.com" className="btn btn-primary btn-lg">
-            Start your business
-          </a>
+          <Link href="/services" className="btn btn-primary btn-lg">
+            Explore our services
+          </Link>
           <Link href="/partners" className="btn btn-ghost btn-lg">
             Become a partner
           </Link>
         </div>
         <div className="hero-chips reveal" data-d="4">
-          {products.map((p) => (
-            <Link
-              key={p.slug}
-              href={`/products/${p.slug}`}
-              className="chip"
-              style={{ "--accent": p.accent }}
-            >
-              <span className="chip-dot" />
-              {p.name}
+          {chips.map((c) => (
+            <Link key={c.href} href={c.href} className="chip" style={{ "--accent": c.accent }}>
+              <span>{c.icon}</span>
+              {c.label}
             </Link>
           ))}
         </div>
       </div>
       <div className="marquee reveal">
         <div className="marquee-track">
-          {[...businessTypes, ...businessTypes].map((b, i) => (
+          {[...audiences, ...audiences].map((b, i) => (
             <span key={i} className="marquee-item">
               {b}
             </span>
