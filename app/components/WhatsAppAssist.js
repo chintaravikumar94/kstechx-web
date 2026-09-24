@@ -28,12 +28,16 @@ function ChatGlyph() {
 }
 
 function WaIcon({ size = 30 }) {
-  const [ok, setOk] = useState(true);
+  // show the chat glyph until /icons/whatsapp.svg is confirmed to exist
+  const [ok, setOk] = useState(false);
+  useEffect(() => {
+    const img = new Image();
+    img.onload = () => setOk(true);
+    img.src = "/icons/whatsapp.svg";
+  }, []);
   if (!ok) return <ChatGlyph />;
-  return (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img src="/icons/whatsapp.svg" width={size} height={size} alt="" onError={() => setOk(false)} />
-  );
+  // eslint-disable-next-line @next/next/no-img-element
+  return <img src="/icons/whatsapp.svg" width={size} height={size} alt="" />;
 }
 
 /* quick options that adapt to the page the visitor is on */

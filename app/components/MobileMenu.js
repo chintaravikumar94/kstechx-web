@@ -91,44 +91,24 @@ export default function MobileMenu({ open, onClose, pathname }) {
                 </button>
                 <div className="mm-sub">
                   <div className="mm-sub-in">
-                    {l.key === "web"
-                      ? webServices.map((s) => (
-                          <div key={s.slug}>
-                            <Link
-                              href={`/web-services/${s.slug}`}
-                              className={`mm-srow ${pathname === `/web-services/${s.slug}` ? "on" : ""}`}
-                              onClick={onClose}
-                            >
-                              <span>{s.icon}</span>
-                              {s.name.replace("Custom ", "")}
-                            </Link>
-                            {s.offerings.length > 1 && (
-                              <div className="mm-chips">
-                                {s.offerings.map((o) => (
-                                  <Link
-                                    key={o.slug}
-                                    href={`/web-services/${s.slug}/${o.slug}`}
-                                    className={`mm-chip ${pathname === `/web-services/${s.slug}/${o.slug}` ? "on" : ""}`}
-                                    onClick={onClose}
-                                  >
-                                    {o.title.replace(/ Website.*$/, "").replace(/ \(.*\)/, "")}
-                                  </Link>
-                                ))}
-                              </div>
-                            )}
-                          </div>
-                        ))
-                      : fintech.map((f) => (
-                          <Link
-                            key={f.slug}
-                            href={`/fintech/${f.slug}`}
-                            className={`mm-srow ${pathname === `/fintech/${f.slug}` ? "on" : ""}`}
-                            onClick={onClose}
-                          >
-                            <span>{f.icon}</span>
-                            {f.name.replace(" Merchant ID", "").replace(" Retailer ID", " Retailer")}
-                          </Link>
-                        ))}
+                    {(l.key === "web"
+                      ? webServices.map((x) => ({ href: `/web-services/${x.slug}`, icon: x.icon, name: x.name.replace("Custom ", "") }))
+                      : fintech.map((x) => ({
+                          href: `/fintech/${x.slug}`,
+                          icon: x.icon,
+                          name: x.name.replace(" Merchant ID", "").replace(" Retailer ID", " Retailer"),
+                        }))
+                    ).map((x) => (
+                      <Link
+                        key={x.href}
+                        href={x.href}
+                        className={`mm-srow ${pathname === x.href || pathname.startsWith(x.href + "/") ? "on" : ""}`}
+                        onClick={onClose}
+                      >
+                        <span>{x.icon}</span>
+                        {x.name}
+                      </Link>
+                    ))}
                     <Link href={l.href} className="mm-all" onClick={onClose}>
                       View all →
                     </Link>

@@ -90,11 +90,24 @@ export default function Chrome({ children }) {
 
       <div className="topbar">
         <div className="container topbar-inner">
-          <div className="topbar-left">
-            <a href={CONTACT.phoneHref}>📞 {CONTACT.phone}</a>
-            <a href={`mailto:${CONTACT.email}`}>✉️ {CONTACT.email}</a>
-            {CONTACT.hours && <span>🕘 {CONTACT.hours}</span>}
-          </div>
+          <a className="tb-item tb-phone" href={CONTACT.phoneHref} aria-label={`Call ${CONTACT.phone}`}>
+            <span className="tb-ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z" />
+              </svg>
+            </span>
+            {CONTACT.phone}
+          </a>
+          <a className="tb-item tb-mail" href={`mailto:${CONTACT.email}`} aria-label={`Email ${CONTACT.email}`}>
+            <span className="tb-ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="2.5" y="4.5" width="19" height="15" rx="2.5" />
+                <path d="M3 6.5l9 6.5 9-6.5" />
+              </svg>
+            </span>
+            {CONTACT.email}
+          </a>
+          {CONTACT.hours && <span className="tb-item tb-hours">🕘 {CONTACT.hours}</span>}
           <div className="topbar-right">
             <Link href="/web-services">Web Services</Link>
             <Link href="/fintech">Fintech IDs</Link>
@@ -207,6 +220,7 @@ export default function Chrome({ children }) {
               <i />
               <i />
             </span>
+            <span className="nt-label">{open ? "Close" : "Menu"}</span>
           </button>
         </div>
       </header>
