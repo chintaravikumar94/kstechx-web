@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import Logo from "./Logo";
 import { nav, webServices, fintech, CONTACT } from "../data";
 import WhatsAppAssist from "./WhatsAppAssist";
+import BackgroundFX from "./BackgroundFX";
 
 export default function Chrome({ children }) {
   const [open, setOpen] = useState(false);
@@ -82,6 +83,7 @@ export default function Chrome({ children }) {
     <>
       <div className="scroll-bar" style={{ width: progress + "%" }} />
       <div className="spotlight" ref={spotRef} aria-hidden="true" />
+      <BackgroundFX />
 
       <div className="topbar">
         <div className="container topbar-inner">

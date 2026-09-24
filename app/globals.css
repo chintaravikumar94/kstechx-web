@@ -3960,3 +3960,128 @@ body {
     animation: none;
   }
 }
+
+/* =========================================================
+   BACKGROUND FX — page-aware floating graphics + circuit
+   ========================================================= */
+.bgfx {
+  --sy: 0;
+  --mx: 0;
+  --my: 0;
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.fx-circuit {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.55;
+}
+.fx-trace {
+  fill: none;
+  stroke: rgba(31, 91, 216, 0.14);
+  stroke-width: 1.5;
+  stroke-dasharray: 6 10;
+}
+.fx-node {
+  fill: rgba(31, 91, 216, 0.35);
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: fxNode 2.6s ease-in-out infinite;
+}
+@keyframes fxNode {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.8);
+  }
+}
+.fx-glyph {
+  position: absolute;
+  display: block;
+  opacity: calc(0.1 + var(--d) * 0.12);
+  filter: blur(calc((1 - var(--d)) * 1.6px));
+  will-change: transform;
+}
+.fx-float {
+  display: block;
+  width: 100%;
+  height: 100%;
+  animation: fxFloat 15s ease-in-out infinite;
+}
+.fx-float svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+@keyframes fxFloat {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(10px, -16px) rotate(6deg);
+  }
+  50% {
+    transform: translate(-6px, -26px) rotate(-4deg);
+  }
+  75% {
+    transform: translate(-12px, -10px) rotate(3deg);
+  }
+}
+.t-blue {
+  color: #1f5bd8;
+}
+.t-red {
+  color: #e63946;
+}
+.t-violet {
+  color: #7c3aed;
+}
+.t-teal {
+  color: #0ea5a4;
+}
+/* fintech pages lean warmer, web pages lean cooler */
+.bgfx-fintech .t-blue:nth-child(3n) {
+  color: #e63946;
+}
+.bgfx-fintech .fx-trace {
+  stroke: rgba(230, 57, 70, 0.14);
+}
+.bgfx-web .t-red {
+  color: #7c3aed;
+}
+/* phones: fewer, lighter graphics */
+@media (max-width: 760px) {
+  .fx-glyph:nth-of-type(n + 9) {
+    display: none;
+  }
+  .fx-glyph {
+    opacity: calc(0.08 + var(--d) * 0.1);
+  }
+  .fx-circuit {
+    opacity: 0.35;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fx-float,
+  .fx-node {
+    animation: none;
+  }
+  .fx-circuit {
+    transform: none;
+  }
+}
+@media print {
+  .bgfx {
+    display: none;
+  }
+}
