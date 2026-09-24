@@ -54,7 +54,7 @@ const orgJsonLd = {
   name: "Kumara Swamy Technologies",
   alternateName: ["KS TechX", "KSTechX", "KSTECHX", "kstechx.com"],
   url: "https://kstechx.com",
-  logo: "https://kstechx.com/icon.svg",
+  logo: "https://kstechx.com/logo.png",
   email: "info@kstechx.com",
   telephone: "+91-99494-99177",
   contactPoint: [
