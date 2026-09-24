@@ -136,8 +136,24 @@ export default function Chrome({ children }) {
           </a>
           {CONTACT.hours && <span className="tb-item tb-hours">🕘 {CONTACT.hours}</span>}
           <div className="topbar-right">
-            <Link href="/web-services">Web Services</Link>
-            <Link href="/fintech">Fintech IDs</Link>
+            <Link href="/web-services" className="tb-item tb-web">
+              <span className="tb-ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="12" cy="12" r="9.5" />
+                  <path d="M2.5 12h19M12 2.5c2.6 2.8 3.9 6 3.9 9.5s-1.3 6.7-3.9 9.5c-2.6-2.8-3.9-6-3.9-9.5S9.4 5.3 12 2.5z" />
+                </svg>
+              </span>
+              Web Services
+            </Link>
+            <Link href="/fintech" className="tb-item tb-fin">
+              <span className="tb-ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="2.5" y="5" width="19" height="14" rx="2.5" />
+                  <path d="M2.5 9.5h19M6.5 15h4" />
+                </svg>
+              </span>
+              Fintech IDs
+            </Link>
           </div>
         </div>
       </div>

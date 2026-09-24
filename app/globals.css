@@ -5099,3 +5099,28 @@ body::after {
     transition: opacity 0.45s ease, transform 0.45s ease;
   }
 }
+
+/* top bar: Web Services & Fintech IDs with icon bubbles (desktop) */
+.topbar .topbar-right a,
+.topbar .topbar-right a:first-child {
+  color: #e6ecfb;
+}
+.topbar .topbar-right a:hover {
+  color: #fff;
+}
+.tb-web .tb-ico {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.35);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0) 60%), linear-gradient(135deg, #60a5fa, #1f5bd8);
+}
+.tb-fin .tb-ico {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.35);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0) 60%), linear-gradient(135deg, #fbbf24, #f59e0b);
+}
+.topbar .tb-item .tb-ico {
+  transition: transform 0.2s ease;
+}
+.topbar .tb-item:hover .tb-ico {
+  transform: scale(1.1);
+}
