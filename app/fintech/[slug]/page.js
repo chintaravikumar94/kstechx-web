@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import ContactForm from "../../components/ContactForm";
-import { Faq, OnboardingSteps } from "../../components/Blocks";
+import { Faq, OnboardingSteps, PageHero, HighlightTiles, CtaBand } from "../../components/Blocks";
+import Illustration from "../../components/Illustration";
 import { fintech } from "../../data";
 
 export function generateStaticParams() {
@@ -22,65 +23,29 @@ export default function FintechDetail({ params }) {
   return (
     <main>
       {/* HERO */}
-      <section className="page-hero fx-hero">
-        <div className="container fx-hero-grid">
-          <div>
-            <nav className="breadcrumb left">
-              <Link href="/">Home</Link>
-              <span>/</span>
-              <Link href="/fintech">Fintech</Link>
-              <span>/</span>
-              <span className="crumb-current">{f.name}</span>
-            </nav>
-            <span className="fx-badge">{f.badge}</span>
-            <h1 className="reveal left">{f.name}</h1>
-            <p className="product-tagline left reveal" data-d="1">
-              {f.tagline}
-            </p>
-            <p className="page-lead left reveal" data-d="2">
-              {f.overview}
-            </p>
-            <div className="hero-cta reveal" data-d="3">
-              <a href="#apply" className="btn btn-primary btn-lg">
-                Apply for ID →
-              </a>
-              <a href="#documents" className="btn btn-ghost btn-lg">
-                Documents needed
-              </a>
-            </div>
-          </div>
-
-          {/* visual ID card */}
-          <div className="fx-visual reveal" data-d="2">
-            <div className="fx-idcard">
-              <div className="fx-idcard-top">
-                <span className="fx-idcard-brand">KS TechX</span>
-                <span className="id-chip" />
-              </div>
-              <div className="fx-idcard-icon">{f.icon}</div>
-              <div className="fx-idcard-name">{f.name}</div>
-              <div className="fx-idcard-row">
-                <span>Status</span>
-                <strong>● Ready to apply</strong>
-              </div>
-            </div>
-            <p className="fx-earn center">💰 {f.earn}</p>
-          </div>
+      <PageHero
+        crumbs={[{ label: "Fintech", href: "/fintech" }, { label: f.name }]}
+        badge={`${f.icon} ${f.badge}`}
+        title={f.name}
+        tagline={f.tagline}
+        lead={f.overview}
+        art={f.art}
+      >
+        <div className="hero-cta reveal" data-d="3">
+          <a href="#apply" className="btn btn-primary btn-lg">
+            Apply for ID →
+          </a>
+          <a href="#documents" className="btn btn-ghost btn-lg">
+            Documents needed
+          </a>
         </div>
-      </section>
+        <p className="fx-earn inline reveal" data-d="4">💰 {f.earn}</p>
+      </PageHero>
 
       {/* HIGHLIGHTS */}
       <section className="section pt0">
         <div className="container">
-          <div className="fx-hl-grid">
-            {f.highlights.map((h, i) => (
-              <div key={h.label} className="fx-hl-card reveal" data-d={String(i + 1)}>
-                <span>{h.icon}</span>
-                <strong>{h.label}</strong>
-                <em>{h.note}</em>
-              </div>
-            ))}
-          </div>
+          <HighlightTiles items={f.highlights} />
         </div>
       </section>
 
@@ -187,24 +152,31 @@ export default function FintechDetail({ params }) {
         <div className="container">
           <span className="kicker reveal">More fintech IDs</span>
           <h2 className="section-title reveal">Add more services to your counter</h2>
-          <div className="grid grid-3" style={{ marginTop: 40 }}>
+          <div className="mini-grid">
             {others.map((o) => (
-              <Link
-                key={o.slug}
-                href={`/fintech/${o.slug}`}
-                className="card reveal"
-                style={{ "--accent": "#e63946" }}
-              >
-                <span className="card-icon">{o.icon}</span>
-                <div className="card-tag">{o.badge}</div>
-                <h3>{o.name}</h3>
-                <p>{o.short}</p>
-                <span className="card-link">View details →</span>
+              <Link key={o.slug} href={`/fintech/${o.slug}`} className="mini-card reveal">
+                <div className="mini-art">
+                  <Illustration name={o.art} />
+                </div>
+                <div>
+                  <h3>
+                    {o.icon} {o.name}
+                  </h3>
+                  <p>{o.short}</p>
+                  <span className="card-link">View details →</span>
+                </div>
               </Link>
             ))}
           </div>
         </div>
       </section>
+
+      <CtaBand
+        title="Refer retailers & earn"
+        text="Know shop owners who need these IDs? Become a KS TechX Partner and earn commission on every sale."
+        primary={{ href: "/partners", label: "Become a partner" }}
+        secondary={{ href: "/fintech", label: "All fintech IDs" }}
+      />
     </main>
   );
 }

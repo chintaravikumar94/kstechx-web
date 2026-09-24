@@ -30,11 +30,12 @@ export default function Partners() {
     <main>
       <PageHero
         crumbs={[{ label: "Partner" }]}
+        art="partner"
         kicker="KS TechX Partner"
         title="Every sale earns you commission"
         lead="Partner with KS TechX and sell services every business needs. You bring the customer — we deliver the service — you earn commission on every sale."
       >
-        <div className="hero-cta center reveal" data-d="2">
+        <div className="hero-cta reveal" data-d="2">
           <Link href="/contact?service=partner" className="btn btn-primary btn-lg">
             Join as a partner →
           </Link>

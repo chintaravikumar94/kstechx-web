@@ -13,7 +13,8 @@ export const webServices = [
     name: "Website Development",
     short: "Fast, beautiful websites — from a single page to advanced sites with child pages.",
     icon: "🌐",
-    accent: "#ff7a3c",
+    accent: "#1f5bd8",
+    art: "website",
     tag: "3 packages",
     tagline: "Websites that make your business look big",
     summary:
@@ -21,23 +22,110 @@ export const webServices = [
     kind: "tiers",
     offerings: [
       {
+        slug: "single-page-website",
         icon: "📄",
+        art: "single",
         title: "Single Page Website",
         text: "One fast, beautiful page with everything a customer needs — ideal for getting online quickly.",
         points: ["Mobile responsive design", "Services & about sections", "Click-to-call & WhatsApp button", "Google Maps location", "Contact form"],
+        tagline: "Get online fast — one page, everything customers need",
+        overview:
+          "A single, beautifully designed page that tells customers who you are, what you offer and how to reach you — with click-to-call, WhatsApp and Google Maps built in. The quickest, most affordable way to get your business online.",
+        highlights: [
+          { icon: "📱", label: "Mobile-first", note: "Perfect on every phone" },
+          { icon: "⚡", label: "Super fast", note: "Loads in a blink" },
+          { icon: "💬", label: "WhatsApp & call", note: "One-tap contact" },
+          { icon: "📍", label: "Google Maps", note: "Easy to find you" },
+        ],
+        includes: [
+          "Custom one-page design in your brand colours",
+          "Hero banner with your main offer",
+          "About & services sections",
+          "Photo gallery strip",
+          "Click-to-call & WhatsApp buttons",
+          "Google Maps location",
+          "Enquiry / contact form",
+          "Social media links",
+          "Basic SEO (title & description)",
+          "Free SSL (https) setup",
+        ],
+        bestFor: ["Local shops", "Freelancers", "Home businesses", "Events & launches", "Personal brands"],
+        faqs: [
+          { q: "Can I upgrade to more pages later?", a: "Yes. You can move up to a Business or Advanced website any time — your design and content carry over." },
+          { q: "Do you write the content?", a: "We help structure and polish it. Share your details and photos and we shape them into a professional page." },
+          { q: "Do I need a domain and hosting?", a: "Yes — we guide you to get a domain and hosting, or set the site up on the ones you already have." },
+        ],
       },
       {
+        slug: "business-website",
         icon: "🏢",
+        art: "business",
         title: "Business Website (3–5 pages)",
         text: "A complete business presence — Home, About, Services, Gallery and Contact pages.",
         points: ["3 to 5 custom pages", "Basic SEO setup", "Gallery & testimonials", "Enquiry forms", "Social media links"],
         popular: true,
+        tagline: "A complete, professional home for your business",
+        overview:
+          "A 3–5 page website that gives your business a complete, credible presence — Home, About, Services, Gallery and Contact — designed to build trust and bring in enquiries every day.",
+        highlights: [
+          { icon: "🗂️", label: "3–5 pages", note: "Clear & structured" },
+          { icon: "🔎", label: "SEO ready", note: "Get found on Google" },
+          { icon: "🖼️", label: "Gallery", note: "Show your work" },
+          { icon: "✉️", label: "Enquiry forms", note: "Capture every lead" },
+        ],
+        includes: [
+          "3 to 5 custom-designed pages",
+          "Home, About, Services, Gallery & Contact",
+          "Mobile responsive layout",
+          "Enquiry forms on key pages",
+          "Testimonials section",
+          "Google Maps & business hours",
+          "WhatsApp & call buttons",
+          "Basic on-page SEO",
+          "Social media integration",
+          "Free SSL (https) setup",
+        ],
+        bestFor: ["Clinics & hospitals", "Schools & coaching", "Shops & showrooms", "Service businesses", "Startups"],
+        faqs: [
+          { q: "How many pages do I get?", a: "Between 3 and 5 pages — we help you choose the right structure for your business." },
+          { q: "Can I update content later?", a: "Yes. We can make updates for you, or set up an easy way for you to edit key content." },
+          { q: "Will it show on Google?", a: "We set up on-page SEO so Google can index your site. Ranking depends on competition and ongoing effort." },
+        ],
       },
       {
+        slug: "advanced-website",
         icon: "🚀",
+        art: "advanced",
         title: "Advanced Website (with child pages)",
         text: "A multi-level website with child pages, dynamic sections and advanced design.",
         points: ["Unlimited child pages", "Dynamic content & animations", "Advanced SEO & schema", "Blog / updates section", "Performance optimised"],
+        tagline: "A powerful multi-level website with child pages",
+        overview:
+          "An advanced website with parent and child pages, mega menus, dynamic sections, premium animations and deeper SEO — built for businesses with many services, products or locations.",
+        highlights: [
+          { icon: "🧭", label: "Child pages", note: "Unlimited structure" },
+          { icon: "✨", label: "Animations", note: "Premium feel" },
+          { icon: "📈", label: "Advanced SEO", note: "Schema & speed" },
+          { icon: "📰", label: "Blog", note: "Share updates" },
+        ],
+        includes: [
+          "Unlimited parent & child pages",
+          "Mega menu navigation",
+          "Dynamic, data-driven sections",
+          "Premium animations & graphics",
+          "Blog / news section",
+          "Advanced SEO & structured data",
+          "Performance optimisation",
+          "Analytics integration",
+          "Lead forms on every page",
+          "Free SSL (https) setup",
+        ],
+        bestFor: ["Multi-service companies", "Growing brands", "Institutions", "Multi-location businesses", "Product catalogues"],
+        faqs: [
+          { q: "What are child pages?", a: "Pages that sit under a main page — like Web Services → Website Development → Single Page Website. They keep big sites organised and help SEO." },
+          { q: "Is there an example?", a: "Yes — kstechx.com itself is built as an advanced website with child pages, mega menus and animations." },
+          { q: "Can it grow later?", a: "Absolutely. New pages, sections and features can be added any time." },
+        ],
       },
     ],
     who: "Shops, clinics, schools, startups, professionals and growing businesses.",
@@ -48,7 +136,8 @@ export const webServices = [
     name: "Custom Software Solutions",
     short: "Custom web applications built around the way your business actually works.",
     icon: "🧩",
-    accent: "#ff4d5e",
+    accent: "#0ea5a4",
+    art: "software",
     tag: "Custom Web Apps",
     tagline: "Software built around your workflow",
     summary:
@@ -56,10 +145,39 @@ export const webServices = [
     kind: "single",
     offerings: [
       {
+        slug: "custom-web-application",
         icon: "🖥️",
+        art: "webapp",
         title: "Custom Web Application",
         text: "A browser-based application designed around your workflow, accessible from any device.",
         points: ["Admin & user dashboards", "Role-based login", "Reports & analytics", "Payment integration", "Cloud hosting & support"],
+        tagline: "Your process, turned into powerful software",
+        overview:
+          "A custom, browser-based application designed around exactly how your business works — dashboards, logins, reports and integrations, securely accessible from any device, anywhere.",
+        highlights: [
+          { icon: "📊", label: "Dashboards", note: "Real-time insights" },
+          { icon: "🔐", label: "Secure login", note: "Role-based access" },
+          { icon: "🔗", label: "Integrations", note: "Payments & APIs" },
+          { icon: "☁️", label: "Cloud hosted", note: "Access anywhere" },
+        ],
+        includes: [
+          "Requirement discovery & planning",
+          "Custom UI/UX design",
+          "Admin & user dashboards",
+          "Role-based login & permissions",
+          "Reports & exports",
+          "Payment gateway integration",
+          "Third-party API integration",
+          "Cloud deployment",
+          "Training & handover",
+          "Ongoing support & updates",
+        ],
+        bestFor: ["CRM & lead management", "Billing & invoicing", "Inventory & stock", "Booking & appointments", "HR & attendance", "Custom portals"],
+        faqs: [
+          { q: "How long does it take?", a: "It depends on scope. After discovery we share a clear plan with milestones before we start." },
+          { q: "Who owns the software?", a: "Ownership and licensing terms are agreed in writing before development begins." },
+          { q: "Do you support it after launch?", a: "Yes — we offer ongoing support, fixes and feature updates." },
+        ],
       },
     ],
     examples: ["CRM & lead management", "Billing & invoicing", "Inventory & stock", "Booking & appointments", "HR & attendance", "Custom business portals"],
@@ -71,7 +189,8 @@ export const webServices = [
     name: "Custom Mobile App Development",
     short: "Custom Android applications that put your business in every customer's pocket.",
     icon: "📱",
-    accent: "#f4b53f",
+    accent: "#7c3aed",
+    art: "mobile",
     tag: "Android Apps",
     tagline: "Your business, in every customer's pocket",
     summary:
@@ -79,10 +198,39 @@ export const webServices = [
     kind: "single",
     offerings: [
       {
+        slug: "custom-android-application",
         icon: "🤖",
+        art: "android",
         title: "Custom Android Application",
         text: "A native-quality Android app designed for your customers or your internal team.",
         points: ["Custom UI/UX design", "Login & user accounts", "Push notifications", "Payments & API integration", "Play Store publishing"],
+        tagline: "A custom Android app your customers will love",
+        overview:
+          "A custom Android application designed for your customers or your team — clean UI, secure login, push notifications and payments, published on Google Play.",
+        highlights: [
+          { icon: "🎨", label: "Custom UI", note: "Designed for you" },
+          { icon: "🔔", label: "Push alerts", note: "Stay connected" },
+          { icon: "💳", label: "Payments", note: "Integrated checkout" },
+          { icon: "▶️", label: "Play Store", note: "We publish it" },
+        ],
+        includes: [
+          "App planning & wireframes",
+          "Custom UI/UX design",
+          "Login & user accounts",
+          "Push notifications",
+          "Payment integration",
+          "Admin panel / backend",
+          "API integration",
+          "Testing on real devices",
+          "Google Play publishing",
+          "Support & updates",
+        ],
+        bestFor: ["Ordering & delivery", "Booking & services", "Loyalty & rewards", "Field staff & sales", "Customer support"],
+        faqs: [
+          { q: "Do you build iOS apps?", a: "Our focus is custom Android apps. Talk to us if you also need iOS." },
+          { q: "Will you publish it on Google Play?", a: "Yes — we handle the Play Store publishing process using your developer account." },
+          { q: "Can the app connect to my website?", a: "Yes — your app and website can share the same backend and data." },
+        ],
       },
     ],
     examples: ["Ordering & delivery apps", "Booking apps", "Customer loyalty apps", "Field staff & sales apps", "Service & support apps", "Business companion apps"],
@@ -91,6 +239,10 @@ export const webServices = [
   },
 ];
 
+/* helpers */
+export const subHref = (s, o) => `/web-services/${s.slug}/${o.slug}`;
+export const subTopic = (s, o) => (s.offerings.length > 1 ? `${s.slug}::${o.title}` : s.slug);
+
 /* =========================================================
    FINTECH — detailed retailer & merchant IDs
    ========================================================= */
@@ -98,6 +250,7 @@ export const fintechIntro = {
   name: "Fintech Solutions",
   icon: "💳",
   accent: "#e63946",
+  art: "fintech",
   tagline: "Turn your shop into a banking & cash service point",
   summary:
     "Get the retailer and merchant IDs you need to offer Aadhaar banking, UPI and card-based services at your counter. Serve more customers, earn on every transaction, and build daily footfall into your store.",
@@ -106,6 +259,7 @@ export const fintechIntro = {
 export const fintech = [
   {
     slug: "aeps-retailer-id",
+    art: "aeps",
     name: "AEPS Retailer ID",
     short: "Offer Aadhaar-based cash withdrawal, balance enquiry and mini statements with a fingerprint.",
     icon: "👆",
@@ -143,6 +297,7 @@ export const fintech = [
   },
   {
     slug: "upi-cash-withdrawal-merchant-id",
+    art: "upi",
     name: "UPI Cash Withdrawal Merchant ID",
     short: "Accept UPI at your counter and offer UPI-based cash withdrawal to customers.",
     icon: "📲",
@@ -180,6 +335,7 @@ export const fintech = [
   },
   {
     slug: "credit-card-withdrawal-merchant-id",
+    art: "card",
     name: "Credit Card Withdrawal Merchant ID",
     short: "A merchant ID to accept Visa & Mastercard credit card transactions for card-based withdrawal services.",
     icon: "💳",
@@ -217,6 +373,7 @@ export const fintech = [
   },
   {
     slug: "rupay-credit-card-withdrawal-merchant-id",
+    art: "rupay",
     name: "RuPay Credit Card Withdrawal Merchant ID",
     short: "Accept RuPay credit cards — including RuPay credit card on UPI — at your counter.",
     icon: "🟠",
@@ -269,7 +426,14 @@ export const nav = [
   {
     href: "/web-services",
     label: "Web Services",
-    children: webServices.map((s) => ({ href: `/web-services/${s.slug}`, label: s.name, icon: s.icon, note: s.tag })),
+    mega: true,
+    children: webServices.map((s) => ({
+      href: `/web-services/${s.slug}`,
+      label: s.name,
+      icon: s.icon,
+      note: s.tag,
+      subs: s.offerings.map((o) => ({ href: `/web-services/${s.slug}/${o.slug}`, label: o.title })),
+    })),
   },
   {
     href: "/fintech",

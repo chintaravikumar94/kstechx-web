@@ -3,7 +3,8 @@ import Hero from "./components/Hero";
 import TiltCard from "./components/TiltCard";
 import Stat from "./components/Stat";
 import ServiceExplorer from "./components/ServiceExplorer";
-import { FintechCards, TierCards, ProcessSteps, PartnerBand } from "./components/Blocks";
+import Illustration from "./components/Illustration";
+import { FintechCards, TierCards, ProcessSteps, PartnerBand, CtaBand } from "./components/Blocks";
 import { webServices, fintech, fintechIntro, partner, stats, values } from "./data";
 
 export default function Home() {
@@ -59,23 +60,33 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FINTECH */}
-      <section className="section fintech-zone section-edge">
+      {/* FINTECH SPOTLIGHT */}
+      <section className="section section-alt">
         <div className="container">
-          <span className="kicker reveal">Fintech Solutions</span>
-          <h2 className="section-title reveal">{fintechIntro.tagline}</h2>
-          <p className="section-sub reveal">{fintechIntro.summary}</p>
-          <FintechCards items={fintech} />
-          <div className="center-row reveal">
-            <Link href="/fintech" className="btn btn-ghost btn-lg">
-              Compare all fintech IDs →
-            </Link>
+          <div className="split-intro">
+            <div>
+              <span className="kicker left reveal">Fintech Solutions</span>
+              <h2 className="section-title left reveal">{fintechIntro.tagline}</h2>
+              <p className="section-sub left reveal">{fintechIntro.summary}</p>
+              <div className="hero-cta reveal">
+                <Link href="/fintech" className="btn btn-primary btn-lg">
+                  Compare all IDs →
+                </Link>
+                <Link href="/fintech/aeps-retailer-id#apply" className="btn btn-ghost btn-lg">
+                  Apply for AEPS
+                </Link>
+              </div>
+            </div>
+            <div className="reveal" data-d="2">
+              <Illustration name="fintech" />
+            </div>
           </div>
+          <FintechCards items={fintech} />
         </div>
       </section>
 
       {/* WEB SERVICES EXPLORER */}
-      <section className="section section-alt">
+      <section className="section">
         <div className="container">
           <span className="kicker reveal">Web Services</span>
           <h2 className="section-title reveal">Websites, software &amp; apps</h2>
@@ -85,17 +96,21 @@ export default function Home() {
       </section>
 
       {/* WEBSITE PACKAGES */}
-      <section className="section">
+      <section className="section section-alt">
         <div className="container">
           <span className="kicker reveal">Website Development</span>
           <h2 className="section-title reveal">Choose your website package</h2>
           <p className="section-sub reveal">{web.summary}</p>
-          <TierCards items={web.offerings} href="/contact?service=website-development" />
+          <TierCards
+            items={web.offerings}
+            href="/contact?service=website-development"
+            base="/web-services/website-development"
+          />
         </div>
       </section>
 
       {/* PROCESS */}
-      <section className="section section-alt">
+      <section className="section">
         <div className="container">
           <span className="kicker reveal">How we deliver</span>
           <h2 className="section-title reveal">From idea to live — in four steps</h2>
@@ -109,18 +124,25 @@ export default function Home() {
       <PartnerBand />
 
       {/* WHY US */}
-      <section className="section section-alt">
-        <div className="container">
-          <span className="kicker reveal">Why KS TechX</span>
-          <h2 className="section-title reveal">One trusted partner for everything</h2>
-          <div className="offer-grid" style={{ marginTop: 44 }}>
-            {values.map((v, i) => (
-              <div key={v.title} className="offer reveal" data-d={String(i + 1)}>
-                <span className="offer-icon">{v.icon}</span>
-                <h3 style={{ marginTop: 14 }}>{v.title}</h3>
-                <p>{v.text}</p>
-              </div>
-            ))}
+      <section className="section">
+        <div className="container split-intro">
+          <div className="reveal">
+            <Illustration name="about" />
+          </div>
+          <div>
+            <span className="kicker left reveal">Why KS TechX</span>
+            <h2 className="section-title left reveal">One trusted partner for everything</h2>
+            <div className="why-list">
+              {values.map((v, i) => (
+                <div key={v.title} className="why-item reveal" data-d={String(i + 1)}>
+                  <span className="why-icon">{v.icon}</span>
+                  <div>
+                    <h3>{v.title}</h3>
+                    <p>{v.text}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -133,20 +155,12 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="cta-band">
-        <div className="container cta-inner cta-red reveal">
-          <h2>Let&apos;s build your next step</h2>
-          <p>Apply for a fintech ID or get a quote for your website, software or app.</p>
-          <div className="hero-cta center">
-            <Link href="/fintech" className="btn btn-primary btn-lg">
-              Apply for a fintech ID
-            </Link>
-            <Link href="/contact" className="btn btn-ghost btn-lg">
-              Get a free quote
-            </Link>
-          </div>
-        </div>
-      </section>
+      <CtaBand
+        title="Let's build your next step"
+        text="Apply for a fintech ID or get a quote for your website, software or app."
+        primary={{ href: "/fintech", label: "Apply for a fintech ID" }}
+        secondary={{ href: "/contact", label: "Get a free quote" }}
+      />
     </main>
   );
 }

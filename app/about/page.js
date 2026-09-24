@@ -19,6 +19,7 @@ export default function About() {
     <main>
       <PageHero
         crumbs={[{ label: "About" }]}
+        art="about"
         kicker="About us"
         title="Kumara Swamy Technologies"
         lead="KS TechX is a fintech and digital solutions company from Andhra Pradesh, India. We help retailers earn with fintech services, help businesses grow with websites, custom software and Android apps — and help partners earn on every sale."

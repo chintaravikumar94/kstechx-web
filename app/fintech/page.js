@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { PageHero, FintechCards, OnboardingSteps, Faq, PartnerBand } from "../components/Blocks";
+import Illustration from "../components/Illustration";
+import { PageHero, FintechCards, OnboardingSteps, Faq, PartnerBand, CtaBand } from "../components/Blocks";
 import { fintech, fintechIntro } from "../data";
 
 export const metadata = {
@@ -37,8 +38,9 @@ export default function FintechPage() {
         kicker="Fintech Solutions"
         title={fintechIntro.tagline}
         lead={fintechIntro.summary}
+        art={fintechIntro.art}
       >
-        <div className="hero-cta center reveal" data-d="2">
+        <div className="hero-cta reveal" data-d="2">
           <a href="#ids" className="btn btn-primary btn-lg">
             View all IDs ↓
           </a>
@@ -46,7 +48,7 @@ export default function FintechPage() {
             Talk to an expert
           </Link>
         </div>
-        <div className="fx-strip reveal" data-d="3">
+        <div className="fx-strip left reveal" data-d="3">
           {fintech.map((f) => (
             <Link key={f.slug} href={`/fintech/${f.slug}`} className="fx-strip-item">
               <span>{f.icon}</span>
@@ -56,8 +58,25 @@ export default function FintechPage() {
         </div>
       </PageHero>
 
+      {/* ID VISUAL GALLERY */}
+      <section className="section pt0">
+        <div className="container">
+          <div className="id-gallery">
+            {fintech.map((f, i) => (
+              <Link key={f.slug} href={`/fintech/${f.slug}`} className="id-gal reveal" data-d={String(i + 1)}>
+                <div className="id-gal-art">
+                  <Illustration name={f.art} />
+                </div>
+                <strong>{f.name}</strong>
+                <span>{f.badge} · View details →</span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ID CARDS */}
-      <section id="ids" className="section fintech-zone">
+      <section id="ids" className="section section-alt">
         <div className="container">
           <span className="kicker reveal">Choose your ID</span>
           <h2 className="section-title reveal">Four IDs. One trusted partner.</h2>
@@ -71,7 +90,7 @@ export default function FintechPage() {
       </section>
 
       {/* COMPARE */}
-      <section className="section section-alt">
+      <section className="section">
         <div className="container">
           <span className="kicker reveal">Compare</span>
           <h2 className="section-title reveal">Which ID is right for you?</h2>
@@ -114,7 +133,7 @@ export default function FintechPage() {
       </section>
 
       {/* ONBOARDING */}
-      <section className="section">
+      <section className="section section-alt">
         <div className="container">
           <span className="kicker reveal">Onboarding</span>
           <h2 className="section-title reveal">Get your ID in four simple steps</h2>
@@ -126,7 +145,7 @@ export default function FintechPage() {
       </section>
 
       {/* FAQ */}
-      <section className="section section-alt">
+      <section className="section">
         <div className="container narrow">
           <span className="kicker reveal">FAQ</span>
           <h2 className="section-title reveal">Common questions</h2>
@@ -137,6 +156,13 @@ export default function FintechPage() {
       </section>
 
       <PartnerBand />
+
+      <CtaBand
+        title="Ready to start earning at your counter?"
+        text="Apply for your fintech ID today — our team guides you from KYC to go-live."
+        primary={{ href: "/fintech/aeps-retailer-id#apply", label: "Apply for AEPS ID" }}
+        secondary={{ href: "/contact", label: "Talk to an expert" }}
+      />
     </main>
   );
 }

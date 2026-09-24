@@ -109,6 +109,37 @@ export default function Chrome({ children }) {
                     <span className="caret">▾</span>
                   </button>
                   <div className="dropdown">
+                    {item.mega ? (
+                      <div className="dropdown-inner mega">
+                        <div className="mega-cols">
+                          {item.children.map((c) => (
+                            <div key={c.href} className="mega-col">
+                              <Link href={c.href} className={`drop-link ${pathname === c.href ? "on" : ""}`}>
+                                <span className="drop-icon">{c.icon}</span>
+                                <span>
+                                  <strong>{c.label}</strong>
+                                  <em>{c.note}</em>
+                                </span>
+                              </Link>
+                              <div className="mega-subs">
+                                {c.subs.map((sub) => (
+                                  <Link
+                                    key={sub.href}
+                                    href={sub.href}
+                                    className={`mega-sub ${pathname === sub.href ? "on" : ""}`}
+                                  >
+                                    {sub.label}
+                                  </Link>
+                                ))}
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                        <Link href={item.href} className="drop-all">
+                          View all {item.label} →
+                        </Link>
+                      </div>
+                    ) : (
                     <div className="dropdown-inner">
                       {item.children.map((c) => (
                         <Link
@@ -127,6 +158,7 @@ export default function Chrome({ children }) {
                         View all {item.label} →
                       </Link>
                     </div>
+                    )}
                   </div>
                 </div>
               ) : (
@@ -189,11 +221,13 @@ export default function Chrome({ children }) {
           <div className="footer-cols">
             <div>
               <h4>Web Services</h4>
-              {webServices.map((s) => (
-                <Link key={s.slug} href={`/web-services/${s.slug}`}>
-                  {s.name}
-                </Link>
-              ))}
+              {webServices.map((s) =>
+                s.offerings.map((o) => (
+                  <Link key={o.slug} href={`/web-services/${s.slug}/${o.slug}`}>
+                    {o.title.replace(/ \(.*\)/, "")}
+                  </Link>
+                ))
+              )}
             </div>
             <div>
               <h4>Fintech</h4>
