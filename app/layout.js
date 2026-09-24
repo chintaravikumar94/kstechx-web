@@ -1,5 +1,11 @@
 import "./globals.css";
+import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import Chrome from "./components/Chrome";
+
+// fonts are downloaded at build time and served from kstechx.com itself
+// (no Google Fonts request, no render-blocking, no layout shift)
+const inter = Inter({ subsets: ["latin"], weight: ["400", "500", "600", "700"], display: "swap", variable: "--font-inter" });
+const jakarta = Plus_Jakarta_Sans({ subsets: ["latin"], weight: ["600", "700", "800"], display: "swap", variable: "--font-jakarta" });
 
 export const viewport = {
   width: "device-width",
@@ -75,14 +81,8 @@ const orgJsonLd = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${inter.variable} ${jakarta.variable}`}>
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"
-        />
         <meta name="theme-color" content="#0b1f4b" />
       </head>
       <body>

@@ -39,7 +39,7 @@ html {
 body {
   background: var(--bg);
   color: var(--body);
-  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-family: var(--font-inter), system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
@@ -54,7 +54,7 @@ h3,
 h4,
 .brand-text,
 .stat strong {
-  font-family: "Plus Jakarta Sans", "Inter", sans-serif;
+  font-family: var(--font-jakarta), var(--font-inter), sans-serif;
   color: var(--navy);
   letter-spacing: -0.015em;
 }
@@ -204,7 +204,7 @@ main {
   padding: 9px 13px;
   border-radius: 10px;
   color: var(--body);
-  font: 600 15px "Inter", sans-serif;
+  font: 600 15px var(--font-inter), sans-serif;
   transition: color 0.18s ease, background 0.18s ease;
 }
 .nav-item:hover,
@@ -727,7 +727,7 @@ main {
   overflow: visible;
 }
 .art text {
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-inter), sans-serif;
 }
 
 /* ---------- CARDS (tilt) ---------- */
@@ -1021,7 +1021,7 @@ main {
   border: 1px solid transparent;
   background: transparent;
   color: var(--body);
-  font: 600 14.5px "Inter", sans-serif;
+  font: 600 14.5px var(--font-inter), sans-serif;
   cursor: pointer;
   transition: all 0.2s ease;
 }
@@ -1366,7 +1366,7 @@ main {
   vertical-align: top;
 }
 .compare th {
-  font-family: "Plus Jakarta Sans", sans-serif;
+  font-family: var(--font-jakarta), sans-serif;
   font-size: 14.5px;
   color: var(--navy);
   background: var(--bg);
@@ -1619,7 +1619,7 @@ main {
   position: absolute;
   top: 16px;
   right: 20px;
-  font: 800 30px "Plus Jakarta Sans", sans-serif;
+  font: 800 30px var(--font-jakarta), sans-serif;
   color: var(--blue-soft);
   -webkit-text-stroke: 1px #c3d4fb;
 }
@@ -2145,7 +2145,7 @@ main {
 }
 .flow-step strong {
   font-size: 18px;
-  font-family: "Plus Jakarta Sans", sans-serif;
+  font-family: var(--font-jakarta), sans-serif;
 }
 .flow-step em {
   font-style: normal;
@@ -3055,7 +3055,7 @@ main {
   flex-direction: column;
   align-items: flex-end;
   gap: 12px;
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-inter), sans-serif;
 }
 .wa-fab {
   position: relative;
@@ -3114,7 +3114,7 @@ main {
   border: 1px solid var(--border);
   background: #fff;
   color: var(--navy);
-  font: 500 14px "Inter", sans-serif;
+  font: 500 14px var(--font-inter), sans-serif;
   padding: 11px 16px;
   border-radius: 14px 14px 4px 14px;
   box-shadow: var(--shadow);
@@ -3172,7 +3172,7 @@ main {
   display: grid;
   place-items: center;
   border-radius: 50%;
-  font: 800 15px "Plus Jakarta Sans", sans-serif;
+  font: 800 15px var(--font-jakarta), sans-serif;
   color: #fff;
   background: linear-gradient(135deg, var(--brand-2), var(--brand));
   border: 2px solid rgba(255, 255, 255, 0.8);
@@ -3275,7 +3275,7 @@ main {
   border: 1px solid #d6e8e2;
   background: #fff;
   color: var(--navy);
-  font: 600 14px "Inter", sans-serif;
+  font: 600 14px var(--font-inter), sans-serif;
   text-align: left;
   cursor: pointer;
   transition: border-color 0.18s ease, transform 0.18s ease, background 0.18s ease;
@@ -3322,7 +3322,7 @@ main {
   border-radius: 12px;
   background: #25d366;
   color: #fff;
-  font: 700 15px "Inter", sans-serif;
+  font: 700 15px var(--font-inter), sans-serif;
   cursor: pointer;
   transition: background 0.18s ease;
 }
@@ -3495,7 +3495,7 @@ main {
 }
 .join-price strong {
   color: #fff;
-  font: 800 26px "Plus Jakarta Sans", sans-serif;
+  font: 800 26px var(--font-jakarta), sans-serif;
   line-height: 1.1;
 }
 .join-text {
@@ -4631,7 +4631,7 @@ body::after {
   padding: 2px 4px 8px 8px;
 }
 .mm-title {
-  font: 800 12px "Inter", sans-serif;
+  font: 800 12px var(--font-inter), sans-serif;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--muted);
@@ -4676,7 +4676,7 @@ body::after {
   gap: 5px;
   height: 36px;
   border-radius: 12px;
-  font: 700 12.5px "Inter", sans-serif;
+  font: 700 12.5px var(--font-inter), sans-serif;
   color: var(--navy);
   background: rgba(255, 255, 255, 0.85);
   border: 1px solid rgba(11, 31, 75, 0.06);
@@ -4712,7 +4712,7 @@ body::after {
   padding: 9px 12px;
   border: none;
   background: transparent;
-  font: 600 14.5px "Inter", sans-serif;
+  font: 600 14.5px var(--font-inter), sans-serif;
   color: var(--navy);
   text-align: left;
   cursor: pointer;
@@ -4978,7 +4978,7 @@ body::after {
 }
 .nav-toggle .nt-label {
   display: inline;
-  font: 700 14.5px "Inter", sans-serif;
+  font: 700 14.5px var(--font-inter), sans-serif;
   color: var(--navy);
   letter-spacing: 0.01em;
 }
@@ -5123,4 +5123,60 @@ body::after {
 }
 .topbar .tb-item:hover .tb-ico {
   transform: scale(1.1);
+}
+
+
+/* =========================================================
+   SPEED ROUND 2
+   ========================================================= */
+/* hero headings/text are visible immediately (no JS-gated fade):
+   they slide in with a transform-only animation, which does not
+   delay Largest Contentful Paint */
+.hero .reveal,
+.page-hero .reveal {
+  opacity: 1 !important;
+  transform: none;
+  transition: none;
+  animation: heroRise 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+.hero .reveal[data-d="1"],
+.page-hero .reveal[data-d="1"] {
+  animation-delay: 0.06s;
+}
+.hero .reveal[data-d="2"],
+.page-hero .reveal[data-d="2"] {
+  animation-delay: 0.12s;
+}
+.hero .reveal[data-d="3"],
+.page-hero .reveal[data-d="3"] {
+  animation-delay: 0.18s;
+}
+.hero .reveal[data-d="4"],
+.page-hero .reveal[data-d="4"] {
+  animation-delay: 0.24s;
+}
+@keyframes heroRise {
+  from {
+    transform: translateY(14px);
+  }
+  to {
+    transform: none;
+  }
+}
+
+/* illustrations below the fold are only rendered when scrolled near */
+.section .art-wrap,
+.earn-band .art-wrap,
+.showcase .art-wrap,
+.sub-grid .art-wrap,
+.mini-grid .art-wrap,
+.id-gallery .art-wrap {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 300px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero .reveal,
+  .page-hero .reveal {
+    animation: none;
+  }
 }

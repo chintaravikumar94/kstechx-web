@@ -5,9 +5,12 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Logo from "./Logo";
 import { nav, webServices, fintech, CONTACT } from "../data";
-import WhatsAppAssist from "./WhatsAppAssist";
-import BackgroundFX from "./BackgroundFX";
-import MobileMenu from "./MobileMenu";
+import dynamic from "next/dynamic";
+
+// non-critical widgets load in their own chunks after the page is interactive
+const WhatsAppAssist = dynamic(() => import("./WhatsAppAssist"), { ssr: false });
+const BackgroundFX = dynamic(() => import("./BackgroundFX"), { ssr: false });
+const MobileMenu = dynamic(() => import("./MobileMenu"), { ssr: false });
 
 export default function Chrome({ children }) {
   const [open, setOpen] = useState(false);
