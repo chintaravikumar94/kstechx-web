@@ -12,7 +12,7 @@ export default function Hero() {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce), (max-width: 1100px), (pointer: coarse)").matches) return;
     const ctx = canvas.getContext("2d");
     const DPR = Math.min(window.devicePixelRatio || 1, 2);
     let w = 0,

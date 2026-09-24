@@ -182,7 +182,7 @@ export default function BackgroundFX() {
   // wrap-around parallax: icons drift up at different speeds as you scroll
   // and loop back in from the bottom, so the screen is never empty
   useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce), (max-width: 1100px), (pointer: coarse)").matches) return;
     let raf = 0;
     let mx = 0,
       my = 0;

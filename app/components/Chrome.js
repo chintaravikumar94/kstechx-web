@@ -13,22 +13,49 @@ export default function Chrome({ children }) {
   const [open, setOpen] = useState(false);
   const [drop, setDrop] = useState(null); // which dropdown is open
   const [scrolled, setScrolled] = useState(false);
-  const [progress, setProgress] = useState(0);
+  const barRef = useRef(null);
   const [hoverable, setHoverable] = useState(false); // desktop mouse → open dropdowns on hover
   const spotRef = useRef(null);
   const pathname = usePathname();
 
+  // scroll: one rAF per frame, progress bar updated directly (no React re-render),
+  // header state only changes when crossing the 12px threshold
   useEffect(() => {
-    const onScroll = () => {
+    let raf = 0;
+    let last = null;
+    const update = () => {
+      raf = 0;
       const y = window.scrollY;
-      setScrolled(y > 12);
-      const h = document.body.scrollHeight - window.innerHeight;
-      setProgress(h > 0 ? (y / h) * 100 : 0);
+      const h = document.documentElement.scrollHeight - window.innerHeight;
+      if (barRef.current) barRef.current.style.transform = `scaleX(${h > 0 ? Math.min(y / h, 1) : 0})`;
+      const s = y > 12;
+      if (s !== last) {
+        last = s;
+        setScrolled(s);
+      }
     };
-    onScroll();
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(update);
+    };
+    update();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", onScroll);
+    };
   }, []);
+
+  // pause illustration animations while they are off-screen
+  useEffect(() => {
+    const arts = document.querySelectorAll(".art");
+    if (!arts.length || !("IntersectionObserver" in window)) return;
+    const io = new IntersectionObserver(
+      (entries) => entries.forEach((e) => e.target.classList.toggle("art-off", !e.isIntersecting)),
+      { rootMargin: "120px" }
+    );
+    arts.forEach((a) => io.observe(a));
+    return () => io.disconnect();
+  }, [pathname]);
 
   useEffect(() => {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -84,7 +111,7 @@ export default function Chrome({ children }) {
 
   return (
     <>
-      <div className="scroll-bar" style={{ width: progress + "%" }} />
+      <div className="scroll-bar" ref={barRef} />
       <div className="spotlight" ref={spotRef} aria-hidden="true" />
       <BackgroundFX />
 
