@@ -3344,7 +3344,101 @@ main {
 .wa-call:hover {
   color: var(--navy);
 }
-/* ---- compact WhatsApp card on phones ---- */
+/* ---- compact WhatsApp card (desktop + mobile) ---- */
+
+
+.wa-fab img,
+.wa-fab svg {
+  width: 26px;
+  height: 26px;
+}
+.wa-card {
+  width: 320px;
+  max-width: calc(100vw - 24px);
+  border-radius: 18px;
+}
+.wa-head {
+  gap: 10px;
+  padding: 11px 12px;
+}
+.wa-avatar {
+  width: 34px;
+  height: 34px;
+  font-size: 12px;
+}
+.wa-who strong {
+  font-size: 14.5px;
+}
+.wa-who em {
+  font-size: 11.5px;
+}
+.wa-close {
+  width: 28px;
+  height: 28px;
+  font-size: 18px;
+}
+.wa-body {
+  padding: 12px 10px 4px;
+  max-height: 46vh;
+}
+.wa-bubble {
+  max-width: 100%;
+  padding: 9px 11px;
+  font-size: 13px;
+  line-height: 1.45;
+}
+.wa-bubble br,
+.wa-bubble .wa-hint {
+  display: none;
+}
+.wa-options {
+  gap: 6px;
+  margin: 10px 0 6px;
+}
+.wa-opt {
+  padding: 8px 10px;
+  border-radius: 10px;
+  font-size: 13px;
+  gap: 8px;
+}
+.wa-opt-icon {
+  font-size: 15px;
+}
+.wa-opt-go {
+  font-size: 17px;
+}
+.wa-foot {
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  padding: 10px;
+}
+.wa-start {
+  flex: 1;
+  padding: 10px;
+  font-size: 14px;
+  border-radius: 10px;
+}
+.wa-call {
+  flex: none;
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  font-size: 0;
+}
+.wa-call::before {
+  content: "📞";
+  font-size: 18px;
+}
+.wa-teaser-text {
+  font-size: 13px;
+  padding: 9px 13px;
+}
+
+/* phones: tighter position + slightly narrower card */
 @media (max-width: 600px) {
   .wa-assist {
     right: 12px;
@@ -3355,95 +3449,9 @@ main {
     width: 54px;
     height: 54px;
   }
-  .wa-fab img,
-  .wa-fab svg {
-    width: 26px;
-    height: 26px;
-  }
   .wa-card {
     width: 290px;
     max-width: calc(100vw - 24px);
-    border-radius: 18px;
-  }
-  .wa-head {
-    gap: 10px;
-    padding: 11px 12px;
-  }
-  .wa-avatar {
-    width: 34px;
-    height: 34px;
-    font-size: 12px;
-  }
-  .wa-who strong {
-    font-size: 14.5px;
-  }
-  .wa-who em {
-    font-size: 11.5px;
-  }
-  .wa-close {
-    width: 28px;
-    height: 28px;
-    font-size: 18px;
-  }
-  .wa-body {
-    padding: 12px 10px 4px;
-    max-height: 46vh;
-  }
-  .wa-bubble {
-    max-width: 100%;
-    padding: 9px 11px;
-    font-size: 13px;
-    line-height: 1.45;
-  }
-  .wa-bubble br,
-  .wa-bubble .wa-hint {
-    display: none;
-  }
-  .wa-options {
-    gap: 6px;
-    margin: 10px 0 6px;
-  }
-  .wa-opt {
-    padding: 8px 10px;
-    border-radius: 10px;
-    font-size: 13px;
-    gap: 8px;
-  }
-  .wa-opt-icon {
-    font-size: 15px;
-  }
-  .wa-opt-go {
-    font-size: 17px;
-  }
-  .wa-foot {
-    flex-direction: row;
-    align-items: center;
-    gap: 8px;
-    padding: 10px;
-  }
-  .wa-start {
-    flex: 1;
-    padding: 10px;
-    font-size: 14px;
-    border-radius: 10px;
-  }
-  .wa-call {
-    flex: none;
-    width: 42px;
-    height: 42px;
-    display: grid;
-    place-items: center;
-    border-radius: 10px;
-    border: 1px solid var(--border);
-    font-size: 0;
-  }
-  .wa-call::before {
-    content: "📞";
-    font-size: 18px;
-  }
-  .wa-teaser-text {
-    font-size: 13px;
-    padding: 9px 13px;
   }
 }
 @media print {
