@@ -260,8 +260,13 @@ export default function Chrome({ children }) {
                 </Link>
               )
             )}
-            <a href={SHOP.url} className="btn btn-ghost btn-sm nav-shop">
-              🛒 Shop
+            <a href={SHOP.url} className="nav-shop" aria-label="Shop online">
+              <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M3 4h2.2l2.3 11h10.8l2-7.5H6.4" />
+                <circle cx="9.5" cy="19.5" r="1.4" />
+                <circle cx="17" cy="19.5" r="1.4" />
+              </svg>
+              <span className="nav-shop-label">Shop</span>
             </a>
             <Link href="/contact" className="btn btn-primary btn-sm nav-cta">
               Get a quote

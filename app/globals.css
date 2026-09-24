@@ -5189,15 +5189,59 @@ body::after {
   border-color: rgba(255, 255, 255, 0.35);
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0) 60%), linear-gradient(135deg, #ff6b78, #e63946);
 }
+/* desktop Shop pill — same height as "Get a quote", solid navy glass */
+.nav .nav-links {
+  flex-wrap: nowrap;
+}
 .nav-shop {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  height: 40px;
   margin-left: 10px;
+  padding: 0 16px 0 14px;
+  border-radius: 999px;
+  font: 700 14px var(--font-inter), sans-serif;
+  color: #fff;
   white-space: nowrap;
+  text-decoration: none;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.26) 0%, rgba(255, 255, 255, 0.04) 52%, rgba(255, 255, 255, 0) 53%),
+    linear-gradient(135deg, #2f5fd0 0%, #163a8a 55%, #0b1f4b 100%);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  box-shadow: 0 10px 22px -12px rgba(11, 31, 75, 0.75), inset 0 1.5px 1px rgba(255, 255, 255, 0.55);
+  transition: transform 0.18s ease, box-shadow 0.2s ease;
+}
+.nav-shop:hover {
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 16px 28px -12px rgba(11, 31, 75, 0.8), 0 0 0 4px rgba(47, 95, 208, 0.15), inset 0 1.5px 1px rgba(255, 255, 255, 0.6);
+}
+.nav-shop svg {
+  flex: none;
+}
+.nav .nav-cta {
+  flex: none;
+  height: 40px;
+  padding-top: 0;
+  padding-bottom: 0;
 }
 .nav-shop + .nav-cta {
   margin-left: 8px;
 }
-@media (max-width: 1240px) {
+/* smaller laptops: tighter links, icon-only Shop */
+@media (min-width: 1101px) and (max-width: 1320px) {
+  .nav .nav-item,
+  .nav .nav-drop-btn {
+    padding: 9px 9px;
+    font-size: 14.5px;
+  }
   .nav-shop {
+    width: 40px;
+    padding: 0;
+    justify-content: center;
+  }
+  .nav-shop-label {
     display: none;
   }
 }
@@ -5317,3 +5361,38 @@ body::after {
 }
 
 .join-card { max-width: 720px; }
+
+/* =========================================================
+   COMPACT MENU PILL (phones & tablets)
+   ========================================================= */
+@media (max-width: 1100px) {
+  .nav-toggle {
+    height: 36px;
+    gap: 6px;
+    padding: 0 12px 0 10px;
+  }
+  .nav-toggle .nt-lines {
+    width: 16px;
+    height: 12px;
+    gap: 2.5px;
+  }
+  .nt-lines i {
+    height: 2px;
+  }
+  .nav-toggle .nt-lines i:nth-child(1),
+  .nav-toggle .nt-lines i:nth-child(3) {
+    width: 16px;
+  }
+  .nav-toggle .nt-lines i:nth-child(2) {
+    width: 11px;
+  }
+  .nav-toggle.is-open .nt-lines i:nth-child(1) {
+    transform: translateY(4.5px) rotate(45deg);
+  }
+  .nav-toggle.is-open .nt-lines i:nth-child(3) {
+    transform: translateY(-4.5px) rotate(-45deg);
+  }
+  .nav-toggle .nt-label {
+    font-size: 13px;
+  }
+}
