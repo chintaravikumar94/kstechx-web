@@ -151,9 +151,8 @@ export default function WhatsAppAssist() {
               </div>
             ) : (
               <div className="wa-bubble">
-                Hi 👋 Welcome to <strong>KS TechX</strong>.
-                <br />
-                How can we help you today? Pick an option and we&apos;ll continue on WhatsApp.
+                Hi 👋 Welcome to <strong>KS TechX</strong>. How can we help you?
+                <span className="wa-hint"> Pick an option and we&apos;ll continue on WhatsApp.</span>
               </div>
             )}
 
@@ -178,7 +177,7 @@ export default function WhatsAppAssist() {
             <button className="wa-start" onClick={() => chat("I'd like to know more about your services.", "general")}>
               <WaIcon size={20} /> Start chat
             </button>
-            <a className="wa-call" href={CONTACT.phoneHref}>
+            <a className="wa-call" href={CONTACT.phoneHref} aria-label={`Call ${CONTACT.phone}`}>
               📞 Or call {CONTACT.phone}
             </a>
           </div>
