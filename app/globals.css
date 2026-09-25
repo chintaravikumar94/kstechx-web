@@ -5396,3 +5396,42 @@ body::after {
     font-size: 13px;
   }
 }
+
+/* =========================================================
+   BRAND WORDMARK (image logo)
+   ========================================================= */
+.brand {
+  flex: none;
+  line-height: 0;
+}
+.brand-logo {
+  display: block;
+  line-height: 0;
+}
+.brand-logo img {
+  display: block;
+  width: auto;
+  height: 40px;
+  transition: transform 0.2s ease;
+}
+.nav .brand:hover .brand-logo img {
+  transform: scale(1.03);
+}
+.footer .brand-logo img {
+  height: 46px;
+}
+@media (min-width: 1101px) and (max-width: 1320px) {
+  .nav .brand-logo img {
+    height: 34px;
+  }
+}
+@media (max-width: 1100px) {
+  .nav .brand-logo img {
+    height: 34px;
+  }
+}
+@media (max-width: 380px) {
+  .nav .brand-logo img {
+    height: 30px;
+  }
+}

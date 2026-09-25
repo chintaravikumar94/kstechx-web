@@ -173,11 +173,8 @@ export default function Chrome({ children }) {
 
       <header className={`nav ${scrolled || open ? "nav-scrolled" : ""}`}>
         <div className="container nav-inner">
-          <Link className="brand" href="/">
+          <Link className="brand" href="/" aria-label="KS TechX — home">
             <Logo />
-            <span className="brand-text">
-              TechX<span className="brand-dot">.</span>
-            </span>
           </Link>
 
           <nav className={`nav-links ${open ? "open" : ""}`}>
@@ -298,11 +295,8 @@ export default function Chrome({ children }) {
       <footer className="footer">
         <div className="container footer-inner">
           <div className="footer-brand">
-            <Link className="brand" href="/">
-              <Logo />
-              <span className="brand-text">
-                TechX<span className="brand-dot">.</span>
-              </span>
+            <Link className="brand" href="/" aria-label="KS TechX — home">
+              <Logo variant="dark" />
             </Link>
             <p className="footer-note">
               KS TechX (KSTechX) by Kumara Swamy Technologies — digital &amp;
