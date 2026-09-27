@@ -152,7 +152,7 @@ After editing: save → `git add .` → `git commit -m "Update content"` → `gi
 
 ## 4. Partner program
 
-- [ ] Joining rule: **Purchase any one KS TechX product or service worth ₹1,000 or more** (minimum **₹1,000**) — line 462
+- [ ] Joining rule: **Purchase any one KS TechX product or service worth ₹10,000 or more** (minimum **₹10,000**) — line 462
 - [ ] "Commission on every sale" — your written commission structure is ready before partners join
 - [ ] Partner benefits (line 474):
     - Commission on every sale — Every sale you bring in earns you commission — websites, software, apps or fintech IDs.
@@ -160,7 +160,7 @@ After editing: save → `git add .` → `git commit -m "Update content"` → `gi
     - Expand your reach — Offer KS TechX services to shops and businesses across your town and district.
     - Transparent tracking — Know what you've sold and what you've earned — clear and on time.
     - Training & support — We help you pitch, close and deliver. You're never on your own.
-    - Simple entry — from ₹1,000 — Purchase any one KS TechX product worth ₹1,000 or more, use it in your own business, and start earning.
+    - Simple entry — from ₹10,000 — Purchase any one KS TechX product worth ₹10,000 or more, use it in your own business, and start earning.
 - [ ] Commission is paid only on genuine customer sales (never for recruiting other partners) — keep your agreement this way for legal safety
 
 ---

@@ -524,8 +524,8 @@ export const nav = [
    ========================================================= */
 /* Partner entry rule — edit here and it updates everywhere */
 export const PARTNER_JOIN = {
-  minPurchase: "₹1,000",
-  rule: "Purchase any one KS TechX product or service worth ₹1,000 or more",
+  minPurchase: "₹10,000",
+  rule: "Purchase any one KS TechX product or service worth ₹10,000 or more",
   why: "Use it for your own business — so you know exactly what you're selling to your customers.",
 };
 
@@ -542,7 +542,7 @@ export const partnerBenefits = [
   { icon: "📍", title: "Expand your reach", text: "Offer KS TechX services to shops and businesses across your town and district." },
   { icon: "📈", title: "Transparent tracking", text: "Know what you've sold and what you've earned — clear and on time." },
   { icon: "🎓", title: "Training & support", text: "We help you pitch, close and deliver. You're never on your own." },
-  { icon: "🎟️", title: "Simple entry — from ₹1,000", text: "Purchase any one KS TechX product worth ₹1,000 or more, use it in your own business, and start earning." },
+  { icon: "🎟️", title: "Partner entry — from ₹10,000", text: "Purchase any one KS TechX product worth ₹10,000 or more, use it in your own business, and start earning." },
 ];
 
 export const howClient = [
@@ -553,7 +553,7 @@ export const howClient = [
 ];
 
 export const howPartner = [
-  "Purchase any one KS TechX product — minimum ₹1,000",
+  "Purchase any one KS TechX product — minimum ₹10,000",
   "Complete KYC and get your partner ID & training",
   "Refer or sell any KS TechX service to customers",
   "Earn commission on every sale you make",

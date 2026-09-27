@@ -195,7 +195,7 @@ export function PartnerBand() {
           <p>
             Sell any KS TechX service — websites, custom software, Android apps
             or fintech IDs — and earn commission on every single sale. Join by
-            purchasing any one KS TechX product worth ₹1,000 or more.
+            purchasing any one KS TechX product worth ₹10,000 or more.
           </p>
           <div className="hero-cta">
             <Link href="/partners" className="btn btn-primary btn-lg">

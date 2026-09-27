@@ -12,7 +12,7 @@ const topics = [
       : []),
   ]),
   ...fintech.map((f) => ({ value: f.slug, label: `💳 ${f.name}` })),
-  { value: "partner", label: "🤝 KS TechX Partner (join from ₹1,000)" },
+  { value: "partner", label: "🤝 KS TechX Partner (join from ₹10,000)" },
   { value: "support", label: "🛠️ Support — I'm an existing customer" },
   { value: "other", label: "Something else" },
 ];
