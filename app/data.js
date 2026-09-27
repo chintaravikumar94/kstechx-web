@@ -311,7 +311,99 @@ export const webServices = [
     who: "Businesses ready to engage customers and teams on mobile.",
     cta: "Plan your app",
   },
+  {
+    slug: "dynamic-qr-codes",
+    name: "Dynamic QR Codes",
+    short: "Smart QR codes you can edit after printing — with live scan analytics and your own login.",
+    icon: "🔳",
+    accent: "#e63946",
+    art: "qr",
+    tag: "KS TechX QR",
+    isNew: true,
+    tagline: "Print once. Update anytime. Track every scan.",
+    summary:
+      "Create QR codes for your website, WhatsApp, UPI payments, Google reviews, menus and business cards. Change where they point anytime without reprinting, and see how many people scan — when, from which city and on which phone.",
+    kind: "single",
+    product: {
+      url: "https://qr.kstechx.com",
+      signup: "https://qr.kstechx.com/signup",
+      login: "https://qr.kstechx.com/login",
+      pricing: "https://qr.kstechx.com/#pricing",
+    },
+    offerings: [
+      {
+        slug: "dynamic-qr-code-platform",
+        icon: "📊",
+        art: "qrdash",
+        title: "Dynamic QR Code Platform",
+        text: "Create, design and track QR codes from one dashboard at qr.kstechx.com.",
+        points: ["13 QR types", "Edit after printing", "Scan analytics", "Your logo & colours", "Client login"],
+        tagline: "Every scan counted. Every QR under your control.",
+        overview:
+          "KS TechX QR is our own dynamic QR platform. Each QR points to a smart short link, so you can change the destination anytime and see real-time analytics — total and unique scans, time of day, city, device and more — from your own login.",
+        highlights: [
+          { icon: "✏️", label: "Edit anytime", note: "No reprinting" },
+          { icon: "📊", label: "Live analytics", note: "Scans, city, device" },
+          { icon: "🎨", label: "Your brand", note: "Logo, colours, frames" },
+          { icon: "🔒", label: "Pro controls", note: "Password, expiry, limits" },
+        ],
+        includes: [
+          "Website, WhatsApp, UPI & Google Review QRs",
+          "Digital business card with Save Contact",
+          "Link page, menu / PDF, app download & maps QRs",
+          "Custom design — colours, logo & 'Scan me' frames",
+          "PNG, SVG & print-quality downloads",
+          "Total & unique scans, time, city & device reports",
+          "Pause, expiry date, scan limit & password",
+          "UTM tags for Google Analytics",
+          "Excel (CSV) export",
+          "Your own client login & GST invoice",
+        ],
+        bestFor: ["Restaurant menus & table ordering", "Shop counters & UPI payments", "Visiting cards", "Google review stands", "Product packaging", "Brochures, events & real estate"],
+        faqs: [
+          { q: "What is a dynamic QR code?", a: "It points to a short link that we manage for you. You can change where it goes anytime and see every scan — while the printed QR stays the same." },
+          { q: "Is there a free plan?", a: "Yes — start free with a few dynamic QR codes. Upgrade to Pro, or ask for a Custom plan for more QR codes, scans and features." },
+          { q: "Will my printed QR stop working if my plan ends?", a: "No. Printed QR codes keep working. Only premium features pause until you renew." },
+          { q: "I'm a KS TechX website client — do I get this?", a: "Yes. We can add dynamic QR codes to your website package and give you your own analytics login. Ask our team." },
+          { q: "Can I use it for UPI payments?", a: "Yes. Dynamic UPI QRs open a clean payment page; for scanning inside GPay/PhonePe we provide a static UPI option." },
+        ],
+      },
+    ],
+    examples: ["Restaurant menus & WhatsApp ordering", "UPI payment stands", "Google review cards", "Digital visiting cards", "Product packaging & manuals", "Events, brochures & real estate"],
+    who: "Shops, restaurants, clinics, schools, real estate, events and every KS TechX website client.",
+    cta: "Create free QR code",
+  },
 ];
+
+/* KS TechX QR — how it works (shown on the QR service page) */
+export const qrGuide = {
+  steps: [
+    { icon: "🧾", title: "Sign up free", text: "Create your free account at qr.kstechx.com — takes 30 seconds, no card needed." },
+    { icon: "🔳", title: "Create your QR", text: "Pick a type — website, WhatsApp, UPI, review, menu or business card — and fill in the details." },
+    { icon: "🎨", title: "Design & download", text: "Add your colours, logo and a 'Scan me' frame. Download PNG / SVG and print." },
+    { icon: "📊", title: "Track & update", text: "Watch scans live from your dashboard. Change the destination anytime — no reprint." },
+  ],
+  types: [
+    ["🌐", "Website"],
+    ["💬", "WhatsApp chat"],
+    ["₹", "UPI payment"],
+    ["⭐", "Google review"],
+    ["🪪", "Business card"],
+    ["🔗", "Link page"],
+    ["📄", "Menu / PDF"],
+    ["📱", "App download"],
+    ["📍", "Location"],
+    ["📞", "Call"],
+    ["✉️", "Email"],
+    ["📝", "Text / notice"],
+    ["📶", "Wi-Fi"],
+  ],
+  plans: [
+    { name: "Free", note: "Start with a few dynamic QR codes and 30-day analytics.", cta: "Start free", href: "https://qr.kstechx.com/signup" },
+    { name: "Pro", note: "More QR codes & scans, your logo, CSV export, password, expiry & UTM.", cta: "See Pro price", href: "https://qr.kstechx.com/#pricing", pop: true },
+    { name: "Custom", note: "For chains, agencies & big campaigns — limits and price made for you.", cta: "Talk to us", href: "/contact?service=dynamic-qr-codes" },
+  ],
+};
 
 /* helpers */
 export const subHref = (s, o) => `/web-services/${s.slug}/${o.slug}`;

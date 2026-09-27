@@ -841,6 +841,89 @@ const scenes = {
   ),
 };
 
+/* ---------- Dynamic QR scenes ---------- */
+scenes.qr = (p) => (
+  <>
+    {/* table standee with QR */}
+    <g transform="translate(58,62)">
+      <g className="a-bob">
+        <rect width="170" height="236" rx="20" fill={`url(#${p}-navy)`} filter={`url(#${p}-sh)`} />
+        <rect x="14" y="14" width="142" height="160" rx="14" fill={C.white} />
+        <g transform="translate(22,22) scale(1.52)">
+          <QrG />
+        </g>
+        <rect className="a-scan2" x="22" y="22" width="126" height="3" rx="1.5" fill={C.red} />
+        <text x="85" y="206" textAnchor="middle" fontSize="18" fontWeight="800" letterSpacing="3" fill={C.white}>
+          SCAN ME
+        </text>
+      </g>
+    </g>
+    {/* phone showing result */}
+    <g transform="translate(282,70)">
+      <rect width="128" height="236" rx="24" fill={`url(#${p}-navy)`} filter={`url(#${p}-sh)`} />
+      <rect x="8" y="10" width="112" height="216" rx="17" fill={C.white} />
+      <rect x="44" y="14" width="40" height="6" rx="3" fill={C.navy} />
+      <circle cx="64" cy="62" r="20" fill={`url(#${p}-red)`} />
+      <text x="64" y="68" textAnchor="middle" fontSize="15" fontWeight="800" fill={C.white}>
+        KS
+      </text>
+      <text x="64" y="102" textAnchor="middle" fontSize="10.5" fontWeight="800" fill={C.navy}>
+        Sri Sai Cafe
+      </text>
+      {["📋 View menu", "💬 Order on WhatsApp", "⭐ Review us"].map((t, i) => (
+        <g key={t} transform={`translate(18,${116 + i * 30})`}>
+          <rect width="92" height="22" rx="11" fill={i === 0 ? `url(#${p}-red)` : C.soft} />
+          <text x="46" y="15" textAnchor="middle" fontSize="8.5" fontWeight="700" fill={i === 0 ? C.white : C.navy}>
+            {t}
+          </text>
+        </g>
+      ))}
+    </g>
+    <Badge p={p} x={290} y={24} w={150} text="📊 1,284 scans" tone="red" pop />
+    <Badge p={p} x={18} y={318} w={150} text="✏️ Edit after printing" tone="blue" delay={0.7} />
+    <Badge p={p} x={300} y={320} w={150} text="📍 City · 📱 Device" delay={1.2} />
+  </>
+);
+
+scenes.qrdash = (p) => (
+  <>
+    <g transform="translate(60,64)">
+      <rect width="360" height="236" rx="18" fill={C.white} filter={`url(#${p}-sh)`} />
+      <rect width="360" height="40" rx="18" fill={`url(#${p}-navy)`} />
+      <rect y="22" width="360" height="18" fill={`url(#${p}-navy)`} />
+      <text x="18" y="26" fontSize="12" fontWeight="800" fill={C.white}>
+        KS TechX QR · Analytics
+      </text>
+      {[
+        ["Scans", "1,284"],
+        ["Unique", "916"],
+        ["Today", "42"],
+      ].map(([k, v], i) => (
+        <g key={k} transform={`translate(${16 + i * 84},54)`}>
+          <rect width="76" height="50" rx="10" fill={C.soft} />
+          <text x="10" y="20" fontSize="9" fill="#5b6b8c">
+            {k}
+          </text>
+          <text x="10" y="40" fontSize="17" fontWeight="800" fill={C.navy}>
+            {v}
+          </text>
+        </g>
+      ))}
+      <g transform="translate(270,54)">
+        <g transform="scale(0.9)">
+          <QrG />
+        </g>
+      </g>
+      <path d="M20 204 L60 190 L100 196 L140 176 L180 184 L220 162 L260 170 L300 148 L340 154" fill="none" stroke={C.red} strokeWidth="3" strokeLinejoin="round" className="a-draw" />
+      <path d="M20 204 L60 190 L100 196 L140 176 L180 184 L220 162 L260 170 L300 148 L340 154 L340 216 L20 216 Z" fill={C.red} opacity="0.08" />
+      <line x1="20" y1="216" x2="340" y2="216" stroke={C.line} />
+    </g>
+    <Badge p={p} x={300} y={22} w={150} text="🔒 Password & expiry" tone="blue" pop />
+    <Badge p={p} x={20} y={318} w={150} text="⬇️ Export to Excel" delay={0.8} />
+    <Badge p={p} x={300} y={318} w={150} text="⚡ Live tracking" tone="red" delay={1.3} />
+  </>
+);
+
 export default function Illustration({ name = "hero", className = "" }) {
   const scene = scenes[name] || scenes.hero;
   const p = `ks-${name}`;

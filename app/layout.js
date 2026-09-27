@@ -83,6 +83,7 @@ const orgJsonLd = {
       "Website Development",
       "Custom Software Solutions",
       "Custom Mobile App Development",
+      "Dynamic QR Codes & Scan Analytics",
       "Fintech Solutions",
     ].map((n) => ({ "@type": "Offer", itemOffered: { "@type": "Service", name: n } })),
   },

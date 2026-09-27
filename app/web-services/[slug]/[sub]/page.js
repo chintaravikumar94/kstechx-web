@@ -4,6 +4,7 @@ import Illustration from "../../../components/Illustration";
 import ContactForm from "../../../components/ContactForm";
 import { PageHero, HighlightTiles, ProcessSteps, Faq, CtaBand } from "../../../components/Blocks";
 import { webServices, subTopic } from "../../../data";
+import QrGuide, { QrCtas } from "../../../components/QrGuide";
 
 function find(params) {
   const s = webServices.find((x) => x.slug === params.slug);
@@ -44,14 +45,18 @@ export default function SubServicePage({ params }) {
         lead={o.overview}
         art={o.art}
       >
-        <div className="hero-cta reveal" data-d="3">
-          <a href="#quote" className="btn btn-primary btn-lg">
-            Get a quote →
-          </a>
-          <a href="#included" className="btn btn-ghost btn-lg">
-            What&apos;s included
-          </a>
-        </div>
+        {s.product ? (
+          <QrCtas product={s.product} />
+        ) : (
+          <div className="hero-cta reveal" data-d="3">
+            <a href="#quote" className="btn btn-primary btn-lg">
+              Get a quote →
+            </a>
+            <a href="#included" className="btn btn-ghost btn-lg">
+              What&apos;s included
+            </a>
+          </div>
+        )}
       </PageHero>
 
       {/* HIGHLIGHTS */}
@@ -60,6 +65,8 @@ export default function SubServicePage({ params }) {
           <HighlightTiles items={o.highlights} />
         </div>
       </section>
+
+      {s.product && <QrGuide product={s.product} />}
 
       {/* WHAT'S INCLUDED + BEST FOR */}
       <section id="included" className="section section-alt">

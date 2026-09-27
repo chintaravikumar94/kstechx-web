@@ -48,7 +48,7 @@ export default function Home() {
       <section className="section">
         <div className="container">
           <span className="kicker reveal">What we do</span>
-          <h2 className="section-title reveal">Five ways KS TechX grows you</h2>
+          <h2 className="section-title reveal">{cards.length === 6 ? "Six" : cards.length} ways KS TechX grows you</h2>
           <p className="section-sub reveal">
             Websites, software and apps for your business, fintech IDs for your
             shop — and a partner model where every sale earns.
@@ -82,6 +82,38 @@ export default function Home() {
             href="/contact?service=website-development"
             base="/web-services/website-development"
           />
+        </div>
+      </section>
+
+      {/* NEW: KS TECHX QR SPOTLIGHT */}
+      <section className="section qr-spot">
+        <div className="container split-intro">
+          <div className="reveal">
+            <Illustration name="qr" />
+          </div>
+          <div>
+            <span className="kicker left reveal">
+              <span className="new-pill">NEW</span> KS TechX QR
+            </span>
+            <h2 className="section-title left reveal">QR codes you can edit — and track — after printing</h2>
+            <p className="section-sub left reveal">
+              Put one smart QR on your counter, menu, visiting card or packaging. Change where it goes anytime, and see how many people
+              scan — from which city and on which phone.
+            </p>
+            <ul className="ticks reveal">
+              <li>Website, WhatsApp, UPI, Google review, menu &amp; business card QRs</li>
+              <li>Your colours, logo &amp; &quot;Scan me&quot; frame — PNG / SVG download</li>
+              <li>Live analytics with your own login · free plan available</li>
+            </ul>
+            <div className="hero-cta reveal">
+              <a href="https://qr.kstechx.com/signup" className="btn btn-primary btn-lg" target="_blank" rel="noopener">
+                Create free QR code →
+              </a>
+              <Link href="/web-services/dynamic-qr-codes" className="btn btn-ghost btn-lg">
+                How it works
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
 

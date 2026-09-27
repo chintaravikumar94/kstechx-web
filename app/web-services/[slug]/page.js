@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Illustration from "../../components/Illustration";
 import { PageHero, TierCards, SingleOffer, ProcessSteps, PartnerBand, CtaBand } from "../../components/Blocks";
 import { webServices } from "../../data";
+import QrGuide, { QrCtas } from "../../components/QrGuide";
 
 export function generateStaticParams() {
   return webServices.map((s) => ({ slug: s.slug }));
@@ -32,14 +33,18 @@ export default function WebServiceDetail({ params }) {
         lead={s.summary}
         art={s.art}
       >
-        <div className="hero-cta reveal" data-d="3">
-          <Link href={quote} className="btn btn-primary btn-lg">
-            {s.cta} →
-          </Link>
-          <Link href="/partners" className="btn btn-ghost btn-lg">
-            Sell this &amp; earn
-          </Link>
-        </div>
+        {s.product ? (
+          <QrCtas product={s.product} />
+        ) : (
+          <div className="hero-cta reveal" data-d="3">
+            <Link href={quote} className="btn btn-primary btn-lg">
+              {s.cta} →
+            </Link>
+            <Link href="/partners" className="btn btn-ghost btn-lg">
+              Sell this &amp; earn
+            </Link>
+          </div>
+        )}
       </PageHero>
 
       {/* SUB-SERVICE CARDS WITH ART */}
@@ -73,6 +78,8 @@ export default function WebServiceDetail({ params }) {
           </div>
         </div>
       </section>
+
+      {s.product && <QrGuide product={s.product} />}
 
       <section className="section section-alt">
         <div className="container">
