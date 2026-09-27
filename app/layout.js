@@ -55,7 +55,7 @@ const orgJsonLd = {
   alternateName: ["KS TechX", "KSTechX", "KSTECHX", "kstechx.com"],
   url: "https://kstechx.com",
   logo: "https://kstechx.com/logo.png",
-  founder: { "@type": "Person", name: "Chinta Ravikumar", jobTitle: "Founder & CEO" },
+  founder: { "@type": "Person", name: "Chinta Ravikumar", jobTitle: "Founder & CEO", image: "https://kstechx.com/team/founder.jpg" },
   email: "info@kstechx.com",
   telephone: "+91-99494-99177",
   contactPoint: [
