@@ -337,7 +337,7 @@ export const webServices = [
         art: "qrdash",
         title: "Dynamic QR Code Platform",
         text: "Create, design and track QR codes from one dashboard at qr.kstechx.com.",
-        points: ["13 QR types", "Edit after printing", "Scan analytics", "Your logo & colours", "Client login"],
+        points: ["14 QR types", "Edit after printing", "Scan analytics", "Lead capture forms", "Bulk create 500 QRs"],
         tagline: "Every scan counted. Every QR under your control.",
         overview:
           "KS TechX QR is our own dynamic QR platform. Each QR points to a smart short link, so you can change the destination anytime and see real-time analytics — total and unique scans, time of day, city, device and more — from your own login.",
@@ -357,6 +357,10 @@ export const webServices = [
           "Pause, expiry date, scan limit & password",
           "UTM tags for Google Analytics",
           "Excel (CSV) export",
+          "Upload menus & PDFs — we host them",
+          "Lead capture forms with instant email alerts",
+          "Bulk create up to 500 QR codes from Excel",
+          "Weekly scan report by email",
           "Your own client login & GST invoice",
         ],
         bestFor: ["Restaurant menus & table ordering", "Shop counters & UPI payments", "Visiting cards", "Google review stands", "Product packaging", "Brochures, events & real estate"],
@@ -396,6 +400,7 @@ export const qrGuide = {
     ["📞", "Call"],
     ["✉️", "Email"],
     ["📝", "Text / notice"],
+    ["🎯", "Lead form"],
     ["📶", "Wi-Fi"],
   ],
   plans: [
