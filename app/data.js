@@ -16,7 +16,7 @@ export const CONTACT = {
 export const FOUNDER = {
   name: "Chinta Ravikumar",
   initials: "CR",
-  role: "Founder & CEO",
+  role: "Founder & Proprietor", // change to "Founder & CEO" after Pvt Ltd registration
   company: "Kumara Swamy Technologies (KS TechX)",
   location: "Vijayawada, Andhra Pradesh",
   photo: "/team/founder.jpg",
