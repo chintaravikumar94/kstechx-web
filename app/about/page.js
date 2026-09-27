@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Stat from "../components/Stat";
 import { PageHero } from "../components/Blocks";
+import FounderCard from "../components/FounderCard";
 import { stats, values, webServices, fintechIntro } from "../data";
 
 const services = [
@@ -24,6 +25,12 @@ export default function About() {
         title="Kumara Swamy Technologies"
         lead="KS TechX is a digital and fintech solutions company from Andhra Pradesh, India. We help businesses grow with websites, custom software and Android apps, help retailers earn with fintech services — and help partners earn on every sale."
       />
+
+      <section className="section pt0">
+        <div className="container">
+          <FounderCard />
+        </div>
+      </section>
 
       <section className="section pt0">
         <div className="container">

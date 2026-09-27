@@ -4,6 +4,7 @@ import TiltCard from "./components/TiltCard";
 import Stat from "./components/Stat";
 import ServiceExplorer from "./components/ServiceExplorer";
 import Illustration from "./components/Illustration";
+import FounderCard from "./components/FounderCard";
 import { FintechCards, TierCards, ProcessSteps, PartnerBand, CtaBand } from "./components/Blocks";
 import { webServices, fintech, fintechIntro, partner, stats, values, SHOP, shopCategories } from "./data";
 
@@ -183,6 +184,9 @@ export default function Home() {
               ))}
             </div>
           </div>
+        </div>
+        <div className="container" style={{ marginTop: 48 }}>
+          <FounderCard compact />
         </div>
       </section>
 

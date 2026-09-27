@@ -10,6 +10,28 @@ export const CONTACT = {
   whatsapp: "919949499177", // set to "" to hide WhatsApp Assist & buttons
   hours: "", // e.g. "Mon – Sat · 9:30 AM – 7:00 PM" — shown when set
 };
+/* ---------- FOUNDER (About page + home) ----------
+   Photo: save a square photo as /public/team/founder.jpg (min 600×600).
+   Until then, the card shows "CR" initials. */
+export const FOUNDER = {
+  name: "Chinta Ravikumar",
+  initials: "CR",
+  role: "Founder & CEO",
+  company: "Kumara Swamy Technologies (KS TechX)",
+  location: "Vijayawada, Andhra Pradesh",
+  photo: "/team/founder.jpg",
+  linkedin: "", // e.g. "https://www.linkedin.com/in/your-profile"
+  message:
+    "I started KS TechX with one goal — to give every shop and small business in Bharat the same digital and fintech tools that big companies use. Every website, app and fintech ID we deliver is handled by our own team, and I personally stand behind our work. When you work with KS TechX, you work with people you can call, meet and trust.",
+  short: "Every website, app and fintech ID we deliver is handled by our own team — and I personally stand behind our work.",
+  facts: [
+    { icon: "🏢", label: "Founded Kumara Swamy Technologies" },
+    { icon: "🧾", label: "GST-registered business" },
+    { icon: "🧩", label: "Web, software & fintech under one roof" },
+    { icon: "📍", label: "Vijayawada, Andhra Pradesh" },
+  ],
+};
+
 /* ---------- SHOP (online store at shop.kstechx.com) ---------- */
 export const SHOP = {
   url: "https://shop.kstechx.com/shop/",
