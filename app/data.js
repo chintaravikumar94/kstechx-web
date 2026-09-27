@@ -49,10 +49,10 @@ export const FOUNDER = {
     "I started KS TechX with one goal — to give every shop and small business in Bharat the same digital and fintech tools that big companies use. Every website, app and fintech ID we deliver is handled by our own team, and I personally stand behind our work. When you work with KS TechX, you work with people you can call, meet and trust.",
   short: "Every website, app and fintech ID we deliver is handled by our own team — and I personally stand behind our work.",
   facts: [
-    { icon: "🏢", label: "Founded Kumara Swamy Technologies" },
-    { icon: "🧾", label: "GST-registered business" },
-    { icon: "🧩", label: "Web, software & fintech under one roof" },
-    { icon: "📍", label: "Pasarlapudi, Konaseema, Andhra Pradesh" },
+    { icon: "building", label: "Founded Kumara Swamy Technologies" },
+    { icon: "receipt", label: "GST-registered business" },
+    { icon: "layers", label: "Web, software & fintech under one roof" },
+    { icon: "pin", label: "Pasarlapudi, Konaseema, Andhra Pradesh" },
   ],
 };
 
