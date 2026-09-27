@@ -10,6 +10,30 @@ export const CONTACT = {
   whatsapp: "919949499177", // set to "" to hide WhatsApp Assist & buttons
   hours: "", // e.g. "Mon – Sat · 9:30 AM – 7:00 PM" — shown when set
 };
+/* ---------- REGISTERED BUSINESS ADDRESS (as per GST registration) ----------
+   Keep this EXACTLY the same on Google Business Profile, invoices & listings. */
+export const ADDRESS = {
+  business: "Kumara Swamy Technologies",
+  constitution: "Proprietorship",
+  gstin: "37AYPPC2454H2ZB",
+  street: "Ground Floor, 2-10, Kottumeraka Road",
+  locality: "Pasarlapudi",
+  district: "Dr BR Ambedkar Konaseema",
+  state: "Andhra Pradesh",
+  pin: "533247",
+  country: "India",
+  countryCode: "IN",
+};
+ADDRESS.lines = [
+  ADDRESS.street,
+  `${ADDRESS.locality}, ${ADDRESS.district} District`,
+  `${ADDRESS.state} – ${ADDRESS.pin}, ${ADDRESS.country}`,
+];
+ADDRESS.short = `${ADDRESS.locality}, ${ADDRESS.state} ${ADDRESS.pin}`;
+ADDRESS.maps =
+  "https://www.google.com/maps/search/?api=1&query=" +
+  encodeURIComponent(`${ADDRESS.business}, ${ADDRESS.street}, ${ADDRESS.locality}, ${ADDRESS.state} ${ADDRESS.pin}`);
+
 /* ---------- FOUNDER (About page + home) ----------
    Photo: save a square photo as /public/team/founder.jpg (min 600×600).
    Until then, the card shows "CR" initials. */
@@ -18,7 +42,7 @@ export const FOUNDER = {
   initials: "CR",
   role: "Founder & Proprietor", // change to "Founder & CEO" after Pvt Ltd registration
   company: "Kumara Swamy Technologies (KS TechX)",
-  location: "Vijayawada, Andhra Pradesh",
+  location: "Pasarlapudi, Konaseema, Andhra Pradesh",
   photo: "/team/founder.jpg",
   linkedin: "", // e.g. "https://www.linkedin.com/in/your-profile"
   message:
@@ -28,7 +52,7 @@ export const FOUNDER = {
     { icon: "🏢", label: "Founded Kumara Swamy Technologies" },
     { icon: "🧾", label: "GST-registered business" },
     { icon: "🧩", label: "Web, software & fintech under one roof" },
-    { icon: "📍", label: "Vijayawada, Andhra Pradesh" },
+    { icon: "📍", label: "Pasarlapudi, Konaseema, Andhra Pradesh" },
   ],
 };
 

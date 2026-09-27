@@ -5695,3 +5695,59 @@ body::after {
     animation: none;
   }
 }
+
+/* =========================================================
+   REGISTERED ADDRESS
+   ========================================================= */
+.contact-addr {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: 18px;
+  padding: 16px 18px;
+  border-radius: 16px;
+  font-style: normal;
+  font-size: 14.5px;
+  line-height: 1.6;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(11, 31, 75, 0.1);
+}
+.contact-addr .ca-head {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--brand);
+  margin-bottom: 4px;
+}
+.contact-addr strong {
+  color: var(--navy);
+  font-size: 15.5px;
+}
+.contact-addr .ca-gst {
+  margin-top: 6px;
+  font-size: 13px;
+  opacity: 0.75;
+}
+.contact-addr .ca-map {
+  margin-top: 8px;
+  font-weight: 700;
+  color: var(--blue);
+}
+.contact-addr .ca-map:hover {
+  text-decoration: underline;
+}
+.footer-contact .footer-addr {
+  max-width: 340px;
+  line-height: 1.55;
+}
+@media (min-width: 901px) {
+  .desk-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+@media (min-width: 601px) and (max-width: 900px) {
+  .desk-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

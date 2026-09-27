@@ -4,7 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Logo from "./Logo";
-import { nav, webServices, fintech, CONTACT, SHOP } from "../data";
+import { nav, webServices, fintech, CONTACT, SHOP, ADDRESS } from "../data";
 import dynamic from "next/dynamic";
 
 // non-critical widgets load in their own chunks after the page is interactive
@@ -310,6 +310,9 @@ export default function Chrome({ children }) {
                 </a>
               )}
               <a href={`mailto:${CONTACT.email}`}>✉️ {CONTACT.email}</a>
+              <a href={ADDRESS.maps} target="_blank" rel="noopener noreferrer" className="footer-addr">
+                📍 {ADDRESS.street}, {ADDRESS.locality}, {ADDRESS.district} Dist., {ADDRESS.state} – {ADDRESS.pin}
+              </a>
             </div>
           </div>
           <div className="footer-cols">

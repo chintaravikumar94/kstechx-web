@@ -87,7 +87,7 @@ export default function ContactForm({ defaultTopic = "", title }) {
         </div>
         <div className="field">
           <label>City / Town</label>
-          <input value={form.city} onChange={update("city")} placeholder="Vijayawada" />
+          <input value={form.city} onChange={update("city")} placeholder="Your town / city" />
         </div>
       </div>
       <div className="field">

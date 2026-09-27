@@ -1,6 +1,7 @@
 import "./globals.css";
 import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import Chrome from "./components/Chrome";
+import { ADDRESS } from "./data";
 
 // fonts are downloaded at build time and served from kstechx.com itself
 // (no Google Fonts request, no render-blocking, no layout shift)
@@ -66,9 +67,15 @@ const orgJsonLd = {
     "Digital and fintech solutions company — website development, custom software, Android app development and retailer & merchant IDs.",
   address: {
     "@type": "PostalAddress",
-    addressRegion: "Andhra Pradesh",
-    addressCountry: "IN",
+    streetAddress: ADDRESS.street,
+    addressLocality: ADDRESS.locality,
+    addressRegion: ADDRESS.state,
+    postalCode: ADDRESS.pin,
+    addressCountry: ADDRESS.countryCode,
   },
+  taxID: ADDRESS.gstin,
+  hasMap: ADDRESS.maps,
+  areaServed: { "@type": "State", name: "Andhra Pradesh" },
   hasOfferCatalog: {
     "@type": "OfferCatalog",
     name: "KS TechX Services",

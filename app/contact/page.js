@@ -1,6 +1,6 @@
 import ContactForm from "../components/ContactForm";
 import { PageHero } from "../components/Blocks";
-import { CONTACT } from "../data";
+import { CONTACT, ADDRESS } from "../data";
 
 export const metadata = {
   title: "Contact",
@@ -30,6 +30,14 @@ const desks = [
     text: "For detailed requirements, proposals and documents.",
     label: CONTACT.email,
     href: `mailto:${CONTACT.email}`,
+  },
+  {
+    icon: "📍",
+    title: "Visit us",
+    text: `${ADDRESS.street}, ${ADDRESS.locality}, ${ADDRESS.district} District, ${ADDRESS.state} – ${ADDRESS.pin}.`,
+    label: "Open in Google Maps",
+    href: ADDRESS.maps,
+    external: true,
   },
 ];
 
@@ -106,13 +114,19 @@ export default function Contact() {
               ✉️ {CONTACT.email}
             </a>
             {CONTACT.hours && <p className="contact-hours">🕘 {CONTACT.hours}</p>}
-            <p className="contact-addr">
-              Kumara Swamy Technologies
-              <br />
-              Andhra Pradesh, India 🇮🇳
-              <br />
-              GSTIN 37AYPPC2454H2ZB
-            </p>
+            <address className="contact-addr">
+              <span className="ca-head">📍 Registered office</span>
+              <strong>{ADDRESS.business}</strong>
+              {ADDRESS.lines.map((l) => (
+                <span key={l}>{l}</span>
+              ))}
+              <span className="ca-gst">
+                GSTIN {ADDRESS.gstin} · {ADDRESS.constitution}
+              </span>
+              <a href={ADDRESS.maps} target="_blank" rel="noopener noreferrer" className="ca-map">
+                Open in Google Maps →
+              </a>
+            </address>
             <div className="contact-tip">
               <strong>Quick tip</strong>
               <span>
