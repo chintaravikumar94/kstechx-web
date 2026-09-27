@@ -9,13 +9,15 @@ export function generateStaticParams() {
   return webServices.map((s) => ({ slug: s.slug }));
 }
 
-export function generateMetadata({ params }) {
+export async function generateMetadata(props) {
+  const params = await props.params;
   const s = webServices.find((x) => x.slug === params.slug);
   if (!s) return {};
   return { title: s.name, description: s.summary };
 }
 
-export default function WebServiceDetail({ params }) {
+export default async function WebServiceDetail(props) {
+  const params = await props.params;
   const s = webServices.find((x) => x.slug === params.slug);
   if (!s) notFound();
 

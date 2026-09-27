@@ -9,13 +9,15 @@ export function generateStaticParams() {
   return fintech.map((f) => ({ slug: f.slug }));
 }
 
-export function generateMetadata({ params }) {
+export async function generateMetadata(props) {
+  const params = await props.params;
   const f = fintech.find((x) => x.slug === params.slug);
   if (!f) return {};
   return { title: `${f.name} — Apply Online`, description: f.overview };
 }
 
-export default function FintechDetail({ params }) {
+export default async function FintechDetail(props) {
+  const params = await props.params;
   const f = fintech.find((x) => x.slug === params.slug);
   if (!f) notFound();
   const others = fintech.filter((x) => x.slug !== f.slug);

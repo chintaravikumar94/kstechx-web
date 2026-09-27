@@ -16,13 +16,15 @@ export function generateStaticParams() {
   return webServices.flatMap((s) => s.offerings.map((o) => ({ slug: s.slug, sub: o.slug })));
 }
 
-export function generateMetadata({ params }) {
+export async function generateMetadata(props) {
+  const params = await props.params;
   const { s, o } = find(params);
   if (!o) return {};
   return { title: `${o.title} — ${s.name}`, description: o.overview };
 }
 
-export default function SubServicePage({ params }) {
+export default async function SubServicePage(props) {
+  const params = await props.params;
   const { s, o } = find(params);
   if (!o) notFound();
 
