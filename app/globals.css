@@ -6425,3 +6425,45 @@ body::after {
   font-weight: 800;
   font-size: 14px;
 }
+
+/* contact form: guidance for the chosen service */
+.topic-help {
+  display: flex;
+  gap: 12px;
+  margin-top: 10px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: #fff8ec;
+  border: 1px solid #f6d99a;
+  animation: fadeUpHelp 0.25s ease;
+}
+.topic-help-ico {
+  font-size: 22px;
+  line-height: 1.2;
+}
+.topic-help b {
+  display: block;
+  color: var(--navy, #0b1f4b);
+  font-size: 14.5px;
+}
+.topic-help p {
+  margin: 4px 0 6px;
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: #475472;
+}
+.topic-help a {
+  font-size: 13.5px;
+  font-weight: 800;
+  color: var(--red, #e63946);
+}
+@keyframes fadeUpHelp {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
