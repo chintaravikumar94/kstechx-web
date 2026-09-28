@@ -76,6 +76,8 @@ export const shopCategories = [
 ];
 
 export const CONTACT_EMAIL = CONTACT.email;
+/* Contact-form enquiries are saved & emailed to the team by our backend (qr.kstechx.com → Admin → Website leads) */
+export const LEAD_API = "https://qr.kstechx.com/api/site-lead"; // (note: "process" below is our steps list, not Node's process)
 export const WHATSAPP_NUMBER = CONTACT.whatsapp;
 
 /* =========================================================

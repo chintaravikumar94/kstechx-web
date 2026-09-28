@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { webServices, fintech, CONTACT, PARTNER_JOIN } from "../data";
+import { webServices, fintech, CONTACT, PARTNER_JOIN, LEAD_API } from "../data";
 
 const topics = [
   { value: "", label: "Choose a service…", disabled: true },
@@ -39,9 +39,11 @@ const TOPIC_HELP = {
 
 /* defaultTopic lets a page (e.g. a fintech detail page) pre-select the service */
 export default function ContactForm({ defaultTopic = "", title }) {
-  const [form, setForm] = useState({ name: "", phone: "", email: "", city: "", topic: defaultTopic, message: "" });
-  const [sent, setSent] = useState("");
+  const [form, setForm] = useState({ name: "", phone: "", email: "", city: "", topic: defaultTopic, message: "", website: "" });
+  const [state, setState] = useState("idle"); // idle | sending | done | failed
+  const [ref, setRef] = useState("");
   const [error, setError] = useState("");
+  const [sentWa, setSentWa] = useState(false);
 
   useEffect(() => {
     if (defaultTopic) return;
@@ -55,63 +57,137 @@ export default function ContactForm({ defaultTopic = "", title }) {
   };
   const topicLabel = (v) =>
     (topics.find((t) => t.value === v)?.label || v || "Enquiry").replace(/^[\s—]+/, "").trim();
+  const phone10 = () => {
+    const d = form.phone.replace(/\D/g, "");
+    return d.length === 12 && d.startsWith("91") ? d.slice(2) : d.slice(-10);
+  };
 
-  const summary = () =>
-    `Name: ${form.name}\nPhone / WhatsApp: ${form.phone}\nEmail: ${form.email}\nCity / Town: ${form.city}\nInterested in: ${topicLabel(
+  const summary = (withRef = "") =>
+    `${withRef ? `Reference: ${withRef}\n` : ""}Name: ${form.name}\nPhone / WhatsApp: ${form.phone}\nEmail: ${form.email}\nCity / Town: ${form.city}\nInterested in: ${topicLabel(
       form.topic
     )}${TOPIC_HELP[form.topic]?.line ? `\n${TOPIC_HELP[form.topic].line}` : ""}\n\n${form.message}`;
 
   const valid = () => {
-    if (!form.name.trim()) return "Enter your name.";
-    if (form.phone.replace(/\D/g, "").length < 10) return "Enter a valid 10-digit phone number.";
+    if (form.name.trim().length < 2) return "Enter your name.";
+    if (!/^[6-9]\d{9}$/.test(phone10())) return "Enter a valid 10-digit mobile number.";
+    if (form.email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim())) return "Check your email address (or leave it empty).";
     if (!form.topic) return "Choose the service you're interested in.";
     return "";
   };
 
-  const sendEmail = (e) => {
+  /* main action: save the enquiry + instant email to our team */
+  const submit = async (e) => {
     e.preventDefault();
     const v = valid();
     if (v) return setError(v);
-    const to = CONTACT.email;
-    const subject = encodeURIComponent(`[${topicLabel(form.topic)}] ${form.name}`);
-    window.location.href = `mailto:${to}?subject=${subject}&body=${encodeURIComponent(summary())}`;
-    setSent(to);
+    setState("sending");
+    setError("");
+    const sp = new URLSearchParams(window.location.search);
+    const utm = ["utm_source", "utm_medium", "utm_campaign"].map((k) => sp.get(k)).filter(Boolean).join(" / ");
+    try {
+      const r = await fetch(LEAD_API, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...form,
+          name: form.name.trim(),
+          topicLabel: topicLabel(form.topic) + (TOPIC_HELP[form.topic]?.line ? ` · ${TOPIC_HELP[form.topic].line}` : ""),
+          page: window.location.pathname + (sp.get("service") ? `?service=${sp.get("service")}` : ""),
+          utm: utm || (document.referrer && !document.referrer.includes(window.location.host) ? `referrer: ${document.referrer.slice(0, 120)}` : ""),
+        }),
+      });
+      const j = await r.json().catch(() => ({}));
+      if (r.ok && j.ok) {
+        setRef(j.ref);
+        setState("done");
+        if (typeof window.gtag === "function") window.gtag("event", "generate_lead", { event_category: "contact", event_label: form.topic });
+        return;
+      }
+      setState(r.status >= 500 ? "failed" : "idle");
+      setError(j.error || "Something went wrong. Please WhatsApp us instead.");
+    } catch (err) {
+      setState("failed");
+      setError("Couldn't reach our server. Please send it on WhatsApp — it takes one tap.");
+    }
   };
 
-  const sendWhatsApp = () => {
-    const v = valid();
-    if (v) return setError(v);
-    const text = encodeURIComponent(`Hello KS TechX 👋\n\n${summary()}`);
+  const sendWhatsApp = (withRef = "") => {
+    if (!withRef) {
+      const v = valid();
+      if (v) return setError(v);
+    }
+    const text = encodeURIComponent(`Hello KS TechX 👋\n\n${summary(withRef)}`);
     window.open(`https://wa.me/${CONTACT.whatsapp}?text=${text}`, "_blank", "noopener");
-    setSent("whatsapp");
+    setSentWa(true);
   };
+
+  const reset = () => {
+    setForm({ name: "", phone: "", email: "", city: "", topic: defaultTopic, message: "", website: "" });
+    setRef("");
+    setState("idle");
+    setSentWa(false);
+  };
+
+  if (state === "done")
+    return (
+      <div className="contact-form lead-done" role="status" aria-live="polite">
+        <div className="lead-done-tick">✓</div>
+        <h3>Enquiry received, {form.name.trim().split(" ")[0]}! 🎉</h3>
+        <p>
+          Our team will call or WhatsApp you on <b>+91 {phone10()}</b> soon
+          {CONTACT.hours ? ` (${CONTACT.hours})` : ""}.
+          {form.email.trim() ? " We've also emailed you a copy." : ""}
+        </p>
+        <div className="lead-ref">
+          <span>Your reference</span>
+          <b>{ref}</b>
+        </div>
+        <div className="lead-done-summary">
+          <span>🎯 {topicLabel(form.topic)}</span>
+          {form.city && <span>📍 {form.city}</span>}
+        </div>
+        <div className="form-actions">
+          {CONTACT.whatsapp && (
+            <button type="button" className="btn btn-wa btn-lg" onClick={() => sendWhatsApp(ref)}>
+              💬 Need it fast? Chat now
+            </button>
+          )}
+          <button type="button" className="btn btn-ghost btn-lg" onClick={reset}>
+            ➕ Send another enquiry
+          </button>
+        </div>
+        <p className="form-note">{sentWa ? "WhatsApp opened with your reference — just press send." : `Prefer to talk? Call ${CONTACT.phone}.`}</p>
+      </div>
+    );
 
   return (
-    <form className="contact-form reveal" onSubmit={sendEmail} noValidate>
+    <form className="contact-form reveal" onSubmit={submit} noValidate>
       {title && <h3 className="form-title">{title}</h3>}
+      {/* hidden from people — only bots fill it */}
+      <input className="hp-field" tabIndex={-1} autoComplete="off" aria-hidden="true" value={form.website} onChange={update("website")} name="website" />
       <div className="field-row">
         <div className="field">
-          <label>Your name</label>
-          <input value={form.name} onChange={update("name")} placeholder="Ravi Kumar" />
+          <label htmlFor="cf-name">Your name</label>
+          <input id="cf-name" value={form.name} onChange={update("name")} placeholder="Ravi Kumar" autoComplete="name" maxLength={120} />
         </div>
         <div className="field">
-          <label>Phone / WhatsApp</label>
-          <input type="tel" value={form.phone} onChange={update("phone")} placeholder="98765 43210" />
+          <label htmlFor="cf-phone">Phone / WhatsApp</label>
+          <input id="cf-phone" type="tel" inputMode="tel" value={form.phone} onChange={update("phone")} placeholder="98765 43210" autoComplete="tel" maxLength={16} />
         </div>
       </div>
       <div className="field-row">
         <div className="field">
-          <label>Email (optional)</label>
-          <input type="email" value={form.email} onChange={update("email")} placeholder="you@email.com" />
+          <label htmlFor="cf-email">Email (optional)</label>
+          <input id="cf-email" type="email" value={form.email} onChange={update("email")} placeholder="you@email.com" autoComplete="email" maxLength={190} />
         </div>
         <div className="field">
-          <label>City / Town</label>
-          <input value={form.city} onChange={update("city")} placeholder="Your town / city" />
+          <label htmlFor="cf-city">City / Town</label>
+          <input id="cf-city" value={form.city} onChange={update("city")} placeholder="Your town / city" autoComplete="address-level2" maxLength={80} />
         </div>
       </div>
       <div className="field">
-        <label>I&apos;m interested in</label>
-        <select value={form.topic} onChange={update("topic")}>
+        <label htmlFor="cf-topic">I&apos;m interested in</label>
+        <select id="cf-topic" value={form.topic} onChange={update("topic")}>
           {topics.map((t) => (
             <option key={t.value || "none"} value={t.value} disabled={t.disabled}>
               {t.label}
@@ -130,31 +206,41 @@ export default function ContactForm({ defaultTopic = "", title }) {
         )}
       </div>
       <div className="field">
-        <label>Message</label>
+        <label htmlFor="cf-msg">Message</label>
         <textarea
+          id="cf-msg"
           rows={4}
           value={form.message}
           onChange={update("message")}
+          maxLength={3000}
           placeholder={TOPIC_HELP[form.topic]?.placeholder || "Tell us a little about what you need"}
         />
       </div>
-      {error && <p className="form-error">{error}</p>}
+      {error && (
+        <p className="form-error" role="alert">
+          {error}
+        </p>
+      )}
       <div className="form-actions">
+        <button type="submit" className="btn btn-primary btn-lg" disabled={state === "sending"}>
+          {state === "sending" ? "Sending…" : "📩 Submit enquiry"}
+        </button>
         {CONTACT.whatsapp && (
-          <button type="button" className="btn btn-wa btn-lg" onClick={sendWhatsApp}>
-            💬 Send on WhatsApp
+          <button type="button" className={`btn btn-lg ${state === "failed" ? "btn-wa" : "btn-ghost"}`} onClick={() => sendWhatsApp()}>
+            💬 WhatsApp instead
           </button>
         )}
-        <button type="submit" className="btn btn-primary btn-lg">
-          ✉️ Send by email
-        </button>
       </div>
       <p className="form-note">
-        {sent === "whatsapp"
+        {sentWa
           ? "WhatsApp opened with your details — just press send."
-          : sent
-          ? "Your email app opened with everything filled in — just press send."
-          : `Prefer to talk? Call ${CONTACT.phone}.`}
+          : state === "failed"
+          ? (
+            <>
+              Or email us at <a href={`mailto:${CONTACT.email}?subject=${encodeURIComponent(`[${topicLabel(form.topic)}] ${form.name}`)}&body=${encodeURIComponent(summary())}`}>{CONTACT.email}</a> · Call {CONTACT.phone}
+            </>
+          )
+          : `🔒 Your details go only to the KS TechX team. Prefer to talk? Call ${CONTACT.phone}.`}
       </p>
     </form>
   );
