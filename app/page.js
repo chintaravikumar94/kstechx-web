@@ -133,6 +133,9 @@ export default function Home() {
               <li>Official WhatsApp Business API · live in minutes, no coding</li>
               <li>Tap-to-order menu inside WhatsApp + instant order alerts</li>
               <li>AI answers for FAQs &amp; broadcast offers · free to start</li>
+              <li>
+                <strong>🎁 FREE for KS TechX clients</strong> — buy any KS TechX service and get Mitra free
+              </li>
             </ul>
             <div className="hero-cta reveal">
               <a href="https://chat.kstechx.com" className="btn btn-primary btn-lg btn-wa" target="_blank" rel="noopener">

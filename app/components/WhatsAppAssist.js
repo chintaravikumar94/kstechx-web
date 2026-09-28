@@ -58,6 +58,8 @@ export function optionsFor(path) {
     const s = webServices.find((x) => x.slug === parts[1]);
     const o = s && parts[2] && s.offerings.find((x) => x.slug === parts[2]);
     if (o) top = { icon: o.icon, label: `Quote for ${o.title.replace(/ \(.*\)/, "")}`, msg: `I'd like a quote for a ${o.title}.` };
+    else if (s?.slug === "whatsapp-chatbot")
+      top = { icon: "🎁", label: "Claim free Mera Chat Mitra", msg: "I'm a KS TechX client and want my FREE Mera Chat Mitra WhatsApp chatbot. Please activate it." };
     else if (s) top = { icon: s.icon, label: `Quote for ${s.name}`, msg: `I'd like a quote for ${s.name}.` };
   } else if (parts[0] === "partners") {
     top = { icon: "🤝", label: "Join as a KS TechX Partner", msg: "I want to become a KS TechX Partner. I understand I need to purchase any one KS TechX product (minimum ₹10,000). Please explain the process." };

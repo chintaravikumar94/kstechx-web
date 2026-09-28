@@ -6359,3 +6359,34 @@ body::after {
     order: -1;
   }
 }
+
+.offer-band {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin: 0 auto 34px;
+  max-width: 900px;
+  padding: 14px 20px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #e9f9ef, #f3fff7);
+  border: 1.5px dashed #25d366;
+  color: #0b3d2e;
+  font-weight: 700;
+  font-size: 15.5px;
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.offer-band b {
+  flex-shrink: 0;
+  padding: 7px 14px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #25d366, #128c7e);
+  color: #fff;
+  font-size: 14px;
+}
+.offer-band:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(18, 140, 126, 0.18);
+}

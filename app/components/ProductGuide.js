@@ -25,6 +25,12 @@ export default function ProductGuide({ service }) {
       {/* HOW IT WORKS */}
       <section className="section">
         <div className="container">
+          {g.offer && (
+            <Link href={`/contact?service=${service.slug}`} className="offer-band reveal">
+              <span>{g.offer}</span>
+              <b>Claim now →</b>
+            </Link>
+          )}
           <span className="kicker reveal">How it works</span>
           <h2 className="section-title reveal">{g.stepsTitle}</h2>
           <p className="section-sub reveal">{g.stepsSub}</p>
