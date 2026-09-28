@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { webServices, fintech, CONTACT, PARTNER_JOIN, LEAD_API } from "../data";
 
@@ -39,11 +39,16 @@ const TOPIC_HELP = {
 
 /* defaultTopic lets a page (e.g. a fintech detail page) pre-select the service */
 export default function ContactForm({ defaultTopic = "", title }) {
-  const [form, setForm] = useState({ name: "", phone: "", email: "", city: "", topic: defaultTopic, message: "", website: "" });
+  const [form, setForm] = useState({ name: "", phone: "", email: "", city: "", topic: defaultTopic, message: "", kx_trap: "" });
   const [state, setState] = useState("idle"); // idle | sending | done | failed
   const [ref, setRef] = useState("");
   const [error, setError] = useState("");
   const [sentWa, setSentWa] = useState(false);
+  const [bad, setBad] = useState(""); // field with the error (for screen readers & focus)
+  const doneRef = useRef(null);
+  useEffect(() => {
+    if (state === "done") doneRef.current?.focus();
+  }, [state]);
 
   useEffect(() => {
     if (defaultTopic) return;
@@ -53,6 +58,7 @@ export default function ContactForm({ defaultTopic = "", title }) {
 
   const update = (k) => (e) => {
     setError("");
+    setBad("");
     setForm({ ...form, [k]: e.target.value });
   };
   const topicLabel = (v) =>
@@ -67,12 +73,18 @@ export default function ContactForm({ defaultTopic = "", title }) {
       form.topic
     )}${TOPIC_HELP[form.topic]?.line ? `\n${TOPIC_HELP[form.topic].line}` : ""}\n\n${form.message}`;
 
+  const check = () => {
+    if (form.name.trim().length < 2) return ["name", "Enter your name."];
+    if (!/^[6-9]\d{9}$/.test(phone10())) return ["phone", "Enter a valid 10-digit mobile number."];
+    if (form.email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim())) return ["email", "Check your email address (or leave it empty)."];
+    if (!form.topic) return ["topic", "Choose the service you're interested in."];
+    return ["", ""];
+  };
   const valid = () => {
-    if (form.name.trim().length < 2) return "Enter your name.";
-    if (!/^[6-9]\d{9}$/.test(phone10())) return "Enter a valid 10-digit mobile number.";
-    if (form.email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim())) return "Check your email address (or leave it empty).";
-    if (!form.topic) return "Choose the service you're interested in.";
-    return "";
+    const [field, msg] = check();
+    setBad(field);
+    if (field) document.getElementById(`cf-${field}`)?.focus();
+    return msg;
   };
 
   /* main action: save the enquiry + instant email to our team */
@@ -122,7 +134,7 @@ export default function ContactForm({ defaultTopic = "", title }) {
   };
 
   const reset = () => {
-    setForm({ name: "", phone: "", email: "", city: "", topic: defaultTopic, message: "", website: "" });
+    setForm({ name: "", phone: "", email: "", city: "", topic: defaultTopic, message: "", kx_trap: "" });
     setRef("");
     setState("idle");
     setSentWa(false);
@@ -132,7 +144,9 @@ export default function ContactForm({ defaultTopic = "", title }) {
     return (
       <div className="contact-form lead-done" role="status" aria-live="polite">
         <div className="lead-done-tick">✓</div>
-        <h3>Enquiry received, {form.name.trim().split(" ")[0]}! 🎉</h3>
+        <h3 ref={doneRef} tabIndex={-1}>
+          Enquiry received, {form.name.trim().split(" ")[0]}! 🎉
+        </h3>
         <p>
           Our team will call or WhatsApp you on <b>+91 {phone10()}</b> soon
           {CONTACT.hours ? ` (${CONTACT.hours})` : ""}.
@@ -164,21 +178,21 @@ export default function ContactForm({ defaultTopic = "", title }) {
     <form className="contact-form reveal" onSubmit={submit} noValidate>
       {title && <h3 className="form-title">{title}</h3>}
       {/* hidden from people — only bots fill it */}
-      <input className="hp-field" tabIndex={-1} autoComplete="off" aria-hidden="true" value={form.website} onChange={update("website")} name="website" />
+      <input className="hp-field" tabIndex={-1} autoComplete="new-password" aria-hidden="true" value={form.kx_trap} onChange={update("kx_trap")} name="kx_trap" />
       <div className="field-row">
         <div className="field">
           <label htmlFor="cf-name">Your name</label>
-          <input id="cf-name" value={form.name} onChange={update("name")} placeholder="Ravi Kumar" autoComplete="name" maxLength={120} />
+          <input id="cf-name" aria-invalid={bad === "name"} aria-describedby={bad === "name" ? "cf-err" : undefined} value={form.name} onChange={update("name")} placeholder="Ravi Kumar" autoComplete="name" maxLength={120} />
         </div>
         <div className="field">
           <label htmlFor="cf-phone">Phone / WhatsApp</label>
-          <input id="cf-phone" type="tel" inputMode="tel" value={form.phone} onChange={update("phone")} placeholder="98765 43210" autoComplete="tel" maxLength={16} />
+          <input id="cf-phone" aria-invalid={bad === "phone"} aria-describedby={bad === "phone" ? "cf-err" : undefined} type="tel" inputMode="tel" value={form.phone} onChange={update("phone")} placeholder="98765 43210" autoComplete="tel" maxLength={16} />
         </div>
       </div>
       <div className="field-row">
         <div className="field">
           <label htmlFor="cf-email">Email (optional)</label>
-          <input id="cf-email" type="email" value={form.email} onChange={update("email")} placeholder="you@email.com" autoComplete="email" maxLength={190} />
+          <input id="cf-email" aria-invalid={bad === "email"} aria-describedby={bad === "email" ? "cf-err" : undefined} type="email" value={form.email} onChange={update("email")} placeholder="you@email.com" autoComplete="email" maxLength={190} />
         </div>
         <div className="field">
           <label htmlFor="cf-city">City / Town</label>
@@ -187,7 +201,7 @@ export default function ContactForm({ defaultTopic = "", title }) {
       </div>
       <div className="field">
         <label htmlFor="cf-topic">I&apos;m interested in</label>
-        <select id="cf-topic" value={form.topic} onChange={update("topic")}>
+        <select id="cf-topic" aria-invalid={bad === "topic"} aria-describedby={bad === "topic" ? "cf-err" : undefined} value={form.topic} onChange={update("topic")}>
           {topics.map((t) => (
             <option key={t.value || "none"} value={t.value} disabled={t.disabled}>
               {t.label}
@@ -217,7 +231,7 @@ export default function ContactForm({ defaultTopic = "", title }) {
         />
       </div>
       {error && (
-        <p className="form-error" role="alert">
+        <p className="form-error" role="alert" id="cf-err">
           {error}
         </p>
       )}
