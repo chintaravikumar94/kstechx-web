@@ -125,6 +125,7 @@ export default function Home() {
               <span className="new-pill green">NEW</span> Mera Chat Mitra
             </span>
             <h2 className="section-title left reveal">Your WhatsApp answers customers — even while you sleep</h2>
+            <p className="offer-chip reveal">🎁 FREE for KS TechX clients · Others: contact us</p>
             <p className="section-sub left reveal">
               Our WhatsApp chatbot greets every customer instantly, shows your menu, takes orders and answers common questions with AI.
               You just get the order alert.
@@ -132,17 +133,17 @@ export default function Home() {
             <ul className="ticks reveal">
               <li>Official WhatsApp Business API · live in minutes, no coding</li>
               <li>Tap-to-order menu inside WhatsApp + instant order alerts</li>
-              <li>AI answers for FAQs &amp; broadcast offers · free to start</li>
+              <li>AI answers for FAQs &amp; broadcast offers · done-for-you setup</li>
               <li>
                 <strong>🎁 FREE for KS TechX clients</strong> — buy any KS TechX service and get Mitra free
               </li>
             </ul>
             <div className="hero-cta reveal">
-              <a href="https://chat.kstechx.com" className="btn btn-primary btn-lg btn-wa" target="_blank" rel="noopener">
-                Create free chatbot →
-              </a>
+              <Link href="/contact?service=whatsapp-chatbot" className="btn btn-primary btn-lg btn-wa">
+                🎁 Claim free Mitra
+              </Link>
               <Link href="/web-services/whatsapp-chatbot" className="btn btn-ghost btn-lg">
-                See how it works
+                See how it works →
               </Link>
             </div>
           </div>

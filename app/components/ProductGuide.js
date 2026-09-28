@@ -3,7 +3,46 @@
 import Link from "next/link";
 import { guideFor } from "../data";
 
+/** Internal links use <Link>, external ones open in a new tab */
+export function SmartLink({ href, className, children }) {
+  if (href.startsWith("/"))
+    return (
+      <Link href={href} className={className}>
+        {children}
+      </Link>
+    );
+  return (
+    <a href={href} className={className} target="_blank" rel="noopener">
+      {children}
+    </a>
+  );
+}
+
 export function ProductCtas({ product, compact }) {
+  // contact-only products (e.g. Mera Chat Mitra) have primary/secondary; self-serve ones (KS TechX QR) have signup/login
+  if (product.primary)
+    return (
+      <>
+        <div className="hero-cta reveal" data-d="3">
+          <SmartLink href={product.primary.href} className="btn btn-primary btn-lg btn-wa">
+            {product.primary.label}
+          </SmartLink>
+          {product.secondary && (
+            <SmartLink href={product.secondary.href} className="btn btn-ghost btn-lg">
+              {product.secondary.label}
+            </SmartLink>
+          )}
+        </div>
+        {product.login && (
+          <p className="login-note reveal" data-d="3">
+            {product.loginNote || "Already a user?"}{" "}
+            <a href={product.login} target="_blank" rel="noopener">
+              Log in to {product.host} →
+            </a>
+          </p>
+        )}
+      </>
+    );
   return (
     <div className="hero-cta reveal" data-d="3">
       <a href={product.signup} className="btn btn-primary btn-lg" target="_blank" rel="noopener">
@@ -45,9 +84,15 @@ export default function ProductGuide({ service }) {
             ))}
           </div>
           <div className="center-row reveal">
-            <a href={product.signup} className="btn btn-primary btn-lg" target="_blank" rel="noopener">
-              Start free at {product.host} →
-            </a>
+            {g.startCta ? (
+              <SmartLink href={g.startCta.href} className="btn btn-primary btn-lg btn-wa">
+                {g.startCta.label}
+              </SmartLink>
+            ) : (
+              <a href={product.signup} className="btn btn-primary btn-lg" target="_blank" rel="noopener">
+                Start free at {product.host} →
+              </a>
+            )}
           </div>
         </div>
       </section>
@@ -91,29 +136,29 @@ export default function ProductGuide({ service }) {
       <section className="section section-alt">
         <div className="container">
           <span className="kicker reveal">Plans</span>
-          <h2 className="section-title reveal">Start free. Grow when you&apos;re ready.</h2>
+          <h2 className="section-title reveal">{g.plansTitle || "Start free. Grow when you're ready."}</h2>
           <p className="section-sub reveal">{g.plansSub}</p>
           <div className="qrg-plans">
             {g.plans.map((p, i) => (
               <div key={p.name} className={`qrg-plan reveal ${p.pop ? "pop" : ""}`} data-d={String(i + 1)}>
-                {p.pop && <span className="tier-badge">Most popular</span>}
+                {p.pop && <span className="tier-badge">{p.badge || "Most popular"}</span>}
                 <h3>{p.name}</h3>
+                {p.price && <div className="qrg-price">{p.price}</div>}
                 <p>{p.note}</p>
-                {p.href.startsWith("/") ? (
-                  <Link href={p.href} className={`btn ${p.pop ? "btn-primary" : "btn-ghost"}`}>
-                    {p.cta} →
-                  </Link>
-                ) : (
-                  <a href={p.href} className={`btn ${p.pop ? "btn-primary" : "btn-ghost"}`} target="_blank" rel="noopener">
-                    {p.cta} →
-                  </a>
-                )}
+                <SmartLink href={p.href} className={`btn ${p.pop ? "btn-primary" : "btn-ghost"}`}>
+                  {p.cta} →
+                </SmartLink>
               </div>
             ))}
           </div>
           {g.noteLead && (
             <p className="who reveal">
-              <strong>{g.noteLead}</strong> {g.noteText}
+              <strong>{g.noteLead}</strong> {g.noteText}{" "}
+              {g.noteCta && (
+                <SmartLink href={g.noteCta.href} className="who-link">
+                  {g.noteCta.label}
+                </SmartLink>
+              )}
             </p>
           )}
         </div>

@@ -6390,3 +6390,38 @@ body::after {
   transform: translateY(-2px);
   box-shadow: 0 10px 24px rgba(18, 140, 126, 0.18);
 }
+
+.login-note {
+  margin: 14px 0 0;
+  font-size: 14px;
+  color: var(--muted, #5b6b8c);
+}
+.login-note a {
+  font-weight: 700;
+  color: #128c7e;
+}
+.qrg-price {
+  margin: -2px 0 6px;
+  font-size: 26px;
+  font-weight: 900;
+  color: var(--navy, #0b1f4b);
+}
+.qrg-plan.pop .qrg-price {
+  color: #128c7e;
+}
+.who-link {
+  font-weight: 800;
+  color: #128c7e;
+  white-space: nowrap;
+}
+.offer-chip {
+  display: inline-block;
+  margin: 0 0 14px;
+  padding: 7px 14px;
+  border-radius: 999px;
+  background: #e9f9ef;
+  border: 1px solid #b8ecc9;
+  color: #0b3d2e;
+  font-weight: 800;
+  font-size: 14px;
+}
