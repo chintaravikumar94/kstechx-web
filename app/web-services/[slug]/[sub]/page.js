@@ -4,7 +4,7 @@ import Illustration from "../../../components/Illustration";
 import ContactForm from "../../../components/ContactForm";
 import { PageHero, HighlightTiles, ProcessSteps, Faq, CtaBand } from "../../../components/Blocks";
 import { webServices, subTopic } from "../../../data";
-import QrGuide, { QrCtas } from "../../../components/QrGuide";
+import ProductGuide, { ProductCtas } from "../../../components/ProductGuide";
 
 function find(params) {
   const s = webServices.find((x) => x.slug === params.slug);
@@ -48,7 +48,7 @@ export default async function SubServicePage(props) {
         art={o.art}
       >
         {s.product ? (
-          <QrCtas product={s.product} />
+          <ProductCtas product={s.product} />
         ) : (
           <div className="hero-cta reveal" data-d="3">
             <a href="#quote" className="btn btn-primary btn-lg">
@@ -68,7 +68,7 @@ export default async function SubServicePage(props) {
         </div>
       </section>
 
-      {s.product && <QrGuide product={s.product} />}
+      {s.product && <ProductGuide service={s} />}
 
       {/* WHAT'S INCLUDED + BEST FOR */}
       <section id="included" className="section section-alt">

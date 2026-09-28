@@ -4,7 +4,7 @@
    Usage: <Illustration name="aeps" />
    Names: hero, web, website, single, business, advanced, software,
           webapp, mobile, android, fintech, aeps, upi, card, rupay,
-          partner, about, how, contact
+          partner, about, how, contact, qr, qrdash, chat, chatdash
    ========================================================= */
 
 const C = {
@@ -921,6 +921,134 @@ scenes.qrdash = (p) => (
     <Badge p={p} x={300} y={22} w={150} text="🔒 Password & expiry" tone="blue" pop />
     <Badge p={p} x={20} y={318} w={150} text="⬇️ Export to Excel" delay={0.8} />
     <Badge p={p} x={300} y={318} w={150} text="⚡ Live tracking" tone="red" delay={1.3} />
+  </>
+);
+
+/* ---------- Mera Chat Mitra (WhatsApp chatbot) scenes ---------- */
+const WA = { head: "#075e54", green: "#25d366", bubble: "#dcf8c6", paper: "#efeae2" };
+
+function ChatBubble({ x, y, w, h = 26, me, text, delay = 0, bold }) {
+  return (
+    <g transform={`translate(${x},${y})`}>
+      <g className="a-pop" style={d(delay)}>
+        <rect width={w} height={h} rx="9" fill={me ? WA.bubble : C.white} stroke={me ? "none" : C.line} />
+        <text x="9" y={h / 2 + 3.5} fontSize="8.6" fontWeight={bold ? "800" : "600"} fill={C.navy}>
+          {text}
+        </text>
+      </g>
+    </g>
+  );
+}
+
+scenes.chat = (p) => (
+  <>
+    {/* phone with a WhatsApp conversation */}
+    <g transform="translate(150,28)">
+      <g className="a-bob">
+        <rect width="180" height="318" rx="28" fill={`url(#${p}-navy)`} filter={`url(#${p}-sh)`} />
+        <rect x="9" y="11" width="162" height="296" rx="20" fill={WA.paper} />
+        <rect x="9" y="11" width="162" height="46" rx="20" fill={WA.head} />
+        <rect x="9" y="40" width="162" height="17" fill={WA.head} />
+        <circle cx="34" cy="37" r="12" fill={WA.green} />
+        <text x="34" y="41" textAnchor="middle" fontSize="11">
+          🏪
+        </text>
+        <text x="52" y="34" fontSize="10" fontWeight="800" fill={C.white}>
+          Surya Sweets
+        </text>
+        <text x="52" y="46" fontSize="7.5" fill="#cde8e2">
+          online · replies instantly
+        </text>
+        <ChatBubble x={100} y={68} w={60} me text="Hi 👋" delay={0.2} />
+        <ChatBubble x={18} y={100} w={132} h={40} text="" delay={0.7} />
+        <g className="a-pop" style={d(0.7)}>
+          <text x="27" y="116" fontSize="8.6" fontWeight="800" fill={C.navy}>
+            🙏 Welcome to Surya Sweets!
+          </text>
+          <text x="27" y="130" fontSize="8" fill="#5b6b8c">
+            Tap below to see today&apos;s menu
+          </text>
+        </g>
+        <g transform="translate(18,146)">
+          <g className="a-pop" style={d(1.1)}>
+            <rect width="132" height="24" rx="9" fill={C.white} stroke={C.line} />
+            <text x="66" y="16" textAnchor="middle" fontSize="8.8" fontWeight="800" fill="#128c7e">
+              📋 View menu
+            </text>
+          </g>
+        </g>
+        <ChatBubble x={70} y={180} w={90} me text="🛒 Kaju Katli × 1 kg" delay={1.6} />
+        <ChatBubble x={18} y={214} w={132} text="✅ Order placed · ₹980" delay={2.1} bold />
+        <rect x="16" y="272" width="122" height="24" rx="12" fill={C.white} />
+        <text x="28" y="288" fontSize="8" fill="#9aa7c2">
+          Message
+        </text>
+        <circle cx="152" cy="284" r="12" fill={WA.green} />
+        <text x="152" y="288" textAnchor="middle" fontSize="10" fill={C.white}>
+          ➤
+        </text>
+      </g>
+    </g>
+    <Badge p={p} x={318} y={40} w={150} text="⚡ Replies in 1 sec" tone="green" pop />
+    <Badge p={p} x={14} y={120} w={150} text="🧠 AI answers FAQs" tone="blue" delay={0.8} />
+    <Badge p={p} x={300} y={236} w={150} text="🔔 New order alert" tone="red" delay={1.4} />
+    <Badge p={p} x={20} y={300} w={150} text="🌙 Works 24×7" delay={1.9} />
+  </>
+);
+
+scenes.chatdash = (p) => (
+  <>
+    <g transform="translate(56,62)">
+      <rect width="368" height="240" rx="18" fill={C.white} filter={`url(#${p}-sh)`} />
+      <rect width="368" height="40" rx="18" fill={WA.head} />
+      <rect y="22" width="368" height="18" fill={WA.head} />
+      <text x="18" y="26" fontSize="12" fontWeight="800" fill={C.white}>
+        💬 Mera Chat Mitra · Orders
+      </text>
+      {[
+        ["Chats today", "86"],
+        ["Orders", "23"],
+        ["Auto-replied", "100%"],
+      ].map(([k, v], i) => (
+        <g key={k} transform={`translate(${16 + i * 116},54)`}>
+          <rect width="104" height="48" rx="10" fill={C.soft} />
+          <text x="10" y="19" fontSize="9" fill="#5b6b8c">
+            {k}
+          </text>
+          <text x="10" y="39" fontSize="17" fontWeight="800" fill={i === 1 ? WA.head : C.navy}>
+            {v}
+          </text>
+        </g>
+      ))}
+      {[
+        ["Ravi · Kaju Katli 1 kg", "₹980", "New"],
+        ["Lakshmi · Mysore Pak ½ kg", "₹360", "Confirmed"],
+        ["Kiran · Sweet box × 3", "₹1,050", "Delivered"],
+      ].map(([n, amt, st], i) => (
+        <g key={n} transform={`translate(16,${116 + i * 38})`}>
+          <g className="a-pop" style={d(0.4 + i * 0.45)}>
+          <rect width="336" height="30" rx="9" fill={i === 0 ? "#e9f9ef" : C.soft} />
+          <circle cx="16" cy="15" r="8" fill={WA.green} />
+          <text x="14.5" y="18.5" fontSize="8" fill={C.white}>
+            ✓
+          </text>
+          <text x="32" y="19" fontSize="9.5" fontWeight="700" fill={C.navy}>
+            {n}
+          </text>
+          <text x="232" y="19" fontSize="9.5" fontWeight="800" fill={C.navy}>
+            {amt}
+          </text>
+          <rect x="272" y="7" width="56" height="16" rx="8" fill={i === 0 ? `url(#${p}-red)` : i === 1 ? C.lb2 : "#d9f5e4"} />
+          <text x="300" y="18" textAnchor="middle" fontSize="7.8" fontWeight="800" fill={i === 0 ? C.white : C.navy}>
+            {st}
+          </text>
+          </g>
+        </g>
+      ))}
+    </g>
+    <Badge p={p} x={300} y={22} w={150} text="✅ Official WhatsApp API" tone="green" pop />
+    <Badge p={p} x={18} y={320} w={150} text="📣 Broadcast offers" tone="blue" delay={0.8} />
+    <Badge p={p} x={300} y={320} w={150} text="🔒 Your data stays yours" delay={1.3} />
   </>
 );
 

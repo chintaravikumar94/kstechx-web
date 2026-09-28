@@ -117,6 +117,38 @@ export default function Home() {
         </div>
       </section>
 
+      {/* NEW: MERA CHAT MITRA (WHATSAPP CHATBOT) SPOTLIGHT */}
+      <section className="section chat-spot">
+        <div className="container split-intro">
+          <div>
+            <span className="kicker left reveal">
+              <span className="new-pill green">NEW</span> Mera Chat Mitra
+            </span>
+            <h2 className="section-title left reveal">Your WhatsApp answers customers — even while you sleep</h2>
+            <p className="section-sub left reveal">
+              Our WhatsApp chatbot greets every customer instantly, shows your menu, takes orders and answers common questions with AI.
+              You just get the order alert.
+            </p>
+            <ul className="ticks reveal">
+              <li>Official WhatsApp Business API · live in minutes, no coding</li>
+              <li>Tap-to-order menu inside WhatsApp + instant order alerts</li>
+              <li>AI answers for FAQs &amp; broadcast offers · free to start</li>
+            </ul>
+            <div className="hero-cta reveal">
+              <a href="https://chat.kstechx.com" className="btn btn-primary btn-lg btn-wa" target="_blank" rel="noopener">
+                Create free chatbot →
+              </a>
+              <Link href="/web-services/whatsapp-chatbot" className="btn btn-ghost btn-lg">
+                See how it works
+              </Link>
+            </div>
+          </div>
+          <div className="reveal" data-d="2">
+            <Illustration name="chat" />
+          </div>
+        </div>
+      </section>
+
       {/* FINTECH SPOTLIGHT */}
       <section className="section section-alt">
         <div className="container">

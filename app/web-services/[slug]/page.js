@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import Illustration from "../../components/Illustration";
 import { PageHero, TierCards, SingleOffer, ProcessSteps, PartnerBand, CtaBand } from "../../components/Blocks";
 import { webServices } from "../../data";
-import QrGuide, { QrCtas } from "../../components/QrGuide";
+import ProductGuide, { ProductCtas } from "../../components/ProductGuide";
 
 export function generateStaticParams() {
   return webServices.map((s) => ({ slug: s.slug }));
@@ -36,7 +36,7 @@ export default async function WebServiceDetail(props) {
         art={s.art}
       >
         {s.product ? (
-          <QrCtas product={s.product} />
+          <ProductCtas product={s.product} />
         ) : (
           <div className="hero-cta reveal" data-d="3">
             <Link href={quote} className="btn btn-primary btn-lg">
@@ -81,7 +81,7 @@ export default async function WebServiceDetail(props) {
         </div>
       </section>
 
-      {s.product && <QrGuide product={s.product} />}
+      {s.product && <ProductGuide service={s} />}
 
       <section className="section section-alt">
         <div className="container">

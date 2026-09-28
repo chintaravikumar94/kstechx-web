@@ -19,7 +19,7 @@ export const metadata = {
     template: "%s | KS TechX",
   },
   description:
-    "KS TechX (Kumara Swamy Technologies) — website development, custom software, Android app development, AEPS retailer ID, UPI & credit card merchant IDs, and a partner program where every sale earns commission.",
+    "KS TechX (Kumara Swamy Technologies) — website development, custom software, Android app development, dynamic QR codes, Mera Chat Mitra WhatsApp chatbot, AEPS retailer ID, UPI & credit card merchant IDs, and a partner program where every sale earns commission.",
   metadataBase: new URL("https://kstechx.com"),
   keywords: [
     "KS TechX",
@@ -31,6 +31,10 @@ export const metadata = {
     "UPI merchant ID",
     "RuPay credit card merchant ID",
     "partner program commission",
+    "dynamic QR code generator",
+    "WhatsApp chatbot for business",
+    "Mera Chat Mitra",
+    "WhatsApp order bot",
   ],
   openGraph: {
     title: "KS TechX — Digital & Fintech Solutions built for Bharat",
@@ -84,6 +88,7 @@ const orgJsonLd = {
       "Custom Software Solutions",
       "Custom Mobile App Development",
       "Dynamic QR Codes & Scan Analytics",
+      "WhatsApp Chatbot — Mera Chat Mitra",
       "Fintech Solutions",
     ].map((n) => ({ "@type": "Offer", itemOffered: { "@type": "Service", name: n } })),
   },
